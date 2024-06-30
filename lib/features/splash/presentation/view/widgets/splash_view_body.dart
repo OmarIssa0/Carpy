@@ -21,7 +21,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     // return Center(child: SvgPicture.asset(Assets.imagesIconSplashView));
     return Center(
         child: Image.asset(
-      Assets.imagesIconSplashViewPng,
+      Assets.imagesIconSplashView2,
       height: 150,
       fit: BoxFit.scaleDown,
     ));

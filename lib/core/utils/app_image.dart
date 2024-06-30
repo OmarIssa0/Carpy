@@ -9,9 +9,9 @@ class Assets {
   /// assets/images/icon_splash_view.svg
   static const String imagesIconSplashView = "assets/images/icon_splash_view.svg";
 
-  /// Assets for imagesIconSplashViewPng
-  /// assets/images/icon_splash_view_png.png
-  static const String imagesIconSplashViewPng = "assets/images/icon_splash_view_png.png";
+  /// Assets for imagesIconSplashView2
+  /// assets/images/icon_splash_view2.png
+  static const String imagesIconSplashView2 = "assets/images/icon_splash_view2.png";
 
   /// Assets for imagesNewIconApp
   /// assets/images/new_icon_app.png
