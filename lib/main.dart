@@ -1,5 +1,7 @@
 import 'package:car_store/core/utils/app_color.dart';
+import 'package:car_store/features/auth/presentation/view/forget_password_view.dart';
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
+import 'package:car_store/features/auth/presentation/view/sign_up_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/lang/cubit/locale_cubit.dart';
 import 'package:car_store/features/splash/presentation/view/splash_view.dart';
@@ -55,6 +57,8 @@ class CarApp extends StatelessWidget {
               routes: {
                 SplashView.routeName: (context) => const SplashView(),
                 LoginView.routeName: (context) => const LoginView(),
+                SignUpView.routeName: (context) => const SignUpView(),
+                ForgetPasswordView.routeName: (context) => const ForgetPasswordView(),
               },
             );
           }

@@ -1,10 +1,19 @@
 {
-   "Login":"Login",
-   "Welcome to CarStore":"Welcome to CarStore",
-   "Email address":"Email address",
-   "Password":"Password",
-   "Forgot Password?":"Forgot Password?",
-   "Don’t have an account?":"Don’t have an account?"
-   ," Sign Up":" Sign Up"
-   ,"OR":"OR"
+    "Login": "Login",
+    "Welcome to CarStore": "Welcome to CarStore",
+    "Email address": "Email address",
+    "Password": "Password",
+    "Forgot Password?": "Forgot Password?",
+    "Forgot Password": "Forgot Password",
+    "Don’t have an account?": "Don’t have an account?",
+    " Sign Up": " Sign Up",
+    "OR": "OR",
+    "Sign Up": "Sign Up",
+    "Find your dream car!": "Find your dream car!",
+    "Full name": "Full name",
+    "Phone number": "Phone number",
+    "Already have an account?": "Already have an account?",
+    "Sign In": "Sign In",
+    "Please enter the email address you'd like your password reset information sent to": "Please enter the email address you'd like your password reset information sent to",
+    "Send email": "Send email"
 }

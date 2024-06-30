@@ -4,7 +4,16 @@
     "Email address": "البريد الالكتروني",
     "Password": "كلمة المرور",
     "Forgot Password?": "نسيت كلمة المرور؟",
+    "Forgot Password": "نسيت كلمة المرور",
     "Don’t have an account?": "ليس لديك حساب؟",
     " Sign Up": " انشاء حساب",
-    "OR": "أو"
+    "OR": "أو",
+    "Sign Up": "انشاء حساب",
+    "Find your dream car!": "ابحث عن سيارتك المثالية!",
+    "Full name": "الاسم الكامل",
+    "Phone number": "رقم الهاتف",
+    "Already have an account?": "لديك حساب بالفعل؟",
+    "Sign In": "تسجيل الدخول",
+    "Please enter the email address you'd like your password reset information sent to": "الرجاء ادخال البريد الالكتروني الخاص بك لاستلام معلومات استعادة كلمة المرور"
+    ,"Send email": "ارسال بريد الكتروني"
 }

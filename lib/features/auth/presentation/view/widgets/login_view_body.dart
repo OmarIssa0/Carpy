@@ -3,6 +3,8 @@ import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/core/widgets/custom_button.dart';
 import 'package:car_store/core/widgets/custom_text_filed.dart';
+import 'package:car_store/features/auth/presentation/view/forget_password_view.dart';
+import 'package:car_store/features/auth/presentation/view/sign_up_view.dart';
 import 'package:car_store/features/auth/presentation/view/widgets/or_widgets.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,7 +34,7 @@ class LoginViewBody extends StatelessWidget {
               title: "Email address".tr(context),
               textInputType: TextInputType.emailAddress,
               prefix: const Icon(
-                IconlyBold.profile,
+                IconlyBold.message,
                 color: AppColor.kSilver,
               ),
             ),
@@ -49,8 +51,13 @@ class LoginViewBody extends StatelessWidget {
             const SizedBox(height: 24),
             Align(
               alignment: AlignmentDirectional.centerEnd,
-              child: Text("Forgot Password?".tr(context),
-                  style: AppStyles.medium14.copyWith(color: AppColor.kBlack)),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, ForgetPasswordView.routeName);
+                },
+                child: Text("Forgot Password?".tr(context),
+                    style: AppStyles.medium14.copyWith(color: AppColor.kBlack)),
+              ),
             ),
             const SizedBox(height: 24),
             CustomButton(title: 'Login'.tr(context)),
@@ -71,9 +78,14 @@ class LoginViewBody extends StatelessWidget {
               children: [
                 Text("Don’t have an account?".tr(context),
                     style: AppStyles.medium14),
-                Text(" Sign Up".tr(context),
-                    style: AppStyles.medium14
-                        .copyWith(color: AppColor.kBackGroundColorSplash)),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, SignUpView.routeName);
+                  },
+                  child: Text(" Sign Up".tr(context),
+                      style: AppStyles.medium14
+                          .copyWith(color: AppColor.kBackGroundColorSplash)),
+                ),
               ],
             ),
           ],
