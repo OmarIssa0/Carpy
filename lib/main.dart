@@ -17,6 +17,7 @@ class CarApp extends StatelessWidget {
         statusBarColor: Colors.transparent,
       ),
       child: MaterialApp(
+        theme: ThemeData(useMaterial3: true, fontFamily: 'Poppins'),
         debugShowCheckedModeBanner: false,
         initialRoute: SplashView.routeName,
         routes: {
