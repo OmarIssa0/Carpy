@@ -2,6 +2,7 @@ import 'package:car_store/core/utils/theme.dart';
 import 'package:car_store/features/auth/presentation/view/forget_password_view.dart';
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
 import 'package:car_store/features/auth/presentation/view/sign_up_view.dart';
+import 'package:car_store/features/details/peresentation/view/details_view.dart';
 import 'package:car_store/features/home/presentation/view/home_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/lang/cubit/locale_cubit.dart';
@@ -63,6 +64,7 @@ class CarApp extends StatelessWidget {
                 RootView.routeName: (context) => const RootView(),
                 HomeView.routeName: (context) => const HomeView(),
                 SearchView.routeName: (context) => const SearchView(),
+                DetailsView.routeName: (context) => const DetailsView(),
               },
             );
           }

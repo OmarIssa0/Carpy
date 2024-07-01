@@ -1,3 +1,4 @@
+import 'package:car_store/features/details/peresentation/view/details_view.dart';
 import 'package:car_store/features/home/presentation/view/home_view.dart';
 import 'package:car_store/features/search/persentation/view/search_view.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class _RootViewState extends State<RootView> {
   List<Widget> screen = [
     const HomeView(),
     const SearchView(),
-    // const CartView(),
+    // const DetailsView()
     // const ProfileView(),
   ];
 
