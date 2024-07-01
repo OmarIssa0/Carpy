@@ -1,5 +1,5 @@
-import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/features/home/presentation/view/home_view.dart';
+import 'package:car_store/features/search/persentation/view/search_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconly/iconly.dart';
@@ -19,7 +19,7 @@ class _RootViewState extends State<RootView> {
   bool isLoading = true;
   List<Widget> screen = [
     const HomeView(),
-    // const SearchView(),
+    const SearchView(),
     // const CartView(),
     // const ProfileView(),
   ];
