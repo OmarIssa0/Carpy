@@ -7,6 +7,7 @@ import 'package:car_store/features/auth/presentation/view/forget_password_view.d
 import 'package:car_store/features/auth/presentation/view/sign_up_view.dart';
 import 'package:car_store/features/auth/presentation/view/widgets/or_widgets.dart';
 import 'package:car_store/features/lang/app_localization.dart';
+import 'package:car_store/root_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -60,7 +61,12 @@ class LoginViewBody extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            CustomButton(title: 'Login'.tr(context)),
+            CustomButton(
+              title: 'Login'.tr(context),
+              onPressed: () {
+                Navigator.pushNamed(context, RootView.routeName);
+              },
+            ),
             const SizedBox(height: 45),
             const OrSignInAndSignUp(),
             const SizedBox(height: 12),

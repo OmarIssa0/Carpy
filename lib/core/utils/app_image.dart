@@ -1,6 +1,14 @@
 class Assets {
   Assets._();
   
+  /// Assets for imagesCarTest
+  /// assets/images/car_test.png
+  static const String imagesCarTest = "assets/images/car_test.png";
+
+  /// Assets for imagesFerareCar
+  /// assets/images/ferare_car.jpg
+  static const String imagesFerareCar = "assets/images/ferare_car.jpg";
+
   /// Assets for imagesGoogle
   /// assets/images/Google.png
   static const String imagesGoogle = "assets/images/Google.png";
@@ -20,5 +28,9 @@ class Assets {
   /// Assets for imagesNewIconApp
   /// assets/images/new_icon_app.png
   static const String imagesNewIconApp = "assets/images/new_icon_app.png";
+
+  /// Assets for imagesTesla
+  /// assets/images/Tesla.png
+  static const String imagesTesla = "assets/images/Tesla.png";
 }
 

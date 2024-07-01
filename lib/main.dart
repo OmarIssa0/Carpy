@@ -1,10 +1,12 @@
-import 'package:car_store/core/utils/app_color.dart';
+import 'package:car_store/core/utils/theme.dart';
 import 'package:car_store/features/auth/presentation/view/forget_password_view.dart';
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
 import 'package:car_store/features/auth/presentation/view/sign_up_view.dart';
+import 'package:car_store/features/home/presentation/view/home_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/lang/cubit/locale_cubit.dart';
 import 'package:car_store/features/splash/presentation/view/splash_view.dart';
+import 'package:car_store/root_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,21 +46,21 @@ class CarApp extends StatelessWidget {
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate
               ],
-              theme: ThemeData(
-                  colorScheme: ColorScheme.fromSeed(
-                    seedColor: AppColor.kBackGroundColorSplash,
-                  ),
-                  useMaterial3: true,
-                  fontFamily:
-                      state.locale.languageCode == 'en' ? 'Abel' : "Cairo",
-                  scaffoldBackgroundColor: const Color(0xffF9FAFB)),
+              theme: Styles.themeData(
+                context: context,
+                fontFamily:
+                    state.locale.languageCode == 'en' ? 'Poppins' : "Cairo",
+              ),
               debugShowCheckedModeBanner: false,
               initialRoute: SplashView.routeName,
               routes: {
                 SplashView.routeName: (context) => const SplashView(),
                 LoginView.routeName: (context) => const LoginView(),
                 SignUpView.routeName: (context) => const SignUpView(),
-                ForgetPasswordView.routeName: (context) => const ForgetPasswordView(),
+                ForgetPasswordView.routeName: (context) =>
+                    const ForgetPasswordView(),
+                RootView.routeName: (context) => const RootView(),
+                HomeView.routeName: (context) => const HomeView(),
               },
             );
           }
