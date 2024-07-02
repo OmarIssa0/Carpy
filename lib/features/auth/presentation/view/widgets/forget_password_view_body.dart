@@ -1,6 +1,7 @@
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/utils/app_styles.dart';
+import 'package:car_store/core/utils/size_config.dart';
 import 'package:car_store/core/widgets/custom_text_filed.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,12 @@ class ForgetPasswordViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: MediaQuery.sizeOf(context).width < SizeConfig.tablet
+            ? const EdgeInsetsDirectional.symmetric(horizontal: 24)
+            : EdgeInsetsDirectional.only(
+                start: MediaQuery.sizeOf(context).width / 6,
+                end: MediaQuery.sizeOf(context).width / 6,
+              ),
         child: Column(
           children: [
             const SizedBox(height: 44),

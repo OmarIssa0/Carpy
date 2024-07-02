@@ -1,5 +1,7 @@
-import 'package:car_store/features/details/peresentation/view/details_view.dart';
+import 'package:car_store/core/utils/size_config.dart';
+import 'package:car_store/features/favorite/presentation/view/favorite_view.dart';
 import 'package:car_store/features/home/presentation/view/home_view.dart';
+import 'package:car_store/features/profile/presentation/view/profile_view.dart';
 import 'package:car_store/features/search/persentation/view/search_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -21,8 +23,8 @@ class _RootViewState extends State<RootView> {
   List<Widget> screen = [
     const HomeView(),
     const SearchView(),
-    // const DetailsView()
-    // const ProfileView(),
+    const FavoriteView(),
+    const ProfileView(),
   ];
 
   @override
@@ -76,7 +78,14 @@ class _RootViewState extends State<RootView> {
       bottomNavigationBar: SafeArea(
         bottom: true,
         child: Padding(
-          padding: const EdgeInsets.all(22.0),
+          // padding: const EdgeInsets.all(22.0),
+          padding: MediaQuery.sizeOf(context).width < SizeConfig.tablet
+              ? const EdgeInsetsDirectional.only(start: 22, end: 22, bottom: 22)
+              : EdgeInsetsDirectional.only(
+                  start: MediaQuery.sizeOf(context).width / 6,
+                  end: MediaQuery.sizeOf(context).width / 6,
+                  bottom: 22,
+                ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(25),
             child: GNav(

@@ -1,3 +1,4 @@
+import 'package:car_store/core/utils/size_config.dart';
 import 'package:car_store/core/widgets/custom_text_filed.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/search/persentation/view/widgets/category_item.dart';
@@ -116,11 +117,18 @@ class SearchViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
           const SizedBox(height: kMinInteractiveDimension),
-           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+          Padding(
+            // padding: const EdgeInsets.symmetric(horizontal: 24),
+            padding: MediaQuery.sizeOf(context).width < SizeConfig.tablet
+                ? const EdgeInsetsDirectional.symmetric(horizontal: 24)
+                : EdgeInsetsDirectional.only(
+                    start: MediaQuery.sizeOf(context).width / 6,
+                    end: MediaQuery.sizeOf(context).width / 6,
+                  ),
             child: CustomTextFiled(
                 title: "Search".tr(context), textInputType: TextInputType.text),
           ),
@@ -129,8 +137,15 @@ class SearchViewBody extends StatelessWidget {
             children: List.generate(
               carBrands.length,
               (index) => Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                padding: MediaQuery.sizeOf(context).width < SizeConfig.tablet
+                    ? const EdgeInsetsDirectional.symmetric(
+                        horizontal: 24, vertical: 8)
+                    : EdgeInsetsDirectional.only(
+                        start: MediaQuery.sizeOf(context).width / 6,
+                        end: MediaQuery.sizeOf(context).width / 6,
+                        top: 8,
+                        bottom: 8,
+                      ),
                 child: CategoryItem(
                   name: carBrands[index].name,
                   image: carBrands[index].image,

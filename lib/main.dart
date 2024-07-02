@@ -3,9 +3,11 @@ import 'package:car_store/features/auth/presentation/view/forget_password_view.d
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
 import 'package:car_store/features/auth/presentation/view/sign_up_view.dart';
 import 'package:car_store/features/details/peresentation/view/details_view.dart';
+import 'package:car_store/features/favorite/presentation/view/favorite_view.dart';
 import 'package:car_store/features/home/presentation/view/home_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/lang/cubit/locale_cubit.dart';
+import 'package:car_store/features/profile/presentation/view/profile_view.dart';
 import 'package:car_store/features/search/persentation/view/search_view.dart';
 import 'package:car_store/features/splash/presentation/view/splash_view.dart';
 import 'package:car_store/root_view.dart';
@@ -15,6 +17,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    // DeviceOrientation.portraitDown,
+  ]);
   runApp(
     MultiBlocProvider(
       providers: [
@@ -65,6 +72,8 @@ class CarApp extends StatelessWidget {
                 HomeView.routeName: (context) => const HomeView(),
                 SearchView.routeName: (context) => const SearchView(),
                 DetailsView.routeName: (context) => const DetailsView(),
+                FavoriteView.routeName: (context) => const FavoriteView(),
+                ProfileView.routeName: (context) => const ProfileView(),
               },
             );
           }

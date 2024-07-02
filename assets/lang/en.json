@@ -52,5 +52,8 @@
     "Toyota": "Toyota",
     "Volkswagen": "Volkswagen",
     "Volvo": "Volvo",
-    "Search": "Search"
+    "Search": "Search",
+    "Favorite": "Favorite",
+    "My Profile": "My Profile",
+    "language": "language"
 }
