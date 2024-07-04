@@ -9,12 +9,15 @@ import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/lang/cubit/locale_cubit.dart';
 import 'package:car_store/features/profile/presentation/view/profile_view.dart';
 import 'package:car_store/features/search/persentation/view/search_view.dart';
+import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
 import 'package:car_store/features/splash/presentation/view/splash_view.dart';
+import 'package:car_store/features/vendor_stroe/presentation/view/vendor_store_view.dart';
 import 'package:car_store/root_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,46 +42,53 @@ class CarApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-      ),
-      child: BlocBuilder<LocaleCubit, LocaleState>(
-        builder: (context, state) {
-          if (state is ChangeLocaleState) {
-            return MaterialApp(
-              locale: state.locale,
-              supportedLocales: const [Locale('en'), Locale('ar')],
-              localizationsDelegates: const [
-                AppLocalization.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate
-              ],
-              theme: Styles.themeData(
-                context: context,
-                fontFamily:
-                    state.locale.languageCode == 'en' ? 'Poppins' : "Cairo",
-              ),
-              debugShowCheckedModeBanner: false,
-              initialRoute: SplashView.routeName,
-              routes: {
-                SplashView.routeName: (context) => const SplashView(),
-                LoginView.routeName: (context) => const LoginView(),
-                SignUpView.routeName: (context) => const SignUpView(),
-                ForgetPasswordView.routeName: (context) =>
-                    const ForgetPasswordView(),
-                RootView.routeName: (context) => const RootView(),
-                HomeView.routeName: (context) => const HomeView(),
-                SearchView.routeName: (context) => const SearchView(),
-                DetailsView.routeName: (context) => const DetailsView(),
-                FavoriteView.routeName: (context) => const FavoriteView(),
-                ProfileView.routeName: (context) => const ProfileView(),
-              },
-            );
-          }
-          return const SizedBox();
-        },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ProductProvider()),
+      ],
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+        ),
+        child: BlocBuilder<LocaleCubit, LocaleState>(
+          builder: (context, state) {
+            if (state is ChangeLocaleState) {
+              return MaterialApp(
+                locale: state.locale,
+                supportedLocales: const [Locale('en'), Locale('ar')],
+                localizationsDelegates: const [
+                  AppLocalization.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate
+                ],
+                theme: Styles.themeData(
+                  context: context,
+                  fontFamily:
+                      state.locale.languageCode == 'en' ? 'Poppins' : "Cairo",
+                ),
+                debugShowCheckedModeBanner: false,
+                initialRoute: SplashView.routeName,
+                routes: {
+                  SplashView.routeName: (context) => const SplashView(),
+                  LoginView.routeName: (context) => const LoginView(),
+                  SignUpView.routeName: (context) => const SignUpView(),
+                  ForgetPasswordView.routeName: (context) =>
+                      const ForgetPasswordView(),
+                  RootView.routeName: (context) => const RootView(),
+                  HomeView.routeName: (context) => const HomeView(),
+                  SearchView.routeName: (context) => const SearchView(),
+                  DetailsView.routeName: (context) => const DetailsView(),
+                  FavoriteView.routeName: (context) => const FavoriteView(),
+                  ProfileView.routeName: (context) => const ProfileView(),
+                  VendorStoreView.routeName: (context) =>
+                      const VendorStoreView(),
+                },
+              );
+            }
+            return const SizedBox();
+          },
+        ),
       ),
     );
   }

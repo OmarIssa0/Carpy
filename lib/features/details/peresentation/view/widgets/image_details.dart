@@ -1,7 +1,9 @@
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/utils/app_image.dart';
+import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:swipe_image_gallery/swipe_image_gallery.dart';
 
 class ImageDetails extends StatelessWidget {
@@ -17,44 +19,52 @@ class ImageDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(6),
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height * .4,
-          child: Swiper(
-            itemCount: 3,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  SwipeImageGallery(
-                    context: context,
-                    children: List.generate(
-                        item.length,
-                        (index) => Image.asset(
-                              item[index],
-                              fit: BoxFit.fitWidth,
-                            )),
-                    // [
-                    //   Image.asset(Assets.imagesFerareCar),
-                    // ],
-                  ).show();
-                },
-                // child: Image.asset(Assets.imagesFerareCar, fit: BoxFit.cover),
-                child: Image.asset(item[index], fit: BoxFit.cover),
-              );
-            },
-            autoplay: true,
-            pagination: const SwiperPagination(
-              alignment: Alignment.bottomCenter,
-              builder: DotSwiperPaginationBuilder(
-                  color: AppColor.kGrayOpacity,
-                  activeColor: AppColor.kBackGroundColorSplash),
+    final productProvider = Provider.of<ProductProvider>(context);
+    final productId = ModalRoute.of(context)!.settings.arguments as String;
+    final getCurrentProduct = productProvider.findByProductId(productId);
+
+    return getCurrentProduct == null
+        ? const SizedBox.shrink()
+        : Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * .4,
+                child: Swiper(
+                  itemCount: getCurrentProduct.imagesProduct.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        SwipeImageGallery(
+                          context: context,
+                          children: List.generate(
+                              getCurrentProduct.imagesProduct.length,
+                              (index) => Image.asset(
+                                    getCurrentProduct.imagesProduct[index],
+                                    fit: BoxFit.fitWidth,
+                                  )),
+                          // [
+                          //   Image.asset(Assets.imagesFerareCar),
+                          // ],
+                        ).show();
+                      },
+                      // child: Image.asset(Assets.imagesFerareCar, fit: BoxFit.cover),
+                      child: Image.asset(getCurrentProduct.imagesProduct[index],
+                          fit: BoxFit.cover),
+                      // child: Image.asset(item[index], fit: BoxFit.cover),
+                    );
+                  },
+                  autoplay: true,
+                  pagination: const SwiperPagination(
+                    alignment: Alignment.bottomCenter,
+                    builder: DotSwiperPaginationBuilder(
+                        color: AppColor.kGrayOpacity,
+                        activeColor: AppColor.kBackGroundColorSplash),
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
-    );
+          );
   }
 }

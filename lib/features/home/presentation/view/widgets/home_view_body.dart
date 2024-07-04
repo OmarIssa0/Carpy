@@ -1,21 +1,22 @@
-import 'package:car_store/core/utils/app_color.dart';
-import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/core/utils/size_config.dart';
 import 'package:car_store/features/home/presentation/view/widgets/item_recommended.dart';
+import 'package:car_store/features/home/presentation/view/widgets/swiper_home_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
-import 'package:card_swiper/card_swiper.dart';
+import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final productProvider = Provider.of<ProductProvider>(context);
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
@@ -51,53 +52,21 @@ class HomeViewBody extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
               builder: (context, index) {
-                return const ItemRecommended();
+                return ChangeNotifierProvider.value(
+                  value: productProvider.getProduct[index],
+                  child: ItemRecommended(
+                    productId: productProvider.getProduct[index].productsId,
+                  ),
+                );
               },
               mainAxisSpacing: 25,
               crossAxisSpacing: 16,
-              itemCount: 25,
+              itemCount: productProvider.getProduct.length,
               crossAxisCount:
                   MediaQuery.sizeOf(context).width < SizeConfig.tablet ? 2 : 3,
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class SwiperHomeView extends StatelessWidget {
-  const SwiperHomeView({
-    super.key,
-  });
-  static List<String> images = [
-    Assets.imagesBannar1,
-    Assets.imagesBanner2,
-    Assets.imagesBanner3,
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(10),
-      child: SizedBox(
-        height: MediaQuery.sizeOf(context).height * 0.2,
-        child: Swiper(
-          itemBuilder: (context, index) {
-            return Image.asset(
-              images[index],
-              fit: BoxFit.fill,
-            );
-          },
-          autoplay: true,
-          // autoplayDelay: 3,
-          pagination: const SwiperPagination(
-            alignment: Alignment.bottomCenter,
-            builder: DotSwiperPaginationBuilder(
-                color: AppColor.kGrayOpacity,
-                activeColor: AppColor.kBackGroundColorSplash),
-          ),
-          itemCount: 3,
-        ),
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/core/utils/size_config.dart';
 import 'package:car_store/core/widgets/custom_text_filed.dart';
+import 'package:car_store/features/auth/presentation/view/widgets/forgot_password_button.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
@@ -59,28 +60,6 @@ class ForgetPasswordViewBody extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ForgotPasswordButton extends StatelessWidget {
-  const ForgotPasswordButton({super.key, required this.child});
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: TextButton(
-        style: TextButton.styleFrom(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            backgroundColor: AppColor.kBackGroundColorSplash),
-        child: child,
-        onPressed: () {},
       ),
     );
   }

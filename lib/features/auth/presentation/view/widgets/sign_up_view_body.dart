@@ -2,8 +2,9 @@ import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/core/utils/size_config.dart';
-import 'package:car_store/core/widgets/custom_button.dart';
 import 'package:car_store/core/widgets/custom_text_filed.dart';
+import 'package:car_store/features/auth/presentation/view/login_view.dart';
+import 'package:car_store/features/auth/presentation/view/widgets/forgot_password_button.dart';
 import 'package:car_store/features/auth/presentation/view/widgets/or_widgets.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,21 @@ class SignUpViewBody extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 41),
-          CustomButton(title: "Sign Up".tr(context)),
+          // CustomButton(title: "Sign Up".tr(context)),
+          ForgotPasswordButton(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Send email".tr(context),
+                    style: AppStyles.semiBold16.copyWith(color: Colors.white)),
+                const SizedBox(height: 5),
+                const Icon(
+                  IconlyBold.send,
+                  color: Colors.white,
+                )
+              ],
+            ),
+          ),
           const SizedBox(height: 12),
           const OrSignInAndSignUp(),
           const SizedBox(height: 12),
@@ -94,7 +109,9 @@ class SignUpViewBody extends StatelessWidget {
                 width: 5,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, LoginView.routeName);
+                },
                 child: Text(
                   "Sign In".tr(context),
                   style: AppStyles.medium14.copyWith(

@@ -1,6 +1,5 @@
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/features/lang/app_localization.dart';
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -31,12 +30,13 @@ class CategoryItem extends StatelessWidget {
                 name.tr(context),
                 style: AppStyles.medium16,
               ),
-              FancyShimmerImage(
-                imageUrl: image,
-                height: 45,
-                width: 65,
-                errorWidget: const Icon(Icons.error),
-              ),
+              // Image.network(image, height: 45),
+              // FancyShimmerImage(
+              //   imageUrl: image.toString(),
+              //   height: 45,
+              //   width: 65,
+              //   // errorWidget: const Icon(Icons.error),
+              // ),
             ],
           ),
         ),
