@@ -1,5 +1,6 @@
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/features/details/peresentation/view/details_view.dart';
+import 'package:car_store/features/favorite/presentation/view_model/provider/favorite_provider.dart';
 import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,10 @@ class ItemRecommended extends StatelessWidget {
     // final productModel = Provider.of<ProductsModel>(context);
     final productProvider = Provider.of<ProductProvider>(context);
     final getCurrentProduct = productProvider.findByProductId(productId);
+
+    // FavoriteProvider
+    FavoriteProvider favoriteProvider = Provider.of<FavoriteProvider>(context);
+
     return getCurrentProduct == null
         ? const SizedBox.shrink()
         : GestureDetector(
@@ -46,8 +51,23 @@ class ItemRecommended extends StatelessWidget {
                             radius: 18,
                             child: Center(
                               child: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(Icons.favorite, size: 20)),
+                                onPressed: () {
+                                  favoriteProvider
+                                      .isProductInFavoriteListAndRemove(
+                                          productId: productId);
+                                },
+                                icon: Icon(
+                                  favoriteProvider
+                                          .isProductsInFavoriteList(productId)
+                                      ? Icons.favorite
+                                      : Icons.favorite_outline,
+                                  color: favoriteProvider
+                                          .isProductsInFavoriteList(productId)
+                                      ? Colors.red
+                                      : Colors.black,
+                                  size: 20,
+                                ),
+                              ),
                             ),
                           ),
                         ),

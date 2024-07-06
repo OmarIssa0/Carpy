@@ -59,5 +59,6 @@
     "Home": "Home",
     "Cart": "Cart",
     "No Products Found": "No Products Found",
-    "Category": "Category"
+    "Category": "Category",
+    "logout": "logout"
 }

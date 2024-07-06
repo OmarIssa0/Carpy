@@ -4,6 +4,7 @@ import 'package:car_store/features/auth/presentation/view/login_view.dart';
 import 'package:car_store/features/auth/presentation/view/sign_up_view.dart';
 import 'package:car_store/features/details/peresentation/view/details_view.dart';
 import 'package:car_store/features/favorite/presentation/view/favorite_view.dart';
+import 'package:car_store/features/favorite/presentation/view_model/provider/favorite_provider.dart';
 import 'package:car_store/features/filter_category/presentation/view/filter_category_view.dart';
 import 'package:car_store/features/home/presentation/view/home_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
@@ -46,6 +47,7 @@ class CarApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ProductProvider()),
+        ChangeNotifierProvider(create: (context) => FavoriteProvider()),
       ],
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value: const SystemUiOverlayStyle(

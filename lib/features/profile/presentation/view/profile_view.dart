@@ -12,12 +12,6 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // actions: const [
-        //   Padding(
-        //     padding: EdgeInsetsDirectional.only(end: 16),
-        //     child: DropDownButtonLocal(),
-        //   ),
-        // ],
         centerTitle: true,
         automaticallyImplyLeading: false,
         title: Text(

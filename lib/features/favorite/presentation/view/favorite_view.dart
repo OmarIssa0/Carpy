@@ -14,14 +14,12 @@ class FavoriteView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // actions: [
-        //   IconButton(
-        //       onPressed: () {},
-        //       icon: const Icon(
-        //         IconlyBold.delete,
-        //         color: Colors.red,
-        //       ))
-        // ],
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+          ),
+        ),
         automaticallyImplyLeading: false,
         title: Text(
           'Favorite'.tr(context),
