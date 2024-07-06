@@ -1,3 +1,4 @@
+import 'package:car_store/core/utils/animation_nav.dart';
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/utils/app_styles.dart';
@@ -60,7 +61,11 @@ class LoginViewBody extends StatelessWidget {
               alignment: AlignmentDirectional.centerEnd,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, ForgetPasswordView.routeName);
+                  // Navigator.pushNamed(context, ForgetPasswordView.routeName);
+                  Navigator.push(
+                      context,
+                      AnimationNav.navigatorAnimation(
+                          child: const ForgetPasswordView()));
                 },
                 child: Text("Forgot Password?".tr(context),
                     style: AppStyles.medium14.copyWith(color: AppColor.kBlack)),
@@ -70,7 +75,9 @@ class LoginViewBody extends StatelessWidget {
             CustomButton(
               title: 'Login'.tr(context),
               onPressed: () {
-                Navigator.pushNamed(context, RootView.routeName);
+                // Navigator.pushNamed(context, RootView.routeName);
+                Navigator.push(context,
+                    AnimationNav.navigatorAnimation(child: const RootView()));
               },
             ),
             const SizedBox(height: 45),
@@ -92,7 +99,11 @@ class LoginViewBody extends StatelessWidget {
                     style: AppStyles.medium14),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, SignUpView.routeName);
+                    // Navigator.pushNamed(context, SignUpView.routeName);
+                    Navigator.push(
+                        context,
+                        AnimationNav.navigatorAnimation(
+                            child: const SignUpView()));
                   },
                   child: Text(" Sign Up".tr(context),
                       style: AppStyles.medium14

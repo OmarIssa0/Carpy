@@ -4,6 +4,7 @@ import 'package:car_store/features/auth/presentation/view/login_view.dart';
 import 'package:car_store/features/auth/presentation/view/sign_up_view.dart';
 import 'package:car_store/features/details/peresentation/view/details_view.dart';
 import 'package:car_store/features/favorite/presentation/view/favorite_view.dart';
+import 'package:car_store/features/filter_category/presentation/view/filter_category_view.dart';
 import 'package:car_store/features/home/presentation/view/home_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/lang/cubit/locale_cubit.dart';
@@ -83,6 +84,8 @@ class CarApp extends StatelessWidget {
                   ProfileView.routeName: (context) => const ProfileView(),
                   VendorStoreView.routeName: (context) =>
                       const VendorStoreView(),
+                  FilterCategoryView.routeName: (context) =>
+                      const FilterCategoryView(),
                 },
               );
             }

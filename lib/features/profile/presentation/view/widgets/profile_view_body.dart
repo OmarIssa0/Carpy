@@ -17,28 +17,53 @@ class ProfileViewBody extends StatelessWidget {
                 start: MediaQuery.sizeOf(context).width / 6,
                 end: MediaQuery.sizeOf(context).width / 6,
               ),
-        child: Column(
+        child: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.start,
+            //   children: [
+            //     Image.asset(Assets.imagesIconApp, height: 60),
+            //     const SizedBox(width: 16),
+            //     const Column(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         Text("Oamr issa", style: AppStyles.semiBold20),
+            //         Text("07970079797", style: AppStyles.semiBold20),
+            //       ],
+            //     ),
+            //   ],
+            // ),
+            // const Divider(
+            //   height: 32,
+            //   color: Colors.black12,
+            // ),
+            // const DropDownButtonLocal(),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Image.asset(Assets.imagesIconApp, height: 60),
-                const SizedBox(width: 16),
-                const Column(
+                CircleAvatar(
+                  radius: 30,
+                  backgroundImage: AssetImage(Assets.imagesFerareCar),
+                ),
+                SizedBox(width: 19),
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Oamr issa", style: AppStyles.semiBold20),
-                    Text("07970079797", style: AppStyles.semiBold20),
+                    Text(
+                      // 'Matilda Brown',
+                      'name company',
+                      style: AppStyles.regular12,
+                    ),
+                    Text(
+                      "+962799999999",
+                      style: AppStyles.medium14,
+                    ),
                   ],
                 ),
               ],
             ),
-            const Divider(
-              height: 32,
-              color: Colors.black12,
-            ),
-            const DropDownButtonLocal(),
+            SizedBox(height: 33),
+            DropDownButtonLocal(),
           ],
         ),
       ),
