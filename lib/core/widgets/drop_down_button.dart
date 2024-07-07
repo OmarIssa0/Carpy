@@ -1,4 +1,3 @@
-import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/lang/cubit/locale_cubit.dart';
 import 'package:flutter/cupertino.dart';

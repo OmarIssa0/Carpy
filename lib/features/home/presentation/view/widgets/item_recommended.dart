@@ -41,8 +41,8 @@ class ItemRecommended extends StatelessWidget {
                         Image.asset(
                           // Assets.imagesFerareCar,
                           getCurrentProduct.imagesProduct[0],
-                          height: 90,
-                          fit: BoxFit.fill,
+                          height: MediaQuery.of(context).size.height * 0.22,
+                          fit: BoxFit.fitHeight,
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),

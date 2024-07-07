@@ -1,5 +1,3 @@
-import 'package:car_store/core/utils/app_color.dart';
-import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/core/widgets/adaptive_layout_widgets.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/profile/presentation/view/widgets/profile_view_body.dart';
@@ -15,9 +13,8 @@ class ProfileView extends StatelessWidget {
         centerTitle: true,
         automaticallyImplyLeading: false,
         title: Text(
-          "My Profile".tr(context),
-          style: AppStyles.semiBold24
-              .copyWith(color: AppColor.kBackGroundColorSplash),
+          "My Profile".tr(context), // style: AppStyles.semiBold24
+          // .copyWith(color: AppColor.kBackGroundColorSplash),
         ),
       ),
       body: AdaptiveLayout(

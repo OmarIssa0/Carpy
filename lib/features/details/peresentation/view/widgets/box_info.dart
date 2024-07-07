@@ -28,9 +28,12 @@ class BoxInfo extends StatelessWidget {
         ? const SizedBox.shrink()
         : Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                // color: AppColor.kGrayColor.withOpacity(.2),
-                color: AppColor.kBackGroundColorSplash.withOpacity(.3)),
+              borderRadius: BorderRadius.circular(8),
+              // color: AppColor.kGrayColor.withOpacity(.2),
+              // color: AppColor.kBackGroundColorSplash.withOpacity(.3),
+              color: Colors.white,
+              border: Border.all(color: AppColor.kSilver.withOpacity(.4)),
+            ),
             height: 60,
             width: double.infinity,
             child: Row(
@@ -44,9 +47,12 @@ class BoxInfo extends StatelessWidget {
                       arguments: getCurrentProduct.userId,
                     );
                   },
-                  child: CircleAvatar(
-                    // radius: 30,
-                    backgroundImage: AssetImage(getCurrentProduct.imageCompany),
+                  child: Hero(
+                    tag: "OMAR",
+                    child: CircleAvatar(
+                      // radius: 30,
+                      backgroundImage: AssetImage(getCurrentProduct.imageCompany),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 10),

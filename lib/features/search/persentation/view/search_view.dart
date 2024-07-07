@@ -22,6 +22,10 @@ class SearchView extends StatelessWidget {
           floating: true,
           snap: true,
           flexibleSpace: FlexibleSpaceBar(
+            stretchModes: const [
+              StretchMode.zoomBackground,
+              StretchMode.blurBackground,
+            ],
             title: Text(
               'Category'.tr(context),
               style: AppStyles.semiBold20.copyWith(color: Colors.white),
