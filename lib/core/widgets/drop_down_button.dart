@@ -24,7 +24,6 @@ class DropDownButtonLocal extends StatelessWidget {
               ),
               child: DropdownButton<String>(
                 // isExpanded: true,
-
                 hint: Text("the language".tr(context)),
                 underline: const SizedBox(),
                 dropdownColor: Colors.white,

@@ -49,6 +49,10 @@ class Assets {
   /// assets/images/icon_splash_view2.png
   static const String imagesIconSplashView2 = "assets/images/icon_splash_view2.png";
 
+  /// Assets for imagesLoadingCar
+  /// assets/images/loading_car.json
+  static const String imagesLoadingCar = "assets/images/loading_car.json";
+
   /// Assets for imagesLocation
   /// assets/images/location.png
   static const String imagesLocation = "assets/images/location.png";
@@ -60,5 +64,9 @@ class Assets {
   /// Assets for imagesTesla
   /// assets/images/Tesla.png
   static const String imagesTesla = "assets/images/Tesla.png";
+
+  /// Assets for imagesWishlistIsEmpty
+  /// assets/images/wishlist_is_empty.json
+  static const String imagesWishlistIsEmpty = "assets/images/wishlist_is_empty.json";
 }
 

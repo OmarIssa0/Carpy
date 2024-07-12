@@ -32,7 +32,7 @@ class CategoryItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                categoryModel.name.tr(context),
+                categoryModel.name,
                 style: AppStyles.medium16,
               ),
               // Image.network(image, height: 45),

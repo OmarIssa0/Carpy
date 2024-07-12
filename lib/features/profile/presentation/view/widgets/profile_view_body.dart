@@ -96,10 +96,10 @@ class ProfileViewBody extends StatelessWidget {
                 ),
                 title: "logout",
                 function: () {
-                  Navigator.push(
-                      context,
-                      AnimationNav.navigatorAnimation(
-                          child: const FavoriteView()));
+                  // Navigator.push(
+                  //     context,
+                  //     AnimationNav.navigatorAnimation(
+                  //         child: const FavoriteView()));
                 },
               ),
             )

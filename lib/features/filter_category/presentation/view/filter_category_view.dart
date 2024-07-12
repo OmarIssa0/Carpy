@@ -63,7 +63,10 @@ class _FilterCategoryViewState extends State<FilterCategoryView> {
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
                 passeCategory ?? '',
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                ),
               ),
               background: Padding(
                 padding: const EdgeInsetsDirectional.only(
