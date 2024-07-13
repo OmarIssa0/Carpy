@@ -60,5 +60,13 @@
     "Cart": "Cart",
     "No Products Found": "No Products Found",
     "Category": "Category",
-    "logout": "logout"
+    "logout": "logout",
+    "Display name cannot be empty": "Display name cannot be empty",
+    "Display name must be between 3 and 20 characters": "Display name must be between 3 and 20 characters",
+    "Please enter an email": "Please enter an email",
+    "Please enter a valid email": "Please enter a valid email",
+    "Please enter a password": "Please enter a password",
+    "Password must be at least 6 characters long": "Password must be at least 6 characters long",
+    "Please enter mobile number": "Please enter mobile number",
+    "Please enter valid mobile number": "Please enter valid mobile number"
 }

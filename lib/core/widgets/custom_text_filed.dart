@@ -21,6 +21,7 @@ class CustomTextFiled extends StatelessWidget {
     this.prefixText,
     this.contentPadding,
     this.onChanged,
+    this.suffixIcon,
   });
 
   final TextEditingController? controller;
@@ -39,11 +40,11 @@ class CustomTextFiled extends StatelessWidget {
   final String? prefixText;
   final EdgeInsetsGeometry? contentPadding;
   final void Function(String)? onChanged;
+  final Widget? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      
       onChanged: onChanged,
       maxLengthEnforcement: maxLengthEnforcement,
       maxLength: maxLength,
@@ -54,6 +55,7 @@ class CustomTextFiled extends StatelessWidget {
       keyboardType: textInputType,
       focusNode: focusNode,
       decoration: InputDecoration(
+        suffixIcon: suffixIcon,
         contentPadding: contentPadding,
         prefixText: prefixText,
         // prefixStyle: const TextStyle(color: AppColor.kIconColor, fontSize: 14),
