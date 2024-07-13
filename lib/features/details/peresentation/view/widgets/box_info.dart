@@ -3,34 +3,24 @@ import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
 import 'package:car_store/features/vendor_stroe/presentation/view/vendor_store_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BoxInfo extends StatelessWidget {
-  const BoxInfo({
-    super.key,
-    // required this.phoneNumber,
-    // required this.nameCompany,
-    // required this.imageVendor,
-    // required this.id
-  });
-
-  // final String phoneNumber, nameCompany, imageVendor, id;
+  const BoxInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
     final productProvider = Provider.of<ProductProvider>(context);
     final productId = ModalRoute.of(context)!.settings.arguments as String;
     final getCurrentProduct = productProvider.findByProductId(productId);
+
     return getCurrentProduct == null
         ? const SizedBox.shrink()
         : Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              // color: AppColor.kGrayColor.withOpacity(.2),
-              // color: AppColor.kBackGroundColorSplash.withOpacity(.3),
               color: Colors.white,
               border: Border.all(color: AppColor.kSilver.withOpacity(.4)),
             ),
@@ -51,7 +41,8 @@ class BoxInfo extends StatelessWidget {
                     tag: "OMAR",
                     child: CircleAvatar(
                       // radius: 30,
-                      backgroundImage: AssetImage(getCurrentProduct.imageCompany),
+                      backgroundImage:
+                          AssetImage(getCurrentProduct.imageCompany),
                     ),
                   ),
                 ),

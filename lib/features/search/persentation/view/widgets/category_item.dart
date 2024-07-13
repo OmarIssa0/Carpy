@@ -1,6 +1,5 @@
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/utils/app_styles.dart';
-import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/search/persentation/view_model/model/category_model.dart';
 import 'package:flutter/material.dart';
 

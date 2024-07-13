@@ -1,6 +1,6 @@
 import 'dart:ui';
-import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
 import 'package:car_store/features/vendor_stroe/presentation/view/widgets/vendor_store_view_body.dart';
+import 'package:car_store/features/vendor_stroe/presentation/view_model/provider/vendor_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,9 +13,12 @@ class VendorStoreView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productProvider = Provider.of<ProductProvider>(context);
-    final userId = ModalRoute.of(context)!.settings.arguments as String;
-    final getCurrentProduct = productProvider.findByUserId(userId);
+    // final productProvider = Provider.of<ProductProvider>(context);
+    // final userId = ModalRoute.of(context)!.settings.arguments as String;
+    final vendorId = ModalRoute.of(context)!.settings.arguments as String;
+    final vendorProvider = Provider.of<VendorProvider>(context);
+    final getCurrentVendor = vendorProvider.findByVendorId(vendorId);
+    // final getCurrentProduct = productProvider.findByUserId(userId);
     return Scaffold(
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
@@ -35,10 +38,10 @@ class VendorStoreView extends StatelessWidget {
               ],
               background: Hero(
                 tag: "OMAR",
-                child: getCurrentProduct?.imageCompany == null
+                child: getCurrentVendor?.imageCompany == null
                     ? const SizedBox.shrink()
                     : Image.asset(
-                        getCurrentProduct!.imageCompany,
+                        getCurrentVendor!.imageCompany,
                         fit: BoxFit.cover,
                       ),
               ),

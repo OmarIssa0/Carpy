@@ -1,14 +1,24 @@
-import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 class ItemProductsVendor extends StatelessWidget {
-  const ItemProductsVendor({super.key});
+  const ItemProductsVendor({
+    super.key,
+    required this.imageProduct,
+    required this.titleProduct,
+    required this.priceProduct,
+    required this.descriptionProduct,
+  });
+
+  final String imageProduct, titleProduct, priceProduct, descriptionProduct;
 
   @override
   Widget build(BuildContext context) {
+    // final vendorId = ModalRoute.of(context)!.settings.arguments as String;
+    // final vendorProvider = Provider.of<VendorProvider>(context);
+    // final getCurrentVendor = vendorProvider.findByVendorId(vendorId);
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -22,7 +32,8 @@ class ItemProductsVendor extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: Image.asset(
-                  Assets.imagesFerareCar,
+                  // Assets.imagesFerareCar,
+                  imageProduct,
                   height: size.height * .15,
                   width: size.width * .32,
                   fit: BoxFit.cover,
@@ -40,7 +51,7 @@ class ItemProductsVendor extends StatelessWidget {
                         child: Text(
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          "Name Products" * 10,
+                          titleProduct,
                           style: AppStyles.regular14,
                           textAlign: TextAlign.end,
                         ),
@@ -51,7 +62,7 @@ class ItemProductsVendor extends StatelessWidget {
                         child: Text(
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          "Description Products" * 100,
+                          descriptionProduct,
                           style: AppStyles.regular14,
                           textAlign: TextAlign.end,
                         ),
@@ -60,8 +71,10 @@ class ItemProductsVendor extends StatelessWidget {
                   ),
                   SizedBox(
                     width: size.width * .45,
-                    child: const Text(
-                      "2135JD",
+                    child: Text(
+                      priceProduct,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: AppStyles.regular12,
                       textAlign: TextAlign.end,
                     ),

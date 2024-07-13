@@ -14,6 +14,7 @@ import 'package:car_store/features/search/persentation/view/search_view.dart';
 import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
 import 'package:car_store/features/splash/presentation/view/splash_view.dart';
 import 'package:car_store/features/vendor_stroe/presentation/view/vendor_store_view.dart';
+import 'package:car_store/features/vendor_stroe/presentation/view_model/provider/vendor_provider.dart';
 import 'package:car_store/root_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -48,6 +49,7 @@ class CarApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => ProductProvider()),
         ChangeNotifierProvider(create: (context) => FavoriteProvider()),
+        ChangeNotifierProvider(create: (context) => VendorProvider()),
       ],
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value: const SystemUiOverlayStyle(
