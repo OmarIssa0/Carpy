@@ -3,7 +3,7 @@ import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/search/persentation/view_model/model/products_model.dart';
 import 'package:flutter/material.dart';
 
-class ProductProvider extends ChangeNotifier {
+class ProductProvider with ChangeNotifier {
   List<ProductsModel> get getProduct {
     return _products;
   }

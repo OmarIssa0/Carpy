@@ -68,5 +68,16 @@
     "Please enter a password": "الرجاء إدخال كلمة المرور",
     "Password must be at least 6 characters long": "الرقم السري يجب الا يقل عن 6 احرف على الاقل",
     "Please enter mobile number": "الرجاء إدخال رقم الجوال",
-    "Please enter valid mobile number": "يرجى أدخال رقم جوال صحيح"
+    "Please enter valid mobile number": "يرجى أدخال رقم جوال صحيح",
+    "An account has been created": "تم انشاء حساب",
+    "Please confirm your email! Please check your email!": "يرجى تأكيد بريدك الإلكتروني! يرجى التحقق من بريدك الإلكتروني!",
+    "The password provided is too weak.": "كلمة المرور قصيرة جدًا.",
+    "The account already exists for that email.": "الحساب موجود بالفعل للبريد الألكتروني هذا.",
+    "An error has been occured": "حدث خطأ",
+    "Cancel": "الغاء",
+    "No user found for that email.": "لا يوجد مستخدم للبريد الألكتروني هذا.",
+    "Wrong password provided for that user.": "كلمة المرور غير صحيحة للمستخدم هذا.",
+    "An unknown error occurred.": "حدث خطأ غير معروف.",
+    "Login Successful": "تم تسجيل الدخول بنجاح",
+    "Password reset link sent! Check your email!": "تم ارسال رابط استعادة كلمة المرور! تحقق من بريدك الإلكتروني!"
 }

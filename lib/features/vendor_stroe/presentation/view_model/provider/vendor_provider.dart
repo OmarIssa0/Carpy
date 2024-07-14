@@ -3,7 +3,7 @@ import 'package:car_store/features/search/persentation/view_model/model/products
 import 'package:car_store/features/vendor_stroe/presentation/view_model/model/vendor_model.dart';
 import 'package:flutter/material.dart';
 
-class VendorProvider extends ChangeNotifier {
+class VendorProvider with ChangeNotifier {
   List<VendorModel> get getProduct {
     return _vendorList;
   }

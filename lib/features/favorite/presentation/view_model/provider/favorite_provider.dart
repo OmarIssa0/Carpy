@@ -2,7 +2,7 @@ import 'package:car_store/features/favorite/presentation/view_model/model/favori
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
-class FavoriteProvider extends ChangeNotifier {
+class FavoriteProvider with ChangeNotifier {
   final Map<String, FavoriteModel> _favoriteList = {};
 
   Map<String, FavoriteModel> get favoriteList => _favoriteList;

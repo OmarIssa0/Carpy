@@ -7,6 +7,7 @@ import 'package:car_store/core/widgets/custom_text_filed.dart';
 import 'package:car_store/features/auth/presentation/manger/provider/signup_provider.dart';
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
 import 'package:car_store/features/auth/presentation/view/widgets/forgot_password_button.dart';
+import 'package:car_store/features/auth/presentation/view/widgets/google_auth.dart';
 import 'package:car_store/features/auth/presentation/view/widgets/or_widgets.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/loading_manger.dart';
@@ -160,14 +161,7 @@ class SignUpViewBody extends StatelessWidget {
                     const SizedBox(height: 12),
                     const OrSignInAndSignUp(),
                     const SizedBox(height: 12),
-                    CircleAvatar(
-                      backgroundColor: Colors.white,
-                      radius: 28,
-                      child: Image.asset(
-                        Assets.imagesGoogle,
-                        height: 48,
-                      ),
-                    ),
+                    const GoogleAuth(),
                     const SizedBox(height: 24),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

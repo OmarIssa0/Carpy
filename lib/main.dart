@@ -1,4 +1,5 @@
 import 'package:car_store/core/utils/theme.dart';
+import 'package:car_store/features/auth/presentation/manger/provider/google_auth_provider.dart';
 import 'package:car_store/features/auth/presentation/view/forget_password_view.dart';
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
 import 'package:car_store/features/auth/presentation/view/sign_up_view.dart';
@@ -15,15 +16,19 @@ import 'package:car_store/features/search/persentation/view_model/provider/produ
 import 'package:car_store/features/splash/presentation/view/splash_view.dart';
 import 'package:car_store/features/vendor_stroe/presentation/view/vendor_store_view.dart';
 import 'package:car_store/features/vendor_stroe/presentation/view_model/provider/vendor_provider.dart';
+import 'package:car_store/firebase_options.dart';
 import 'package:car_store/root_view.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     // DeviceOrientation.portraitDown,
@@ -50,6 +55,8 @@ class CarApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ProductProvider()),
         ChangeNotifierProvider(create: (context) => FavoriteProvider()),
         ChangeNotifierProvider(create: (context) => VendorProvider()),
+        ChangeNotifierProvider(
+            create: (context) => GoogleProviderAuthLoginAndSignUp()),
       ],
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value: const SystemUiOverlayStyle(

@@ -1,4 +1,10 @@
+import 'package:car_store/core/utils/app_image.dart';
+import 'package:car_store/core/widgets/alert_dialog.dart';
+import 'package:car_store/features/lang/app_localization.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUpProvider extends ChangeNotifier {
   // Controllers
@@ -53,7 +59,82 @@ class SignUpProvider extends ChangeNotifier {
     FocusScope.of(context).unfocus();
     if (isValid) {
       formKey.currentState!.save();
-      _setLoading(true);
+      try {
+        setLoading(true);
+
+        final auth = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailTextController.text.trim(),
+          password: passwordTextController.text.trim(),
+        );
+        User? user = auth.user;
+        final uid = user!.uid;
+        await FirebaseFirestore.instance.collection("users").doc(uid).set({
+          "userId": uid,
+          "userName": nameTextController.text,
+          "userEmail": emailTextController.text,
+          "userPhone": phoneTextController.text,
+          "userWishList": [],
+          "createAt": Timestamp.now(),
+        });
+        if (!context.mounted) return;
+        Fluttertoast.showToast(
+          msg: "An account has been created".tr(context),
+          toastLength: Toast.LENGTH_SHORT,
+          textColor: Colors.white,
+        );
+        if (!context.mounted) return;
+        AlertDialogMethods.showDialogForgotPassword(
+          context: context,
+          subtitle:
+              'Please confirm your email! Please check your email!'.tr(context),
+          // isError: false,
+          titleBottom: 'Cancel'.tr(context),
+          lottileAnimation: Assets.imagesSendEmailCar,
+          function: () {
+            Navigator.of(context).pop();
+          },
+        );
+
+        FirebaseAuth.instance.setLanguageCode("ar");
+        FirebaseAuth.instance.currentUser!.sendEmailVerification();
+        if (!context.mounted) return;
+        // Navigator.pushReplacement(
+        //     context, AnimationNav.navigatorAnimation(child: const LoginView()));
+      } on FirebaseAuthException catch (error) {
+        if (error.code == "weak-password") {
+          AlertDialogMethods.showError(
+            context: context,
+            subtitle: "The password provided is too weak.".tr(context),
+            titleBottom: "Ok",
+            lottileAnimation: Assets.imagesErrorMas,
+            function: () {
+              Navigator.of(context).pop();
+            },
+          );
+        } else if (error.code == "email-already-in-use") {
+          AlertDialogMethods.showError(
+            context: context,
+            subtitle: "The account already exists for that email.".tr(context),
+            titleBottom: "Ok",
+            lottileAnimation: Assets.imagesErrorMas,
+            function: () {
+              Navigator.of(context).pop();
+            },
+          );
+        }
+      } catch (error) {
+        AlertDialogMethods.showError(
+          context: context,
+          subtitle: "An error has been occured".tr(context),
+          titleBottom: "Ok",
+          lottileAnimation: Assets.imagesErrorMas,
+          function: () {
+            Navigator.of(context).pop();
+          },
+        );
+      } finally {
+        setLoading(false);
+      }
     }
   }
 
@@ -109,7 +190,7 @@ class SignUpProvider extends ChangeNotifier {
   //   }
   // }
 
-  void _setLoading(bool value) {
+  void setLoading(bool value) {
     _isLoading = value;
     notifyListeners();
   }

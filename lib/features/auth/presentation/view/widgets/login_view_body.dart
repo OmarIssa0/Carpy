@@ -9,6 +9,7 @@ import 'package:car_store/core/widgets/custom_text_filed.dart';
 import 'package:car_store/features/auth/presentation/manger/provider/login_provider.dart';
 import 'package:car_store/features/auth/presentation/view/forget_password_view.dart';
 import 'package:car_store/features/auth/presentation/view/sign_up_view.dart';
+import 'package:car_store/features/auth/presentation/view/widgets/google_auth.dart';
 import 'package:car_store/features/auth/presentation/view/widgets/or_widgets.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/loading_manger.dart';
@@ -83,10 +84,7 @@ class LoginViewBody extends StatelessWidget {
                           color: AppColor.kSilver,
                         ),
                         onPressed: () {
-                          provider.obscureText = !provider.obscureText;
-                          // invalid_use_of_visible_for_testing_member
-                          // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
-                          provider.notifyListeners();
+                          provider.changeObscureText();
                         },
                       ),
                       prefix: const Icon(
@@ -131,14 +129,7 @@ class LoginViewBody extends StatelessWidget {
                     const SizedBox(height: 45),
                     const OrSignInAndSignUp(),
                     const SizedBox(height: 12),
-                    CircleAvatar(
-                      backgroundColor: Colors.white,
-                      radius: 28,
-                      child: Image.asset(
-                        Assets.imagesGoogle,
-                        height: 48,
-                      ),
-                    ),
+                    const GoogleAuth(),
                     const SizedBox(height: 24),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -169,3 +160,4 @@ class LoginViewBody extends StatelessWidget {
     );
   }
 }
+

@@ -1,3 +1,7 @@
+import 'package:car_store/core/utils/app_image.dart';
+import 'package:car_store/core/widgets/alert_dialog.dart';
+import 'package:car_store/features/lang/app_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ForgetPasswordProvider extends ChangeNotifier {
@@ -20,7 +24,48 @@ class ForgetPasswordProvider extends ChangeNotifier {
     if (isValid) {
       formKey.currentState!.save();
 
-      _setLoading(true);
+      try {
+        _setLoading(true);
+        FirebaseAuth.instance.setLanguageCode("ar");
+        FirebaseAuth.instance
+            .sendPasswordResetEmail(email: emailController.text.trim());
+        if (!context.mounted) return;
+        AlertDialogMethods.showDialogForgotPassword(
+          context: context,
+          subtitle:
+              'Please confirm your email! Please check your email!'.tr(context),
+          // isError: false,
+          titleBottom: 'Cancel'.tr(context),
+          lottileAnimation: Assets.imagesSendEmailCar,
+          function: () {
+            Navigator.of(context).pop();
+          },
+        );
+      } on FirebaseAuthException catch (e) {
+        if (!context.mounted) return;
+        AlertDialogMethods.showError(
+          context: context,
+          subtitle: "${e.message}",
+          titleBottom: "Ok",
+          lottileAnimation: Assets.imagesErrorMas,
+          function: () {
+            Navigator.of(context).pop();
+          },
+        );
+      } catch (e) {
+        if (!context.mounted) return;
+        AlertDialogMethods.showError(
+          context: context,
+          subtitle: "$e",
+          titleBottom: "Ok",
+          lottileAnimation: Assets.imagesErrorMas,
+          function: () {
+            Navigator.of(context).pop();
+          },
+        );
+      } finally {
+        _setLoading(false);
+      }
     }
   }
 

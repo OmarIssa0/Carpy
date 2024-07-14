@@ -68,5 +68,16 @@
     "Please enter a password": "Please enter a password",
     "Password must be at least 6 characters long": "Password must be at least 6 characters long",
     "Please enter mobile number": "Please enter mobile number",
-    "Please enter valid mobile number": "Please enter valid mobile number"
+    "Please enter valid mobile number": "Please enter valid mobile number",
+    "An account has been created": "An account has been created",
+    "Please confirm your email! Please check your email!": "Please confirm your email! Please check your email!",
+    "The account already exists for that email.": "The account already exists for that email.",
+    "The password provided is too weak.": "The password provided is too weak.",
+    "An error has been occured": "An error has been occured",
+    "Cancel": "Cancel",
+    "No user found for that email.": "No user found for that email.",
+    "Wrong password provided for that user.": "Wrong password provided for that user.",
+    "An unknown error occurred.": "An unknown error occurred.",
+    "Login Successful": "Login Successful",
+    "Password reset link sent! Check your email!": "Password reset link sent! Check your email!"
 }

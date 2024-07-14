@@ -29,6 +29,10 @@ class Assets {
   /// assets/images/EMI.png
   static const String imagesEMI = "assets/images/EMI.png";
 
+  /// Assets for imagesErrorMas
+  /// assets/images/error_mas.json
+  static const String imagesErrorMas = "assets/images/error_mas.json";
+
   /// Assets for imagesFerareCar
   /// assets/images/ferare_car.jpg
   static const String imagesFerareCar = "assets/images/ferare_car.jpg";
@@ -60,6 +64,10 @@ class Assets {
   /// Assets for imagesNewIconApp
   /// assets/images/new_icon_app.png
   static const String imagesNewIconApp = "assets/images/new_icon_app.png";
+
+  /// Assets for imagesSendEmailCar
+  /// assets/images/send_email_car.json
+  static const String imagesSendEmailCar = "assets/images/send_email_car.json";
 
   /// Assets for imagesTesla
   /// assets/images/Tesla.png
