@@ -42,7 +42,7 @@ class BoxInfo extends StatelessWidget {
                     child: CircleAvatar(
                       // radius: 30,
                       backgroundImage:
-                          AssetImage(getCurrentProduct.imageCompany),
+                          NetworkImage(getCurrentProduct.imageCompany),
                     ),
                   ),
                 ),

@@ -2,6 +2,7 @@ import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swipe_image_gallery/swipe_image_gallery.dart';
@@ -40,9 +41,16 @@ class ImageDetails extends StatelessWidget {
                           context: context,
                           children: List.generate(
                               getCurrentProduct.imagesProduct.length,
-                              (index) => Image.asset(
-                                    getCurrentProduct.imagesProduct[index],
-                                    fit: BoxFit.fitWidth,
+                              (index) =>
+                                  // Image.network(
+                                  //       getCurrentProduct.imagesProduct[index],
+                                  //       fit: BoxFit.fitWidth,
+                                  //     )
+                                  FancyShimmerImage(
+                                    imageUrl:
+                                        getCurrentProduct.imagesProduct[index],
+                                    boxFit: BoxFit.fitWidth,
+                                    errorWidget: const Icon(Icons.error),
                                   )),
                           // [
                           //   Image.asset(Assets.imagesFerareCar),
@@ -50,10 +58,14 @@ class ImageDetails extends StatelessWidget {
                         ).show();
                       },
                       // child: Image.asset(Assets.imagesFerareCar, fit: BoxFit.cover),
-                      child: Image.asset(getCurrentProduct.imagesProduct[index],
-                          fit: BoxFit.cover),
-                      // child: Image.asset(item[index], fit: BoxFit.cover),
+                      child: FancyShimmerImage(
+                        imageUrl: getCurrentProduct.imagesProduct[index],
+                        errorWidget: const Icon(Icons.error),
+                      ),
+                      // Image.asset(getCurrentProduct.imagesProduct[index],
+                      // fit: BoxFit.cover
                     );
+                    // child: Image.asset(item[index], fit: BoxFit.cover),
                   },
                   autoplay: true,
                   pagination: const SwiperPagination(

@@ -38,8 +38,7 @@ class _FilterCategoryViewState extends State<FilterCategoryView> {
 
     final List<ProductsModel> productsList = passeCategory == null
         ? productProvider.getProduct
-        : productProvider.findByCategory(
-            context: context, categoryName: passeCategory);
+        : productProvider.findByCategory(categoryName: passeCategory);
 
     return Scaffold(
       body: CustomScrollView(

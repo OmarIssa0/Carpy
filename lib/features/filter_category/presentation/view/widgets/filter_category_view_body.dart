@@ -20,8 +20,7 @@ class FilterCategoryViewBody extends StatelessWidget {
 
     final List<ProductsModel> productsList = passeCategory == null
         ? productProvider.getProduct
-        : productProvider.findByCategory(
-            context: context, categoryName: passeCategory);
+        : productProvider.findByCategory(categoryName: passeCategory);
     return productsList.isEmpty
         ? Center(
             child: Padding(

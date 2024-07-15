@@ -2,6 +2,7 @@ import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/features/details/peresentation/view/details_view.dart';
 import 'package:car_store/features/favorite/presentation/view_model/provider/favorite_provider.dart';
 import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -38,12 +39,17 @@ class ItemRecommended extends StatelessWidget {
                   children: [
                     Stack(
                       children: [
-                        Image.asset(
-                          // Assets.imagesFerareCar,
-                          getCurrentProduct.imagesProduct[0],
+                        FancyShimmerImage(
+                          imageUrl: getCurrentProduct.imagesProduct[0],
                           height: MediaQuery.of(context).size.height * 0.22,
-                          fit: BoxFit.fitHeight,
+                          boxFit: BoxFit.fitHeight,
                         ),
+                        // Image.asset(
+                        //   // Assets.imagesFerareCar,
+                        //   getCurrentProduct.imagesProduct[0],
+                        //   height: MediaQuery.of(context).size.height * 0.22,
+                        //   fit: BoxFit.fitHeight,
+                        // ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: CircleAvatar(
