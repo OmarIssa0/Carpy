@@ -39,11 +39,15 @@ class ItemRecommended extends StatelessWidget {
                   children: [
                     Stack(
                       children: [
-                        FancyShimmerImage(
-                          imageUrl: getCurrentProduct.imagesProduct[0],
-                          height: MediaQuery.of(context).size.height * 0.22,
-                          boxFit: BoxFit.fitHeight,
-                        ),
+                        getCurrentProduct.imagesProduct.isEmpty
+                            ? const SizedBox.shrink()
+                            : FancyShimmerImage(
+                                imageUrl: getCurrentProduct.imagesProduct[0],
+                                height:
+                                    MediaQuery.of(context).size.height * 0.22,
+                                boxFit: BoxFit.fitHeight,
+                                errorWidget: const Icon(Icons.error),
+                              ),
                         // Image.asset(
                         //   // Assets.imagesFerareCar,
                         //   getCurrentProduct.imagesProduct[0],

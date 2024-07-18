@@ -1,4 +1,3 @@
-import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/search/persentation/view_model/model/products_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

@@ -2,71 +2,107 @@ import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/features/details/peresentation/view/details_view.dart';
 import 'package:car_store/features/vendor_stroe/presentation/view/widgets/header_info_vendor.dart';
 import 'package:car_store/features/vendor_stroe/presentation/view/widgets/item_products_vendor.dart';
-import 'package:car_store/features/vendor_stroe/presentation/view_model/provider/vendor_provider.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
 
 class VendorStoreViewBody extends StatelessWidget {
-  const VendorStoreViewBody({super.key});
-
+  const VendorStoreViewBody({super.key, required this.vendorData});
+  final DocumentSnapshot vendorData;
   @override
   Widget build(BuildContext context) {
-    // final productProvider = Provider.of<ProductProvider>(context);
-    // final userId = ModalRoute.of(context)!.settings.arguments as String;
-    // final getCurrentProduct = productProvider.findByUserId(userId);
-    final vendorId = ModalRoute.of(context)!.settings.arguments as String;
-    final vendorProvider = Provider.of<VendorProvider>(context);
-    final getCurrentVendor = vendorProvider.findByVendorId(vendorId);
+    Map<String, dynamic>? data = vendorData.data() as Map<String, dynamic>?;
+    String vendorName = data?['vendorName'] ?? '';
+    String companyType = data?['companyType'] ?? '';
+    String phoneNumber = data?['phoneNumber'] ?? '';
 
-    return getCurrentVendor == null
-        ? const SizedBox.shrink()
-        : Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Padding(
-                padding: EdgeInsetsDirectional.symmetric(horizontal: 24),
-                child: HeaderInfoVendor(),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Divider(
-                thickness: 5,
-                // height: 40,
-                color: AppColor.kBlack.withOpacity(.1),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              // const ItemProductsVendor(),
-              Column(
-                children: List.generate(
-                  getCurrentVendor.productList.length,
-                  (index) => GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        DetailsView.routeName,
-                        arguments:
-                            getCurrentVendor.productList[index].productsId,
-                      );
-                    },
-                    child: ItemProductsVendor(
-                      descriptionProduct: getCurrentVendor
-                          .productList[index].descriptionProduct,
-                      imageProduct:
-                          getCurrentVendor.productList[index].imagesProduct[0],
-                      priceProduct:
-                          getCurrentVendor.productList[index].priceProduct,
-                      titleProduct:
-                          getCurrentVendor.productList[index].nameProduct,
+    final vendorId = ModalRoute.of(context)!.settings.arguments as String;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
+          child: HeaderInfoVendor(
+            companyType: companyType.toString(),
+            phone: phoneNumber,
+            companyName: vendorName.toString(),
+            // vendorData: vendorData,
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Divider(
+          thickness: 5,
+          // height: 40,
+          color: AppColor.kBlack.withOpacity(.1),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection('vendors')
+              .where('vendorId', isEqualTo: vendorId)
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+              return const Center(child: Text('No products available'));
+            }
+
+            final vendorDocs = snapshot.data!.docs;
+
+            return Column(
+              children: List.generate(
+                vendorDocs.length,
+                (vendorIndex) {
+                  var vendorData =
+                      vendorDocs[vendorIndex].data() as Map<String, dynamic>;
+
+                  if (!vendorData.containsKey('products')) {
+                    return const ListTile(
+                      title: Text('Error: Missing products field in document'),
+                    );
+                  }
+
+                  var productsList = vendorData['products'] as List<dynamic>;
+
+                  return Column(
+                    children: List.generate(
+                      productsList.length,
+                      (productIndex) {
+                        var product =
+                            productsList[productIndex] as Map<String, dynamic>;
+
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              DetailsView.routeName,
+                              arguments: product['productId'],
+                            );
+                          },
+                          child: ItemProductsVendor(
+                            descriptionProduct:
+                                product['productDescription'] ?? '',
+                            priceProduct: product['productPrice'] ?? '',
+                            titleProduct: product['productTitle'] ?? '',
+                            imageProduct: product['productImage'][0] ?? '',
+                          ),
+                        );
+                      },
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
-            ],
-          );
+            );
+          },
+        )
+      ],
+    );
   }
 }

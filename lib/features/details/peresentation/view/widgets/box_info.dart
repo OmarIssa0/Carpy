@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
 import 'package:car_store/features/vendor_stroe/presentation/view/vendor_store_view.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
@@ -30,12 +33,26 @@ class BoxInfo extends StatelessWidget {
               children: [
                 const SizedBox(width: 6),
                 GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      VendorStoreView.routeName,
-                      arguments: getCurrentProduct.userId,
-                    );
+                  onTap: () async {
+                    DocumentSnapshot vendorData = await FirebaseFirestore
+                        .instance
+                        .collection('vendors')
+                        .doc(getCurrentProduct.userId)
+                        .get();
+                    log(getCurrentProduct.userId);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              VendorStoreView(vendorData: vendorData),
+                          settings: RouteSettings(
+                              arguments: getCurrentProduct.userId),
+                        ));
+                    // Navigator.pushNamed(
+                    //   context,
+                    //   VendorStoreView.routeName,
+                    //   arguments: getCurrentProduct.userId,
+                    // );
                   },
                   child: Hero(
                     tag: "OMAR",

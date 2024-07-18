@@ -1,23 +1,18 @@
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/utils/app_styles.dart';
-import 'package:car_store/features/vendor_stroe/presentation/view_model/provider/vendor_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HeaderInfoVendor extends StatelessWidget {
   const HeaderInfoVendor({
     super.key,
+    required this.companyName, required this.companyType, required this.phone,
   });
+  final String companyName , companyType , phone  ;
 
   @override
   Widget build(BuildContext context) {
-    // final productProvider = Provider.of<ProductProvider>(context);
-    // final userId = ModalRoute.of(context)!.settings.arguments as String;
-    // final getCurrentProduct = productProvider.findByUserId(userId);
-    final vendorId = ModalRoute.of(context)!.settings.arguments as String;
-    final vendorProvider = Provider.of<VendorProvider>(context);
-    final getCurrentVendor = vendorProvider.findByVendorId(vendorId);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,12 +25,15 @@ class HeaderInfoVendor extends StatelessWidget {
               Text(
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
-                getCurrentVendor!.companyName,
+                // getCurrentVendor!.companyName,
+                companyName,
+                // companyName,
                 style: AppStyles.semiBold18,
               ),
               const SizedBox(height: 10),
               Text(
-                getCurrentVendor.vendorType,
+                // getCurrentVendor!.vendorType,
+                companyType,
                 style: AppStyles.semiBold14.copyWith(color: AppColor.kSilver),
               )
             ],
@@ -53,7 +51,8 @@ class HeaderInfoVendor extends StatelessWidget {
               child: InkWell(
                 borderRadius: BorderRadius.circular(56),
                 onTap: () {
-                  _makePhoneCall(getCurrentVendor.phoneNumber);
+                  _makePhoneCall(phone);
+                  // _makePhoneCall(getCurrentVendor.phoneNumber);
                 },
                 child: const Icon(
                   Icons.call,

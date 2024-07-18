@@ -1,4 +1,5 @@
 import 'package:car_store/core/utils/app_styles.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -16,9 +17,6 @@ class ItemProductsVendor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final vendorId = ModalRoute.of(context)!.settings.arguments as String;
-    // final vendorProvider = Provider.of<VendorProvider>(context);
-    // final getCurrentVendor = vendorProvider.findByVendorId(vendorId);
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -31,12 +29,11 @@ class ItemProductsVendor extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: Image.asset(
-                  // Assets.imagesFerareCar,
-                  imageProduct,
+                child: FancyShimmerImage(
+                  imageUrl: imageProduct,
                   height: size.height * .15,
                   width: size.width * .32,
-                  fit: BoxFit.cover,
+                  boxFit: BoxFit.cover,
                 ),
               ),
               Column(

@@ -1,24 +1,22 @@
 import 'dart:ui';
 import 'package:car_store/features/vendor_stroe/presentation/view/widgets/vendor_store_view_body.dart';
-import 'package:car_store/features/vendor_stroe/presentation/view_model/provider/vendor_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
 
 class VendorStoreView extends StatelessWidget {
-  const VendorStoreView({super.key});
+  const VendorStoreView({super.key, this.vendorData});
   static const String routeName = '/kVendorStore';
+  final DocumentSnapshot? vendorData;
 
   @override
   Widget build(BuildContext context) {
-    // final productProvider = Provider.of<ProductProvider>(context);
-    // final userId = ModalRoute.of(context)!.settings.arguments as String;
-    final vendorId = ModalRoute.of(context)!.settings.arguments as String;
-    final vendorProvider = Provider.of<VendorProvider>(context);
-    final getCurrentVendor = vendorProvider.findByVendorId(vendorId);
-    // final getCurrentProduct = productProvider.findByUserId(userId);
+    Map<String, dynamic>? data = vendorData?.data() as Map<String, dynamic>?;
+
+    String image = data?['image'] ?? '';
+
     return Scaffold(
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
@@ -37,14 +35,13 @@ class VendorStoreView extends StatelessWidget {
                 StretchMode.blurBackground
               ],
               background: Hero(
-                tag: "OMAR",
-                child: getCurrentVendor?.imageCompany == null
-                    ? const SizedBox.shrink()
-                    : Image.asset(
-                        getCurrentVendor!.imageCompany,
-                        fit: BoxFit.cover,
-                      ),
-              ),
+                  tag: "OMAR",
+                  child: image == null
+                      ? const SizedBox.shrink()
+                      : FancyShimmerImage(
+                          imageUrl: image,
+                          boxFit: BoxFit.cover,
+                        )),
             ),
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(0),
@@ -93,8 +90,10 @@ class VendorStoreView extends StatelessWidget {
             ),
             leadingWidth: 80,
           ),
-          const SliverToBoxAdapter(
-            child: VendorStoreViewBody(),
+          SliverToBoxAdapter(
+            child: VendorStoreViewBody(
+              vendorData: vendorData!,
+            ),
           ),
         ],
       ),
