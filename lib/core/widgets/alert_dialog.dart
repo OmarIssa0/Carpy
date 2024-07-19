@@ -11,6 +11,7 @@ class AlertDialogMethods {
     String? subtitle,
     required String lottileAnimation,
     required Function function,
+    bool isGreen = false,
     bool isError = true,
   }) async {
     await showDialog(
@@ -47,7 +48,8 @@ class AlertDialogMethods {
                       },
                       child: Text(
                         titleBottom,
-                        style: AppStyles.medium16.copyWith(color: Colors.red),
+                        style: AppStyles.medium16.copyWith(
+                            color: isGreen ? Colors.red : Colors.green),
                       ),
                       // TitleTextAppCustom(
                       //   label: titleBottom,

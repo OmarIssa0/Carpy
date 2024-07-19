@@ -6,13 +6,14 @@ import 'package:url_launcher/url_launcher.dart';
 class HeaderInfoVendor extends StatelessWidget {
   const HeaderInfoVendor({
     super.key,
-    required this.companyName, required this.companyType, required this.phone,
+    required this.companyName,
+    required this.companyType,
+    required this.phone,
   });
-  final String companyName , companyType , phone  ;
+  final String companyName, companyType, phone;
 
   @override
   Widget build(BuildContext context) {
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +43,7 @@ class HeaderInfoVendor extends StatelessWidget {
         Column(
           children: [
             Container(
-              height: 45,
+              height: 40,
               width: 45,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
@@ -56,13 +57,13 @@ class HeaderInfoVendor extends StatelessWidget {
                 },
                 child: const Icon(
                   Icons.call,
-                  size: 28,
+                  size: 25,
                 ),
               ),
             ),
             const SizedBox(height: 5),
             Container(
-              height: 45,
+              height: 40,
               width: 45,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
@@ -73,7 +74,7 @@ class HeaderInfoVendor extends StatelessWidget {
                 onTap: () {},
                 child: const Icon(
                   Icons.location_on,
-                  size: 28,
+                  size: 25,
                 ),
               ),
             ),

@@ -26,7 +26,7 @@ class FavoriteViewBody extends StatelessWidget {
                     start: MediaQuery.sizeOf(context).width / 6,
                     end: MediaQuery.sizeOf(context).width / 6,
                   ),
-            child: favoriteProvider.favoriteList.isEmpty
+            child: favoriteProvider.getWishlistItem.isEmpty
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -44,14 +44,14 @@ class FavoriteViewBody extends StatelessWidget {
                     shrinkWrap: true,
                     builder: (context, index) {
                       return ItemRecommended(
-                        productId: favoriteProvider.favoriteList.values
+                        productId: favoriteProvider.getWishlistItem.values
                             .toList()[index]
                             .productId,
                       );
                     },
                     mainAxisSpacing: 25,
                     crossAxisSpacing: 16,
-                    itemCount: favoriteProvider.favoriteList.length,
+                    itemCount: favoriteProvider.getWishlistItem.length,
                     crossAxisCount: 2,
                   ),
           ),

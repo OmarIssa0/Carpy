@@ -79,5 +79,9 @@
     "Wrong password provided for that user.": "Wrong password provided for that user.",
     "An unknown error occurred.": "An unknown error occurred.",
     "Login Successful": "Login Successful",
-    "Password reset link sent! Check your email!": "Password reset link sent! Check your email!"
+    "Password reset link sent! Check your email!": "Password reset link sent! Check your email!",
+    "No user found": "No user found",
+    "Item has been added to wishlist": "Item has been added to wishlist",
+    "Book now": "Book now",
+    "Do you want to reserve this product?": "Do you want to reserve this product?"
 }

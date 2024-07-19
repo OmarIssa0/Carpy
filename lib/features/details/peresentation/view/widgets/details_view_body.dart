@@ -1,5 +1,6 @@
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/utils/app_styles.dart';
+import 'package:car_store/core/widgets/alert_dialog.dart';
 import 'package:car_store/features/details/peresentation/view/widgets/box_info.dart';
 import 'package:car_store/features/details/peresentation/view/widgets/image_details.dart';
 import 'package:car_store/features/details/peresentation/view/widgets/item_details_car.dart';
@@ -47,36 +48,71 @@ class DetailsViewBody extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                   style: AppStyles.semiBold22)),
                           CircleAvatar(
-                            // backgroundColor:
-                            // AppColor.kBackGroundColorSplash.withOpacity(.3),
                             backgroundColor: Colors.grey.shade300,
                             radius: 20,
                             child: Center(
                               child: IconButton(
-                                onPressed: () {
-                                  favoriteProvider
-                                      .isProductInFavoriteListAndRemove(
-                                          productId: productId);
+                                onPressed: () async {
+                                  try {
+                                    if (favoriteProvider.getWishlistItem
+                                        .containsKey(productId)) {
+                                      favoriteProvider
+                                          .removeWishlistItemFromFirebase(
+                                              wishlistId: favoriteProvider
+                                                  .getWishlistItem[productId]!
+                                                  .id,
+                                              productId: productId);
+                                    } else {
+                                      favoriteProvider.addToWishlistFirebase(
+                                          productId: productId,
+                                          context: context);
+                                    }
+                                    await favoriteProvider.fetchWishlist();
+                                  } catch (e) {
+                                    if (!context.mounted) return;
+                                    AlertDialogMethods.showError(
+                                      context: context,
+                                      titleBottom: "Ok",
+                                      lottileAnimation: Assets.imagesErrorMas,
+                                      subtitle: e.toString(),
+                                      function: () {
+                                        Navigator.pop(context);
+                                      },
+                                    );
+                                  }
                                 },
-                                icon: Icon(
-                                  favoriteProvider
-                                          .isProductsInFavoriteList(productId)
-                                      ? Icons.favorite
-                                      : Icons.favorite_outline,
-                                  color: favoriteProvider
-                                          .isProductsInFavoriteList(productId)
-                                      ? Colors.red
-                                      : Colors.black,
-                                  // size: 20,
-                                ),
+                                icon: favoriteProvider.isProductInWishlist(
+                                        productId: productId)
+                                    ? const Icon(
+                                        Icons.favorite,
+                                        color: Colors.red,
+                                      )
+                                    : const Icon(
+                                        Icons.favorite_outline,
+                                        color: Colors.black,
+                                      ),
                               ),
                             ),
                           ),
                         ],
                       ),
                       const SizedBox(height: 4),
-                      Text(getCurrentProduct.priceProduct,
-                          style: AppStyles.medium14),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(getCurrentProduct.priceProduct,
+                              style: AppStyles.semiBold20),
+                          const SizedBox(width: 5),
+                          getCurrentProduct.discount == null
+                              ? const SizedBox.shrink()
+                              : Text(
+                                  getCurrentProduct.discount.toString(),
+                                  style: AppStyles.medium14.copyWith(
+                                    decoration: TextDecoration.lineThrough,
+                                  ),
+                                ),
+                        ],
+                      ),
                       const SizedBox(height: 15),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

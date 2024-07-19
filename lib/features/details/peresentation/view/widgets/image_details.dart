@@ -40,32 +40,20 @@ class ImageDetails extends StatelessWidget {
                         SwipeImageGallery(
                           context: context,
                           children: List.generate(
-                              getCurrentProduct.imagesProduct.length,
-                              (index) =>
-                                  // Image.network(
-                                  //       getCurrentProduct.imagesProduct[index],
-                                  //       fit: BoxFit.fitWidth,
-                                  //     )
-                                  FancyShimmerImage(
-                                    imageUrl:
-                                        getCurrentProduct.imagesProduct[index],
-                                    boxFit: BoxFit.fitWidth,
-                                    errorWidget: const Icon(Icons.error),
-                                  )),
-                          // [
-                          //   Image.asset(Assets.imagesFerareCar),
-                          // ],
+                            getCurrentProduct.imagesProduct.length,
+                            (index) => FancyShimmerImage(
+                              imageUrl: getCurrentProduct.imagesProduct[index],
+                              boxFit: BoxFit.fitWidth,
+                              errorWidget: const Icon(Icons.error),
+                            ),
+                          ),
                         ).show();
                       },
-                      // child: Image.asset(Assets.imagesFerareCar, fit: BoxFit.cover),
                       child: FancyShimmerImage(
                         imageUrl: getCurrentProduct.imagesProduct[index],
                         errorWidget: const Icon(Icons.error),
                       ),
-                      // Image.asset(getCurrentProduct.imagesProduct[index],
-                      // fit: BoxFit.cover
                     );
-                    // child: Image.asset(item[index], fit: BoxFit.cover),
                   },
                   autoplay: true,
                   pagination: const SwiperPagination(

@@ -79,5 +79,9 @@
     "Wrong password provided for that user.": "كلمة المرور غير صحيحة للمستخدم هذا.",
     "An unknown error occurred.": "حدث خطأ غير معروف.",
     "Login Successful": "تم تسجيل الدخول بنجاح",
-    "Password reset link sent! Check your email!": "تم ارسال رابط استعادة كلمة المرور! تحقق من بريدك الإلكتروني!"
+    "Password reset link sent! Check your email!": "تم ارسال رابط استعادة كلمة المرور! تحقق من بريدك الإلكتروني!",
+    "No user found": "لا يوجد مستخدم",
+    "Item has been added to wishlist": "تمت اضافة المنتج الى قائمة الاعجابات",
+    "Book now": "احجز الان",
+    "Do you want to reserve this product?": "هل تريد حجز هذا المنتج؟"
 }

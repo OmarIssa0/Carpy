@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FavoriteModel  with ChangeNotifier {
-  final String productId, id;
+class WishlistModel with ChangeNotifier {
+  final String id, productId;
 
-  FavoriteModel({required this.productId, required this.id});
+  WishlistModel({required this.id, required this.productId});
 }

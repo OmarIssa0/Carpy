@@ -24,8 +24,9 @@ class AnimationNav {
   // }
 
   static Route navigatorAnimation(
-      {required Widget child, BuildContext? context}) {
+      {required Widget child, BuildContext? context, RouteSettings? settings}) {
     return PageRouteBuilder(
+      settings: settings,
       transitionDuration: const Duration(milliseconds: 500),
       reverseTransitionDuration: const Duration(milliseconds: 500),
       pageBuilder: (context, animation, secondaryAnimation) => child,

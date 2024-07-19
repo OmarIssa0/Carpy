@@ -13,6 +13,10 @@ class Assets {
   /// assets/images/banner3.png
   static const String imagesBanner3 = "assets/images/banner3.png";
 
+  /// Assets for imagesBookingNow
+  /// assets/images/bookingNow.json
+  static const String imagesBookingNow = "assets/images/bookingNow.json";
+
   /// Assets for imagesCarTest
   /// assets/images/car_test.png
   static const String imagesCarTest = "assets/images/car_test.png";
@@ -65,6 +69,10 @@ class Assets {
   /// assets/images/new_icon_app.png
   static const String imagesNewIconApp = "assets/images/new_icon_app.png";
 
+  /// Assets for imagesQuestionMark
+  /// assets/images/questionMark.json
+  static const String imagesQuestionMark = "assets/images/questionMark.json";
+
   /// Assets for imagesSendEmailCar
   /// assets/images/send_email_car.json
   static const String imagesSendEmailCar = "assets/images/send_email_car.json";
@@ -72,6 +80,10 @@ class Assets {
   /// Assets for imagesTesla
   /// assets/images/Tesla.png
   static const String imagesTesla = "assets/images/Tesla.png";
+
+  /// Assets for imagesWhatsApp
+  /// assets/images/WhatsApp.png
+  static const String imagesWhatsApp = "assets/images/WhatsApp.png";
 
   /// Assets for imagesWishlistIsEmpty
   /// assets/images/wishlist_is_empty.json

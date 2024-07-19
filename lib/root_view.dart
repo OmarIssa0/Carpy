@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:car_store/core/utils/app_color.dart';
+import 'package:car_store/features/auth/presentation/manger/provider/user_provider.dart';
 import 'package:car_store/features/home/presentation/view/home_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/profile/presentation/view/profile_view.dart';
@@ -36,9 +37,11 @@ class _RootViewState extends State<RootView> {
     final productProvider =
         Provider.of<ProductProvider>(context, listen: false);
     final vendorProvider = Provider.of<VendorProvider>(context, listen: false);
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
     try {
       Future.wait({
         productProvider.getAllProducts(),
+        userProvider.fetchUserData(),
       });
       Future.wait({});
     } catch (e) {

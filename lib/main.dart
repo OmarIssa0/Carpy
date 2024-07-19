@@ -1,5 +1,6 @@
 import 'package:car_store/core/utils/theme.dart';
 import 'package:car_store/features/auth/presentation/manger/provider/google_auth_provider.dart';
+import 'package:car_store/features/auth/presentation/manger/provider/user_provider.dart';
 import 'package:car_store/features/auth/presentation/view/forget_password_view.dart';
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
 import 'package:car_store/features/auth/presentation/view/sign_up_view.dart';
@@ -55,6 +56,7 @@ class CarApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ProductProvider()),
         ChangeNotifierProvider(create: (context) => FavoriteProvider()),
         ChangeNotifierProvider(create: (context) => VendorProvider()),
+        ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(
             create: (context) => GoogleProviderAuthLoginAndSignUp()),
       ],

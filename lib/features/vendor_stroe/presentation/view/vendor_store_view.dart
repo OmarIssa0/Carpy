@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ui';
 import 'package:car_store/features/vendor_stroe/presentation/view/widgets/vendor_store_view_body.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -5,19 +6,42 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class VendorStoreView extends StatelessWidget {
   const VendorStoreView({super.key, this.vendorData});
   static const String routeName = '/kVendorStore';
   final DocumentSnapshot? vendorData;
+  String removeLeadingZero(String number) {
+    if (number.startsWith('0')) {
+      return number.substring(1);
+    }
+    return number;
+  }
 
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic>? data = vendorData?.data() as Map<String, dynamic>?;
 
     String image = data?['image'] ?? '';
+    String phoneNumber = data?['phoneNumber'] ?? '';
 
+    final Uri whatsappUrl =
+        Uri.parse("https:wa.me/+${removeLeadingZero(phoneNumber)}");
+    // String? refactorPhoneNumber;
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        onPressed: () {
+          try {
+            launchUrl(whatsappUrl);
+          } catch (e) {
+            log(e.toString());
+          }
+        },
+        child: const Icon(Ionicons.logo_whatsapp, color: Colors.white),
+      ),
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
@@ -34,14 +58,12 @@ class VendorStoreView extends StatelessWidget {
                 StretchMode.zoomBackground,
                 StretchMode.blurBackground
               ],
-              background: Hero(
-                  tag: "OMAR",
-                  child: image == null
-                      ? const SizedBox.shrink()
-                      : FancyShimmerImage(
-                          imageUrl: image,
-                          boxFit: BoxFit.cover,
-                        )),
+              background: image == null
+                  ? const SizedBox.shrink()
+                  : FancyShimmerImage(
+                      imageUrl: image,
+                      boxFit: BoxFit.cover,
+                    ),
             ),
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(0),
@@ -100,3 +122,12 @@ class VendorStoreView extends StatelessWidget {
     );
   }
 }
+
+// void _sendWhatsAppMessage(String phone) async {
+//   var whatsappUrl = "https://wa.me/$phone}";
+//   if (await canLaunch(whatsappUrl)) {
+//     await launch(whatsappUrl);
+//   } else {
+//     print("Could not launch $whatsappUrl");
+//   }
+// }

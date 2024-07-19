@@ -1,4 +1,7 @@
+import 'package:car_store/core/utils/animation_nav.dart';
+import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/utils/app_styles.dart';
+import 'package:car_store/core/widgets/alert_dialog.dart';
 import 'package:car_store/features/details/peresentation/view/details_view.dart';
 import 'package:car_store/features/favorite/presentation/view_model/provider/favorite_provider.dart';
 import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
@@ -26,8 +29,16 @@ class ItemRecommended extends StatelessWidget {
         ? const SizedBox.shrink()
         : GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, DetailsView.routeName,
-                  arguments: getCurrentProduct.productsId);
+              // Navigator.pushNamed(context, DetailsView.routeName,
+              //     arguments: getCurrentProduct.productsId);
+              Navigator.push(
+                context,
+                AnimationNav.navigatorAnimation(
+                  child: const DetailsView(),
+                  context: context,
+                  settings: RouteSettings(arguments: productId),
+                ),
+              );
             },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12),
@@ -48,12 +59,6 @@ class ItemRecommended extends StatelessWidget {
                                 boxFit: BoxFit.fitHeight,
                                 errorWidget: const Icon(Icons.error),
                               ),
-                        // Image.asset(
-                        //   // Assets.imagesFerareCar,
-                        //   getCurrentProduct.imagesProduct[0],
-                        //   height: MediaQuery.of(context).size.height * 0.22,
-                        //   fit: BoxFit.fitHeight,
-                        // ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: CircleAvatar(
@@ -61,22 +66,46 @@ class ItemRecommended extends StatelessWidget {
                             radius: 18,
                             child: Center(
                               child: IconButton(
-                                onPressed: () {
-                                  favoriteProvider
-                                      .isProductInFavoriteListAndRemove(
-                                          productId: productId);
+                                onPressed: () async {
+                                  try {
+                                    if (favoriteProvider.getWishlistItem
+                                        .containsKey(productId)) {
+                                      favoriteProvider
+                                          .removeWishlistItemFromFirebase(
+                                              wishlistId: favoriteProvider
+                                                  .getWishlistItem[productId]!
+                                                  .id,
+                                              productId: productId);
+                                    } else {
+                                      favoriteProvider.addToWishlistFirebase(
+                                          productId: productId,
+                                          context: context);
+                                    }
+                                    await favoriteProvider.fetchWishlist();
+                                  } catch (e) {
+                                    AlertDialogMethods.showError(
+                                      context: context,
+                                      titleBottom: "Ok",
+                                      lottileAnimation: Assets.imagesErrorMas,
+                                      subtitle: e.toString(),
+                                      function: () {
+                                        Navigator.pop(context);
+                                      },
+                                    );
+                                  }
                                 },
-                                icon: Icon(
-                                  favoriteProvider
-                                          .isProductsInFavoriteList(productId)
-                                      ? Icons.favorite
-                                      : Icons.favorite_outline,
-                                  color: favoriteProvider
-                                          .isProductsInFavoriteList(productId)
-                                      ? Colors.red
-                                      : Colors.black,
-                                  size: 20,
-                                ),
+                                icon: favoriteProvider.isProductInWishlist(
+                                        productId: productId)
+                                    ? const Icon(
+                                        Icons.favorite,
+                                        color: Colors.red,
+                                        size: 20,
+                                      )
+                                    : const Icon(
+                                        Icons.favorite_outline,
+                                        color: Colors.black,
+                                        size: 20,
+                                      ),
                               ),
                             ),
                           ),

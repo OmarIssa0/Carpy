@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:car_store/core/utils/animation_nav.dart';
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
@@ -27,7 +28,7 @@ class BoxInfo extends StatelessWidget {
               color: Colors.white,
               border: Border.all(color: AppColor.kSilver.withOpacity(.4)),
             ),
-            height: 60,
+            height: 80,
             width: double.infinity,
             child: Row(
               children: [
@@ -39,28 +40,34 @@ class BoxInfo extends StatelessWidget {
                         .collection('vendors')
                         .doc(getCurrentProduct.userId)
                         .get();
-                    log(getCurrentProduct.userId);
+                    // log(getCurrentProduct.userId);
+                    if (!context.mounted) return;
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              VendorStoreView(vendorData: vendorData),
-                          settings: RouteSettings(
-                              arguments: getCurrentProduct.userId),
-                        ));
-                    // Navigator.pushNamed(
+                      context,
+                      AnimationNav.navigatorAnimation(
+                        child: VendorStoreView(
+                          vendorData: vendorData,
+                        ),
+                        context: context,
+                        settings:
+                            RouteSettings(arguments: getCurrentProduct.userId),
+                      ),
+                    );
+                    // Navigator.push(
                     //   context,
-                    //   VendorStoreView.routeName,
-                    //   arguments: getCurrentProduct.userId,
+                    //   MaterialPageRoute(
+                    //     builder: (context) =>
+                    //         VendorStoreView(vendorData: vendorData),
+                    //     settings:
+                    //         RouteSettings(arguments: getCurrentProduct.userId),
+                    //   ),
                     // );
+                    
                   },
-                  child: Hero(
-                    tag: "OMAR",
-                    child: CircleAvatar(
-                      // radius: 30,
-                      backgroundImage:
-                          NetworkImage(getCurrentProduct.imageCompany),
-                    ),
+                  child: CircleAvatar(
+                    radius: 28,
+                    backgroundImage:
+                        NetworkImage(getCurrentProduct.imageCompany),
                   ),
                 ),
                 const SizedBox(width: 10),

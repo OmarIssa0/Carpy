@@ -1,5 +1,6 @@
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/core/utils/size_config.dart';
+import 'package:car_store/features/home/presentation/view/widgets/custom_shimmer_loading.dart';
 import 'package:car_store/features/home/presentation/view/widgets/item_recommended.dart';
 import 'package:car_store/features/home/presentation/view/widgets/swiper_home_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
@@ -8,15 +9,23 @@ import 'package:car_store/features/search/persentation/view_model/provider/produ
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
-class HomeViewBody extends StatelessWidget {
+class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
 
   @override
+  State<HomeViewBody> createState() => _HomeViewBodyState();
+}
+
+class _HomeViewBodyState extends State<HomeViewBody>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     final productProvider = Provider.of<ProductProvider>(context);
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
@@ -24,9 +33,7 @@ class HomeViewBody extends StatelessWidget {
           stream: productProvider.getAllProductsStream(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              const CustomShimmerLoading();
             }
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -45,9 +45,11 @@ dependencies:
   google_nav_bar: ^5.0.6
   google_sign_in: ^6.2.1
   iconly: ^1.0.1
+  ionicons: ^0.2.2
   lottie: ^3.1.2
   provider: ^6.1.2
   shared_preferences: ^2.2.2
+  shimmer: ^3.0.0
   swipe_image_gallery: ^0.8.7
   url_launcher: ^6.3.0
   uuid: ^4.4.0
