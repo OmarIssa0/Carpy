@@ -23,8 +23,10 @@ class AlertDialogMethods {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Lottie.asset(
+              LottieBuilder.asset(
                 lottileAnimation,
+                height: 150,
+                fit: BoxFit.fill,
               ),
               // TitleTextAppCustom(
               //   label: subtitle ?? '',

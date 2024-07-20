@@ -1,3 +1,4 @@
+import 'package:car_store/core/utils/animation_nav.dart';
 import 'package:car_store/core/utils/size_config.dart';
 import 'package:car_store/features/filter_category/presentation/view/filter_category_view.dart';
 import 'package:car_store/features/search/persentation/view/widgets/category_item.dart';
@@ -66,8 +67,17 @@ class SearchViewBody extends StatelessWidget {
                       ),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, FilterCategoryView.routeName,
-                        arguments: carBrands[index].name);
+                    // Navigator.pushNamed(context, FilterCategoryView.routeName,
+                    //     arguments: carBrands[index].name);
+                    Navigator.push(
+                      context,
+                      AnimationNav.navigatorAnimation(
+                        child: const FilterCategoryView(),
+                        context: context,
+                        settings:
+                            RouteSettings(arguments: carBrands[index].name),
+                      ),
+                    );
                   },
                   child: CategoryItem(
                     categoryModel: carBrands[index],

@@ -7,6 +7,7 @@ class UserModel with ChangeNotifier {
   final String userEmail;
   final String userPhone;
   final List userWishList;
+  final List userBookingList;
   final Timestamp createAt;
 
   UserModel({
@@ -15,6 +16,7 @@ class UserModel with ChangeNotifier {
     required this.userEmail,
     required this.userPhone,
     required this.userWishList,
+    required this.userBookingList,
     required this.createAt,
   });
 }

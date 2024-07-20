@@ -74,6 +74,7 @@ class SignUpProvider extends ChangeNotifier {
           "userEmail": emailTextController.text,
           "userPhone": phoneTextController.text,
           "userWishlist": [],
+          "userBooking": [],
           "createAt": Timestamp.now(),
         });
         if (!context.mounted) return;

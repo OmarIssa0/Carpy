@@ -10,6 +10,7 @@ import 'package:car_store/features/auth/presentation/manger/provider/user_provid
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
 import 'package:car_store/features/favorite/presentation/view/favorite_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
+import 'package:car_store/features/my_booking/presentation/view/my_booking_view.dart';
 import 'package:car_store/features/profile/presentation/view/widgets/custom_list_tile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -127,6 +128,22 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
                               child: const FavoriteView()));
                     },
                   ),
+                  const SizedBox(height: 12),
+                  CustomListTile(
+                    iconLeading: IconlyLight.edit_square,
+                    iconTrailing: Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: Colors.grey.shade500,
+                    ),
+                    title: "Booking requests",
+                    function: () {
+                      Navigator.push(
+                          context,
+                          AnimationNav.navigatorAnimation(
+                              child: const MyBookingView()));
+                    },
+                  ),
+                  const SizedBox(height: 12),
                   CustomListTile(
                       iconLeading: Icons.language,
                       iconTrailing: const DropDownButtonLocal(),
@@ -152,10 +169,11 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
                 title: "logout",
                 function: () {
                   FirebaseAuth.instance.signOut();
-                  Navigator.push(
-                      context,
-                      AnimationNav.navigatorAnimation(
-                          child: const LoginView()));
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    AnimationNav.navigatorAnimation(child: const LoginView()),
+                    (route) => false,
+                  );
                   // Navigator.push(
                   //     context,
                   //     AnimationNav.navigatorAnimation(

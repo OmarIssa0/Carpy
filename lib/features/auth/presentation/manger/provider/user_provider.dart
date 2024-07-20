@@ -25,8 +25,11 @@ class UserProvider with ChangeNotifier {
         userName: userDoc.get("userName") ?? "",
         userEmail: userDoc.get("userEmail") ?? "",
         userPhone: userDoc.get("userPhone") ?? "",
-        userWishList: userDocMap!.containsKey("userWishList")
-            ? userDoc.get("userWishList")
+        userWishList: userDocMap!.containsKey("userWishlist")
+            ? userDoc.get("userWishlist")
+            : [],
+        userBookingList: userDocMap.containsKey("userBooking")
+            ? userDoc.get("userBooking")
             : [],
         createAt: userDoc.get("createAt") ?? Timestamp.now(),
       );

@@ -83,5 +83,11 @@
     "No user found": "No user found",
     "Item has been added to wishlist": "Item has been added to wishlist",
     "Book now": "Book now",
-    "Do you want to reserve this product?": "Do you want to reserve this product?"
+    "Do you want to reserve this product?": "Do you want to reserve this product?",
+    "Reserved successfully": "Reserved successfully",
+    "cancellation of reservation": "cancellation of reservation",
+    "User not found": "User not found",
+    "Booking removed successfully": "Booking removed successfully",
+    "Failed to remove booking. Please try again": "Failed to remove booking. Please try again",
+    "Booking requests": "Booking requests"
 }

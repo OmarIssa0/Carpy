@@ -5,12 +5,14 @@ import 'package:car_store/features/auth/presentation/view/forget_password_view.d
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
 import 'package:car_store/features/auth/presentation/view/sign_up_view.dart';
 import 'package:car_store/features/details/peresentation/view/details_view.dart';
+import 'package:car_store/features/details/peresentation/view_model/provider/send_booking_provider.dart';
 import 'package:car_store/features/favorite/presentation/view/favorite_view.dart';
 import 'package:car_store/features/favorite/presentation/view_model/provider/favorite_provider.dart';
 import 'package:car_store/features/filter_category/presentation/view/filter_category_view.dart';
 import 'package:car_store/features/home/presentation/view/home_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/lang/cubit/locale_cubit.dart';
+import 'package:car_store/features/my_booking/presentation/view/my_booking_view.dart';
 import 'package:car_store/features/profile/presentation/view/profile_view.dart';
 import 'package:car_store/features/search/persentation/view/search_view.dart';
 import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
@@ -57,6 +59,7 @@ class CarApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => FavoriteProvider()),
         ChangeNotifierProvider(create: (context) => VendorProvider()),
         ChangeNotifierProvider(create: (context) => UserProvider()),
+        ChangeNotifierProvider(create: (context) => SendBookingProvider()),
         ChangeNotifierProvider(
             create: (context) => GoogleProviderAuthLoginAndSignUp()),
       ],
@@ -99,6 +102,7 @@ class CarApp extends StatelessWidget {
                       const VendorStoreView(),
                   FilterCategoryView.routeName: (context) =>
                       const FilterCategoryView(),
+                  MyBookingView.routeName: (context) => const MyBookingView()
                 },
               );
             }

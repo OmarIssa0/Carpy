@@ -88,19 +88,19 @@ class FavoriteProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> clearCartFromFirebase() async {
-    User? user = _auth.currentUser;
+  // Future<void> clearCartFromFirebase() async {
+  //   User? user = _auth.currentUser;
 
-    try {
-      await usersDB.doc(user!.uid).update({
-        "userWishlist": [],
-      });
-      _wishlistItems.clear();
-    } catch (e) {
-      rethrow;
-    }
-    notifyListeners();
-  }
+  //   try {
+  //     await usersDB.doc(user!.uid).update({
+  //       "userWishlist": [],
+  //     });
+  //     _wishlistItems.clear();
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  //   notifyListeners();
+  // }
 
   Future<void> removeWishlistItemFromFirebase({
     required String wishlistId,
@@ -126,27 +126,27 @@ class FavoriteProvider with ChangeNotifier {
   }
 
   // add wishlist
-  void addProductToCartAndRemoveWishlist({required String productID}) {
-    //  اذا المنتح موجود وكبست عليه راح يحذف
-    if (_wishlistItems.containsKey(productID)) {
-      _wishlistItems.remove(productID);
-    } else {
-      _wishlistItems.putIfAbsent(
-        productID,
-        () => WishlistModel(
-          id: const Uuid().v4(),
-          productId: productID,
-        ),
-      );
-    }
-    notifyListeners();
-  }
+  // void addProductToCartAndRemoveWishlist({required String productID}) {
+  //   //  اذا المنتح موجود وكبست عليه راح يحذف
+  //   if (_wishlistItems.containsKey(productID)) {
+  //     _wishlistItems.remove(productID);
+  //   } else {
+  //     _wishlistItems.putIfAbsent(
+  //       productID,
+  //       () => WishlistModel(
+  //         id: const Uuid().v4(),
+  //         productId: productID,
+  //       ),
+  //     );
+  //   }
+  //   notifyListeners();
+  // }
 
   // نزيد عدد المنتج
 
   // delete all product => clear all cart
-  void clearLocalWishlist() {
-    _wishlistItems.clear();
-    notifyListeners();
-  }
+  // void clearLocalWishlist() {
+  //   _wishlistItems.clear();
+  //   notifyListeners();
+  // }
 }

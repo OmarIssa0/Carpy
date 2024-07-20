@@ -83,5 +83,11 @@
     "No user found": "لا يوجد مستخدم",
     "Item has been added to wishlist": "تمت اضافة المنتج الى قائمة الاعجابات",
     "Book now": "احجز الان",
-    "Do you want to reserve this product?": "هل تريد حجز هذا المنتج؟"
+    "Do you want to reserve this product?": "هل تريد حجز هذا المنتج؟",
+    "Reserved successfully": "تم الحجز بنجاح",
+    "cancellation of reservation": "الغاء الحجز",
+    "User not found": "المستخدم غير موجود",
+    "Booking removed successfully": "تم حذف الحجز بنجاح",
+    "Failed to remove booking. Please try again": "فشل في حذف الحجز. الرجاء المحاولة مرة أخرى",
+    "Booking requests": "طلبات الحجز"
 }
