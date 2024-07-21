@@ -6,6 +6,7 @@ import 'package:car_store/features/details/peresentation/view/widgets/image_deta
 import 'package:car_store/features/details/peresentation/view/widgets/item_details_car.dart';
 import 'package:car_store/features/favorite/presentation/view_model/provider/favorite_provider.dart';
 import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
+import 'package:car_store/root_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +31,7 @@ class DetailsViewBody extends StatelessWidget {
             child: Column(
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // const AdMobBanner(),
                 const ImageDetails(),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),

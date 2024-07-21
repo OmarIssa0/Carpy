@@ -36,37 +36,43 @@ class FilterCategoryViewBody extends StatelessWidget {
                 productProvider.productListSearch.isEmpty
             ? Center(
                 child: Text(
-                'No Products Found'.tr(context),
-                style: AppStyles.semiBold16.copyWith(color: Colors.grey),
-              ))
+                  'No Products Found'.tr(context),
+                  style: AppStyles.semiBold16.copyWith(color: Colors.grey),
+                ),
+              )
             : SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: DynamicHeightGridView(
-                    physics: const BouncingScrollPhysics(),
-                    shrinkWrap: true,
-                    builder: (context, index) {
-                      return ItemRecommended(
-                        productId:
-                            // productProvider
-                            // .searchController.text.isNotEmpty
-                            searchController.text.isNotEmpty
-                                ? productProvider
-                                    .productListSearch[index].productsId
-                                : productsList[index].productsId,
-                      );
-                    },
-                    mainAxisSpacing: 25,
-                    crossAxisSpacing: 16,
-                    itemCount: searchController.text.isNotEmpty
-                        // productProvider.searchController.text.isNotEmpty
-                        ? productProvider.productListSearch.length
-                        : productsList.length,
-                    crossAxisCount:
-                        MediaQuery.sizeOf(context).width < SizeConfig.tablet
-                            ? 2
-                            : 3,
-                  ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: DynamicHeightGridView(
+                        physics: const BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        builder: (context, index) {
+                          return ItemRecommended(
+                            productId:
+                                // productProvider
+                                // .searchController.text.isNotEmpty
+                                searchController.text.isNotEmpty
+                                    ? productProvider
+                                        .productListSearch[index].productsId
+                                    : productsList[index].productsId,
+                          );
+                        },
+                        mainAxisSpacing: 25,
+                        crossAxisSpacing: 16,
+                        itemCount: searchController.text.isNotEmpty
+                            // productProvider.searchController.text.isNotEmpty
+                            ? productProvider.productListSearch.length
+                            : productsList.length,
+                        crossAxisCount:
+                            MediaQuery.sizeOf(context).width < SizeConfig.tablet
+                                ? 2
+                                : 3,
+                      ),
+                    ),
+                    const SizedBox(height: 50),
+                  ],
                 ),
               );
   }

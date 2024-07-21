@@ -1,3 +1,4 @@
+import 'package:car_store/core/service/adMob_provider.dart';
 import 'package:car_store/core/utils/theme.dart';
 import 'package:car_store/features/auth/presentation/manger/provider/google_auth_provider.dart';
 import 'package:car_store/features/auth/presentation/manger/provider/user_provider.dart';
@@ -26,9 +27,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
@@ -60,6 +65,7 @@ class CarApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => VendorProvider()),
         ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => SendBookingProvider()),
+        ChangeNotifierProvider(create: (context) => AdProvider()),
         ChangeNotifierProvider(
             create: (context) => GoogleProviderAuthLoginAndSignUp()),
       ],

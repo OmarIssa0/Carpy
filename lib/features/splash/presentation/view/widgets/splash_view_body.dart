@@ -1,16 +1,9 @@
-import 'dart:developer';
-
 import 'package:car_store/core/utils/animation_nav.dart';
 import 'package:car_store/core/utils/app_image.dart';
-import 'package:car_store/features/auth/presentation/manger/provider/user_provider.dart';
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
-import 'package:car_store/features/details/peresentation/view_model/provider/send_booking_provider.dart';
-import 'package:car_store/features/favorite/presentation/view_model/provider/favorite_provider.dart';
-import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
 import 'package:car_store/root_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -68,7 +61,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     // return Center(child: SvgPicture.asset(Assets.imagesIconSplashView));
     return Center(
         child: Image.asset(
-      Assets.imagesIconSplashView2,
+      Assets.imagesSplachImage,
       height: 150,
       fit: BoxFit.scaleDown,
     ));

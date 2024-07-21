@@ -44,10 +44,10 @@ class LoginViewBody extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 44),
-                    Image.asset(Assets.imagesNewIconApp, height: 76),
+                    Image.asset(Assets.imagesSplachImage, height: 76),
                     const SizedBox(height: 95),
                     Text("Login".tr(context), style: AppStyles.semiBold20),
-                    Text("Welcome to CarStore".tr(context),
+                    Text("Welcome to Carpy".tr(context),
                         style: AppStyles.regular14),
                     const SizedBox(height: 44),
                     CustomTextFiled(
@@ -160,4 +160,3 @@ class LoginViewBody extends StatelessWidget {
     );
   }
 }
-

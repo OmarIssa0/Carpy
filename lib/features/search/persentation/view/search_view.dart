@@ -26,9 +26,12 @@ class SearchView extends StatelessWidget {
               StretchMode.zoomBackground,
               StretchMode.blurBackground,
             ],
-            title: Text(
-              'Category'.tr(context),
-              style: AppStyles.semiBold20.copyWith(color: Colors.white),
+            title: Padding(
+              padding: const EdgeInsetsDirectional.only(start: 12),
+              child: Text(
+                'Category'.tr(context),
+                style: AppStyles.semiBold20.copyWith(color: Colors.white),
+              ),
             ),
             background: Container(
               color: AppColor.kBackGroundColorSplash,

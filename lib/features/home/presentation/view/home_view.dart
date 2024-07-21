@@ -17,7 +17,7 @@ class HomeView extends StatelessWidget {
             automaticallyImplyLeading: false,
             centerTitle: true,
             title: Text(
-              "CarStore",
+              "Carpy",
               style: AppStyles.semiBold24.copyWith(
                 color: AppColor.kBackGroundColorSplash,
                 fontFamily: 'Poppins',
@@ -27,6 +27,7 @@ class HomeView extends StatelessWidget {
           const SliverToBoxAdapter(
             child: HomeViewBody(),
           ),
+          // const HomeViewBody(),
         ],
       ),
     );

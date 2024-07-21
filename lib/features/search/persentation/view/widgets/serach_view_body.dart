@@ -1,9 +1,11 @@
+import 'package:car_store/core/service/adMob_provider.dart';
 import 'package:car_store/core/utils/animation_nav.dart';
 import 'package:car_store/core/utils/size_config.dart';
 import 'package:car_store/features/filter_category/presentation/view/filter_category_view.dart';
 import 'package:car_store/features/search/persentation/view/widgets/category_item.dart';
 import 'package:car_store/features/search/persentation/view_model/model/category_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SearchViewBody extends StatelessWidget {
   const SearchViewBody({super.key});
@@ -48,6 +50,7 @@ class SearchViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final adProvider = Provider.of<AdProvider>(context);
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
@@ -86,6 +89,9 @@ class SearchViewBody extends StatelessWidget {
                 ),
               ),
             ),
+          ),
+          const SizedBox(
+            height: 50,
           ),
         ],
       ),

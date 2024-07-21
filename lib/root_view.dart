@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:car_store/core/service/adMob.dart';
+import 'package:car_store/core/service/adMob_provider.dart';
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/features/auth/presentation/manger/provider/user_provider.dart';
 import 'package:car_store/features/details/peresentation/view_model/provider/send_booking_provider.dart';
@@ -11,6 +13,7 @@ import 'package:car_store/features/search/persentation/view/search_view.dart';
 import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
 import 'package:car_store/features/vendor_stroe/presentation/view_model/provider/vendor_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 
@@ -34,6 +37,27 @@ class _RootViewState extends State<RootView> {
     const ProfileView(),
   ];
   bool isLoading = true;
+  // BannerAd? bannerAd;
+  // bool isLoaded = false;
+
+  // void loadBannerAd() {
+  //   bannerAd = BannerAd(
+  //     size: AdSize.banner,
+  //     adUnitId: AdManger.appId,
+  //     listener: BannerAdListener(
+  //       onAdLoaded: (ad) {
+  //         setState(() {
+  //           isLoaded = true;
+  //         });
+  //       },
+  //       onAdFailedToLoad: (ad, error) {
+  //         ad.dispose();
+  //       },
+  //     ),
+  //     request: const AdRequest(),
+  //   );
+  //   bannerAd!.load();
+  // }
 
   Future<void> fetchData() async {
     final productProvider =
@@ -72,71 +96,134 @@ class _RootViewState extends State<RootView> {
 
   @override
   void initState() {
+    // loadBannerAd();
     super.initState();
     _controller = PageController(initialPage: currentScreen);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        controller: _controller,
-        // physics: const NeverScrollableScrollPhysics(),
-        onPageChanged: (value) {
-          setState(() {
-            currentScreen = value;
-          });
-        },
-        children: view,
-      ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: currentScreen,
-        onDestinationSelected: (value) {
-          setState(() {
-            // currentScreen = value;
-          });
-          _controller.animateToPage(value,
-              duration: const Duration(milliseconds: 500), curve: Curves.ease);
-        },
-        indicatorColor: Theme.of(context).scaffoldBackgroundColor,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        // backgroundColor: AppColor.kWhite,
-        elevation: 0,
-        destinations: [
-          NavigationDestination(
-            enabled: true,
-            icon: const Icon(IconlyLight.home),
-            label: 'Home'.tr(context),
-            selectedIcon: const Icon(IconlyBold.home,
-                color: AppColor.kBackGroundColorSplash),
-          ),
-          NavigationDestination(
-            icon: const Icon(IconlyLight.search),
-            label: 'Search'.tr(context),
-            selectedIcon: const Icon(IconlyBold.search,
-                color: AppColor.kBackGroundColorSplash),
-          ),
-          // Badge(
-          //   alignment: const Alignment(0, .2),
-          //   label: const Text(
-          //     "2",
-          //     style: TextStyle(color: Colors.white),
-          //   ),
-          //   child: NavigationDestination(
-          //     icon: const Icon(IconlyLight.bag),
-          //     label: 'Cart'.tr(context),
-          //     selectedIcon: const Icon(IconlyBold.bag,
-          //         color: AppColor.kBackGroundColorSplash),
-          //   ),
-          // ),
-          NavigationDestination(
-            icon: const Icon(IconlyLight.profile),
-            label: 'My Profile'.tr(context),
-            selectedIcon: const Icon(IconlyBold.profile,
-                color: AppColor.kBackGroundColorSplash),
-          ),
-        ],
-      ),
+    // final bannerAd = adProvider.createBannerAd();
+    return Consumer<AdProvider>(builder: (context, adProvider, child) {
+      return Scaffold(
+        body: Stack(
+          children: [
+            PageView(
+              controller: _controller,
+              // physics: const NeverScrollableScrollPhysics(),
+              onPageChanged: (value) {
+                setState(() {
+                  currentScreen = value;
+                });
+              },
+              children: view,
+            ),
+            const Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: AdMobBanner(),
+            ),
+          ],
+        ),
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: currentScreen,
+          onDestinationSelected: (value) {
+            setState(() {
+              // currentScreen = value;
+            });
+            _controller.animateToPage(value,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.ease);
+          },
+          indicatorColor: Theme.of(context).scaffoldBackgroundColor,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          // backgroundColor: AppColor.kWhite,
+          elevation: 0,
+          destinations: [
+            NavigationDestination(
+              enabled: true,
+              icon: const Icon(IconlyLight.home),
+              label: 'Home'.tr(context),
+              selectedIcon: const Icon(IconlyBold.home,
+                  color: AppColor.kBackGroundColorSplash),
+            ),
+            NavigationDestination(
+              icon: const Icon(IconlyLight.search),
+              label: 'Search'.tr(context),
+              selectedIcon: const Icon(IconlyBold.search,
+                  color: AppColor.kBackGroundColorSplash),
+            ),
+            // Badge(
+            //   alignment: const Alignment(0, .2),
+            //   label: const Text(
+            //     "2",
+            //     style: TextStyle(color: Colors.white),
+            //   ),
+            //   child: NavigationDestination(
+            //     icon: const Icon(IconlyLight.bag),
+            //     label: 'Cart'.tr(context),
+            //     selectedIcon: const Icon(IconlyBold.bag,
+            //         color: AppColor.kBackGroundColorSplash),
+            //   ),
+            // ),
+            NavigationDestination(
+              icon: const Icon(IconlyLight.profile),
+              label: 'My Profile'.tr(context),
+              selectedIcon: const Icon(IconlyBold.profile,
+                  color: AppColor.kBackGroundColorSplash),
+            ),
+          ],
+        ),
+      );
+    });
+  }
+}
+
+class AdMobBanner extends StatefulWidget {
+  const AdMobBanner({super.key});
+
+  @override
+  _AdMobBannerState createState() => _AdMobBannerState();
+}
+
+class _AdMobBannerState extends State<AdMobBanner> {
+  BannerAd? _bannerAd;
+  bool _isLoaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    final adProvider = Provider.of<AdProvider>(context, listen: false);
+    _bannerAd = adProvider.createBannerAd(
+      onAdLoaded: (ad) {
+        setState(() {
+          _isLoaded = true;
+        });
+      },
+      onAdFailedToLoad: (ad, error) {
+        ad.dispose();
+        print('Ad failed to load: $error');
+      },
     );
+  }
+
+  @override
+  void dispose() {
+    _bannerAd?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_isLoaded && _bannerAd != null) {
+      return SizedBox(
+        height: _bannerAd!.size.height.toDouble(),
+        width: MediaQuery.of(context).size.width,
+        child: AdWidget(ad: _bannerAd!),
+      );
+    } else {
+      return const SizedBox.shrink();
+    }
   }
 }

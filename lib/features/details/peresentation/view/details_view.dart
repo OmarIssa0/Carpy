@@ -1,7 +1,6 @@
+import 'package:car_store/core/constant/my_function.dart';
 import 'package:car_store/core/utils/app_color.dart';
-import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/widgets/adaptive_layout_widgets.dart';
-import 'package:car_store/core/widgets/alert_dialog.dart';
 import 'package:car_store/core/widgets/custom_button.dart';
 import 'package:car_store/features/details/peresentation/view/widgets/details_view_body.dart';
 import 'package:car_store/features/details/peresentation/view_model/provider/send_booking_provider.dart';
@@ -32,77 +31,20 @@ class DetailsView extends StatelessWidget {
                     ? Colors.red
                     : AppColor.kBackGroundColorSplash,
                 onPressed: () async {
-                  Future.delayed(
-                    const Duration(days: 2),
-                    () {
-                      provider.removeBooking(
-                        productId: productId,
-                        bookingId: provider.data[productId]!.id,
-                        context: context,
-                        vendorID: getCurrentProduct!.userId,
-                      );
-                    },
-                  );
-                  provider.isProductBooking(productId: productId)
-                      ? provider.removeBooking(
-                          productId: productId,
-                          bookingId: provider.data[productId]!.id,
-                          context: context,
-                          vendorID: getCurrentProduct!.userId,
-                        )
-                      : AlertDialogMethods.showDialogWaring(
-                          isError: false,
-                          context: context,
-                          titleBottom: "Book now".tr(context),
-                          subtitle: "Do you want to reserve this product?"
-                              .tr(context),
-                          lottileAnimation: Assets.imagesDone,
-                          function: () async {
-                            try {
-                              if (provider.isProductBooking(
-                                  productId: productId)) {
-                                provider.removeBooking(
-                                  productId: productId,
-                                  bookingId: provider.data[productId]!.id,
-                                  context: context,
-                                  vendorID: getCurrentProduct!.userId,
-                                );
-                              } else {
-                                provider.sendBookingFirebase(
-                                    productId: productId,
-                                    context: context,
-                                    vendorID: getCurrentProduct!.userId);
-                              }
-                              await provider.fetchBooking();
-                            } catch (e) {
-                              AlertDialogMethods.showError(
-                                context: context,
-                                titleBottom: "Ok",
-                                lottileAnimation: Assets.imagesQuestionMark,
-                                subtitle: e.toString(),
-                                function: () {
-                                  Navigator.pop(context);
-                                },
-                              );
-                            }
-                            Navigator.of(context).pop();
-                          },
-                        );
+                  bookingButton(
+                      provider, productId, context, getCurrentProduct);
                 },
               );
             }),
       appBar: AppBar(
         leading: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const Icon(Icons.arrow_back_ios_new_rounded)),
-        // actions: [
-        //   IconButton(
-        //     onPressed: () {},
-        //     icon: const Icon(Icons.share),
-        //   )
-        // ],
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+          ),
+        ),
       ),
       body: AdaptiveLayout(
         mobileLayout: (context) => const DetailsViewBody(),

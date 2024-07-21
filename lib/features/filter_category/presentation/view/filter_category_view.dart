@@ -4,6 +4,7 @@ import 'package:car_store/features/filter_category/presentation/view/widgets/fil
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/search/persentation/view_model/model/products_model.dart';
 import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
+import 'package:car_store/root_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -41,76 +42,86 @@ class _FilterCategoryViewState extends State<FilterCategoryView> {
         : productProvider.findByCategory(categoryName: passeCategory);
 
     return Scaffold(
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: [
-          SliverAppBar(
-            automaticallyImplyLeading: true,
-            expandedHeight: 120.0,
-            floating: true,
-            backgroundColor: AppColor.kBackGroundColorSplash,
-            leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: Colors.white,
-              ),
-            ),
-            snap: true,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(
-                passeCategory ?? '',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
+      body: Stack(
+        children: [
+          CustomScrollView(
+            physics: const BouncingScrollPhysics(),
+            slivers: [
+              SliverAppBar(
+                automaticallyImplyLeading: true,
+                expandedHeight: 120.0,
+                floating: true,
+                backgroundColor: AppColor.kBackGroundColorSplash,
+                leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    color: Colors.white,
+                  ),
+                ),
+                snap: true,
+                flexibleSpace: FlexibleSpaceBar(
+                  title: Text(
+                    passeCategory ?? '',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
+                  ),
+                  background: Padding(
+                    padding: const EdgeInsetsDirectional.only(
+                        start: 55, top: 32, end: 18),
+                    child: SizedBox(
+                      child: CustomTextFiled(
+                          // controller: productProvider.searchController,
+                          controller: searchController,
+                          onFieldSubmitted: (p0) {
+                            setState(() {
+                              productProvider.productListSearch =
+                                  productProvider.searchQuery(
+                                      searchText:
+                                          // productProvider.searchController.text,
+                                          searchController.text,
+                                      passedList: productsList);
+                            });
+                          },
+                          onChanged: (p0) {
+                            setState(() {
+                              productProvider.productListSearch =
+                                  productProvider.searchQuery(
+                                      searchText:
+                                          // productProvider.searchController.text,
+                                          searchController.text,
+                                      passedList: productsList);
+                            });
+                          },
+                          contentPadding:
+                              const EdgeInsetsDirectional.only(start: 12),
+                          title: "Search".tr(context),
+                          textInputType: TextInputType.text),
+                    ),
+                  ),
                 ),
               ),
-              background: Padding(
-                padding: const EdgeInsetsDirectional.only(
-                    start: 55, top: 32, end: 18),
-                child: SizedBox(
-                  child: CustomTextFiled(
-                      // controller: productProvider.searchController,
-                      controller: searchController,
-                      onFieldSubmitted: (p0) {
-                        setState(() {
-                          productProvider.productListSearch =
-                              productProvider.searchQuery(
-                                  searchText:
-                                      // productProvider.searchController.text,
-                                      searchController.text,
-                                  passedList: productsList);
-                        });
-                      },
-                      onChanged: (p0) {
-                        setState(() {
-                          productProvider.productListSearch =
-                              productProvider.searchQuery(
-                                  searchText:
-                                      // productProvider.searchController.text,
-                                      searchController.text,
-                                  passedList: productsList);
-                        });
-                      },
-                      contentPadding:
-                          const EdgeInsetsDirectional.only(start: 12),
-                      title: "Search".tr(context),
-                      textInputType: TextInputType.text),
+              SliverToBoxAdapter(
+                child: FilterCategoryViewBody(
+                  searchController: searchController,
                 ),
+                // AdaptiveLayout(
+                //   mobileLayout: (context) => const FilterCategoryViewBody(),
+                //   tabletLayout: (context) => const FilterCategoryViewBody(),
+                // ),
               ),
-            ),
+            ],
           ),
-          SliverToBoxAdapter(
-              child: FilterCategoryViewBody(
-            searchController: searchController,
-          )
-              // AdaptiveLayout(
-              //   mobileLayout: (context) => const FilterCategoryViewBody(),
-              //   tabletLayout: (context) => const FilterCategoryViewBody(),
-              // ),
-              ),
+          const Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: AdMobBanner(),
+          ),
         ],
       ),
     );
