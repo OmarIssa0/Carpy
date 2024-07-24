@@ -1,5 +1,6 @@
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/widgets/alert_dialog.dart';
+import 'package:car_store/features/auth/presentation/view/login_view.dart';
 import 'package:car_store/features/favorite/presentation/view_model/model/favorite_model.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,14 +29,15 @@ class FavoriteProvider with ChangeNotifier {
     required BuildContext context,
   }) async {
     final User? user = _auth.currentUser;
-    if (user == null) {
+    if (user == null || user.isAnonymous == true) {
       AlertDialogMethods.showError(
         context: context,
         subtitle: "User not found".tr(context),
-        titleBottom: "Ok",
+        titleBottom: "Sign In".tr(context),
         lottileAnimation: Assets.imagesErrorMas,
         function: () {
           Navigator.of(context).pop();
+          Navigator.of(context).pushNamed(LoginView.routeName);
         },
       );
       return;
@@ -61,7 +63,8 @@ class FavoriteProvider with ChangeNotifier {
 
   Future<void> fetchWishlist() async {
     User? user = _auth.currentUser;
-    if (user == null) {
+
+    if (user == null || user.isAnonymous == true) {
       // log("the function has been called and the user is null");
       _wishlistItems.clear();
       return;

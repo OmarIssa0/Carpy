@@ -1,8 +1,8 @@
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/widgets/alert_dialog.dart';
-import 'package:car_store/features/details/peresentation/view_model/provider/send_booking_provider.dart';
+import 'package:car_store/features/details/presentation/view_model/provider/send_booking_provider.dart';
 import 'package:car_store/features/lang/app_localization.dart';
-import 'package:car_store/features/search/persentation/view_model/model/products_model.dart';
+import 'package:car_store/features/search/presentation/view_model/model/products_model.dart';
 import 'package:flutter/material.dart';
 
 void bookingButton(SendBookingProvider provider, String productId,
@@ -48,6 +48,7 @@ void bookingButton(SendBookingProvider provider, String productId,
               }
               await provider.fetchBooking();
             } catch (e) {
+              if (!context.mounted) return;
               AlertDialogMethods.showError(
                 context: context,
                 titleBottom: "Ok",
@@ -58,6 +59,7 @@ void bookingButton(SendBookingProvider provider, String productId,
                 },
               );
             }
+            if (!context.mounted) return;
             Navigator.of(context).pop();
           },
         );

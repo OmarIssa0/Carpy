@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:car_store/core/utils/animation_nav.dart';
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/utils/app_image.dart';
@@ -10,7 +12,6 @@ import 'package:car_store/features/auth/presentation/manger/provider/user_provid
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
 import 'package:car_store/features/favorite/presentation/view/favorite_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
-import 'package:car_store/features/my_booking/presentation/view/my_booking_view.dart';
 import 'package:car_store/features/profile/presentation/view/widgets/custom_list_tile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -29,14 +30,11 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
   @override
   bool get wantKeepAlive => true;
   User? user = FirebaseAuth.instance.currentUser;
-  bool _isLoading = true;
   UserModel? userModel;
 
   Future<void> fetchUserInfo() async {
-    if (user == null) {
-      setState(() {
-        _isLoading = false;
-      });
+    if (user == null || user!.isAnonymous == true) {
+      setState(() {});
       return;
     }
 
@@ -55,9 +53,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
         },
       );
     } finally {
-      setState(() {
-        _isLoading = false;
-      });
+      setState(() {});
     }
   }
 
@@ -81,29 +77,43 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                const CircleAvatar(
-                  radius: 30,
-                  backgroundImage: AssetImage(Assets.imagesLogoAppRefactor),
-                ),
-                const SizedBox(width: 19),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      // 'Matilda Brown',
-                      userModel?.userName ?? 'user name',
-                      style: AppStyles.medium16,
-                    ),
-                    Text(
-                      userModel?.userEmail ?? 'email',
-                      style: AppStyles.medium14,
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            user == null || user?.isAnonymous == true
+                ? const SizedBox()
+                : Row(
+                    children: [
+                      user?.photoURL == null
+                          ? const CircleAvatar(
+                              radius: 30,
+                              backgroundImage:
+                                  AssetImage(Assets.imagesLogoAppRefactor),
+                            )
+                          : CircleAvatar(
+                              radius: 30,
+                              backgroundImage: NetworkImage(user!.photoURL!),
+                            ),
+                      const SizedBox(width: 19),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            // 'Matilda Brown',
+                            // userModel?.userName ?? 'user name',
+                            user?.displayName == ''.toString()
+                                ? userModel?.userName ?? ''
+                                : user?.displayName ??
+                                    userModel?.userName ??
+                                    '',
+                            style: AppStyles.medium16,
+                          ),
+                          Text(
+                            user?.email ?? 'email',
+                            // userModel?.userEmail ?? 'email',
+                            style: AppStyles.medium14,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
             const SizedBox(height: 33),
             Container(
               decoration: BoxDecoration(
@@ -113,36 +123,25 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
               ),
               child: Column(
                 children: [
-                  const SizedBox(height: 12),
-                  CustomListTile(
-                    iconLeading: Icons.favorite,
-                    iconTrailing: Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: Colors.grey.shade500,
-                    ),
-                    title: "Favorite",
-                    function: () {
-                      Navigator.push(
-                          context,
-                          AnimationNav.navigatorAnimation(
-                              child: const FavoriteView()));
-                    },
-                  ),
-                  const SizedBox(height: 12),
-                  CustomListTile(
-                    iconLeading: IconlyLight.edit_square,
-                    iconTrailing: Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: Colors.grey.shade500,
-                    ),
-                    title: "Booking requests",
-                    function: () {
-                      Navigator.push(
-                          context,
-                          AnimationNav.navigatorAnimation(
-                              child: const MyBookingView()));
-                    },
-                  ),
+                  user == null || user?.isAnonymous == true
+                      ? const SizedBox()
+                      : const SizedBox(height: 12),
+                  user == null || user?.isAnonymous == true
+                      ? const SizedBox()
+                      : CustomListTile(
+                          iconLeading: Icons.favorite,
+                          iconTrailing: Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: Colors.grey.shade500,
+                          ),
+                          title: "Favorite",
+                          function: () {
+                            Navigator.push(
+                                context,
+                                AnimationNav.navigatorAnimation(
+                                    child: const FavoriteView()));
+                          },
+                        ),
                   const SizedBox(height: 12),
                   CustomListTile(
                       iconLeading: Icons.language,
@@ -160,26 +159,40 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
                 color: Colors.red.withOpacity(.2),
                 // color: AppColor.kBackGroundColorSplash.withOpacity(.3),
               ),
-              child: CustomListTile(
-                iconLeading: IconlyBold.logout,
-                iconTrailing: Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  color: Colors.grey.shade500,
-                ),
-                title: "logout",
-                function: () {
-                  FirebaseAuth.instance.signOut();
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    AnimationNav.navigatorAnimation(child: const LoginView()),
-                    (route) => false,
-                  );
-                  // Navigator.push(
-                  //     context,
-                  //     AnimationNav.navigatorAnimation(
-                  //         child: const FavoriteView()));
-                },
-              ),
+              child: user == null || user?.isAnonymous == true
+                  ? CustomListTile(
+                      iconLeading: IconlyBold.login,
+                      iconTrailing: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        color: Colors.grey.shade500,
+                      ),
+                      title: "Login",
+                      function: () {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          AnimationNav.navigatorAnimation(
+                              child: const LoginView()),
+                          (route) => false,
+                        );
+                      },
+                    )
+                  : CustomListTile(
+                      iconLeading: IconlyBold.logout,
+                      iconTrailing: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        color: Colors.grey.shade500,
+                      ),
+                      title: "logout",
+                      function: () {
+                        FirebaseAuth.instance.signOut();
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          AnimationNav.navigatorAnimation(
+                              child: const LoginView()),
+                          (route) => false,
+                        );
+                      },
+                    ),
             )
           ],
         ),

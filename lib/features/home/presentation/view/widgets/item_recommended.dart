@@ -2,9 +2,9 @@ import 'package:car_store/core/utils/animation_nav.dart';
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/core/widgets/alert_dialog.dart';
-import 'package:car_store/features/details/peresentation/view/details_view.dart';
+import 'package:car_store/features/details/presentation/view/details_view.dart';
 import 'package:car_store/features/favorite/presentation/view_model/provider/favorite_provider.dart';
-import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
+import 'package:car_store/features/search/presentation/view_model/provider/product_provider.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,8 +29,6 @@ class ItemRecommended extends StatelessWidget {
         ? const SizedBox.shrink()
         : GestureDetector(
             onTap: () {
-              // Navigator.pushNamed(context, DetailsView.routeName,
-              //     arguments: getCurrentProduct.productsId);
               Navigator.push(
                 context,
                 AnimationNav.navigatorAnimation(
@@ -46,7 +44,6 @@ class ItemRecommended extends StatelessWidget {
                 color: Colors.white,
                 elevation: 2,
                 child: Column(
-                  // crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Stack(
                       children: [
@@ -125,7 +122,7 @@ class ItemRecommended extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                                 style: AppStyles.medium14),
                             const SizedBox(height: 2),
-                            Text(getCurrentProduct.priceProduct,
+                            Text("${getCurrentProduct.priceProduct} JOD",
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: AppStyles.medium12),

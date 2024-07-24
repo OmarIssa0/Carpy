@@ -1,5 +1,10 @@
 import 'package:car_store/core/utils/app_color.dart';
+import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/utils/app_styles.dart';
+import 'package:car_store/core/widgets/alert_dialog.dart';
+import 'package:car_store/features/auth/presentation/view/login_view.dart';
+import 'package:car_store/features/lang/app_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -42,25 +47,6 @@ class HeaderInfoVendor extends StatelessWidget {
         ),
         Column(
           children: [
-            Container(
-              height: 40,
-              width: 45,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.grey.shade300,
-              ),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(56),
-                onTap: () {
-                  _makePhoneCall(phone);
-                  // _makePhoneCall(getCurrentVendor.phoneNumber);
-                },
-                child: const Icon(
-                  Icons.call,
-                  size: 25,
-                ),
-              ),
-            ),
             const SizedBox(height: 5),
             Container(
               height: 40,
@@ -71,13 +57,47 @@ class HeaderInfoVendor extends StatelessWidget {
               ),
               child: InkWell(
                 borderRadius: BorderRadius.circular(56),
-                onTap: () {},
+                onTap: () {
+                  final auth = FirebaseAuth.instance.currentUser;
+                  if (auth!.isAnonymous == true) {
+                    AlertDialogMethods.showError(
+                      context: context,
+                      subtitle: "User not found".tr(context),
+                      titleBottom: "Sign In".tr(context),
+                      lottileAnimation: Assets.imagesErrorMas,
+                      function: () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pushNamed(LoginView.routeName);
+                      },
+                    );
+                  } else {
+                    _makePhoneCall(phone);
+                  }
+                  // _makePhoneCall(getCurrentVendor.phoneNumber);
+                },
                 child: const Icon(
-                  Icons.location_on,
+                  Icons.call,
                   size: 25,
                 ),
               ),
             ),
+
+            // Container(
+            //   height: 40,
+            //   width: 45,
+            //   decoration: BoxDecoration(
+            //     shape: BoxShape.circle,
+            //     color: Colors.grey.shade300,
+            //   ),
+            //   child: InkWell(
+            //     borderRadius: BorderRadius.circular(56),
+            //     onTap: () {},
+            //     child: const Icon(
+            //       Icons.location_on,
+            //       size: 25,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ],

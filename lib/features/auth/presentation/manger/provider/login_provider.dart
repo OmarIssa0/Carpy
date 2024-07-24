@@ -1,3 +1,4 @@
+import 'package:car_store/core/utils/animation_nav.dart';
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/widgets/alert_dialog.dart';
 import 'package:car_store/features/lang/app_localization.dart';
@@ -43,6 +44,47 @@ class LoginProvider with ChangeNotifier {
     emailFocusNode.dispose();
     passwordFocusNode.dispose();
     super.dispose();
+  }
+
+  Future<void> signInAnonymously(BuildContext context) async {
+    try {
+      _setLoading(true);
+      await FirebaseAuth.instance.signInAnonymously();
+
+      if (!context.mounted) return;
+      Navigator.pushReplacement(
+        context,
+        AnimationNav.navigatorAnimation(
+          child: const RootView(),
+        ),
+      );
+      Fluttertoast.showToast(msg: "Login Success");
+    } on FirebaseAuthException catch (e) {
+      if (!context.mounted) return;
+      // log("Failed to sign in anonymously: $e");
+      AlertDialogMethods.showError(
+        context: context,
+        subtitle: e.message,
+        titleBottom: "Try Again".tr(context),
+        lottileAnimation: Assets.imagesErrorMas,
+        function: () {
+          Navigator.of(context).pop();
+        },
+      );
+    } catch (e) {
+      if (!context.mounted) return;
+      AlertDialogMethods.showError(
+        context: context,
+        subtitle: e.toString(),
+        titleBottom: "Try Again".tr(context),
+        lottileAnimation: Assets.imagesErrorMas,
+        function: () {
+          Navigator.of(context).pop();
+        },
+      );
+    } finally {
+      _setLoading(false);
+    }
   }
 
   Future<void> loginFun(BuildContext context) async {

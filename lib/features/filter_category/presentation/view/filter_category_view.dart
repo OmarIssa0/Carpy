@@ -1,12 +1,11 @@
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/widgets/custom_text_filed.dart';
+import 'package:car_store/features/filter_category/presentation/view/widgets/filter_brand_view_body.dart';
 import 'package:car_store/features/filter_category/presentation/view/widgets/filter_category_view_body.dart';
 import 'package:car_store/features/lang/app_localization.dart';
-import 'package:car_store/features/search/persentation/view_model/model/products_model.dart';
-import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
-import 'package:car_store/root_view.dart';
+import 'package:car_store/features/search/presentation/view_model/model/products_model.dart';
+import 'package:car_store/features/search/presentation/view_model/provider/product_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class FilterCategoryView extends StatefulWidget {
@@ -36,10 +35,9 @@ class _FilterCategoryViewState extends State<FilterCategoryView> {
   Widget build(BuildContext context) {
     final productProvider = Provider.of<ProductProvider>(context);
     final passeCategory = ModalRoute.of(context)!.settings.arguments as String?;
-
     final List<ProductsModel> productsList = passeCategory == null
         ? productProvider.getProduct
-        : productProvider.findByCategory(categoryName: passeCategory);
+        : productProvider.findBySubCategory(category: passeCategory);
 
     return Scaffold(
       body: Stack(
@@ -64,7 +62,7 @@ class _FilterCategoryViewState extends State<FilterCategoryView> {
                 snap: true,
                 flexibleSpace: FlexibleSpaceBar(
                   title: Text(
-                    passeCategory ?? '',
+                    passeCategory ?? "",
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 12,
@@ -109,18 +107,8 @@ class _FilterCategoryViewState extends State<FilterCategoryView> {
                 child: FilterCategoryViewBody(
                   searchController: searchController,
                 ),
-                // AdaptiveLayout(
-                //   mobileLayout: (context) => const FilterCategoryViewBody(),
-                //   tabletLayout: (context) => const FilterCategoryViewBody(),
-                // ),
               ),
             ],
-          ),
-          const Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: AdMobBanner(),
           ),
         ],
       ),

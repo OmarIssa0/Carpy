@@ -1,25 +1,33 @@
 class Assets {
   Assets._();
   
-  /// Assets for imagesBannar1
-  /// assets/images/bannar1.png
-  static const String imagesBannar1 = "assets/images/bannar1.png";
+  /// Assets for imagesAutomotive
+  /// assets/images/automotive.png
+  static const String imagesAutomotive = "assets/images/automotive.png";
 
-  /// Assets for imagesBanner2
-  /// assets/images/banner2.png
-  static const String imagesBanner2 = "assets/images/banner2.png";
+  /// Assets for imagesAutomotive1
+  /// assets/images/automotive1.png
+  static const String imagesAutomotive1 = "assets/images/automotive1.png";
 
-  /// Assets for imagesBanner3
-  /// assets/images/banner3.png
-  static const String imagesBanner3 = "assets/images/banner3.png";
+  /// Assets for imagesAutomotiveNew
+  /// assets/images/automotiveNew.png
+  static const String imagesAutomotiveNew = "assets/images/automotiveNew.png";
 
   /// Assets for imagesBookingNow
   /// assets/images/bookingNow.json
   static const String imagesBookingNow = "assets/images/bookingNow.json";
 
-  /// Assets for imagesCarTest
-  /// assets/images/car_test.png
-  static const String imagesCarTest = "assets/images/car_test.png";
+  /// Assets for imagesBrake
+  /// assets/images/brake.png
+  static const String imagesBrake = "assets/images/brake.png";
+
+  /// Assets for imagesCar
+  /// assets/images/car.png
+  static const String imagesCar = "assets/images/car.png";
+
+  /// Assets for imagesCarKey
+  /// assets/images/car-key.png
+  static const String imagesCarKey = "assets/images/car-key.png";
 
   /// Assets for imagesCarblue
   /// assets/images/carblue.json
@@ -29,9 +37,9 @@ class Assets {
   /// assets/images/Cardetails.png
   static const String imagesCardetails = "assets/images/Cardetails.png";
 
-  /// Assets for imagesContactDealer
-  /// assets/images/ContactDealer.png
-  static const String imagesContactDealer = "assets/images/ContactDealer.png";
+  /// Assets for imagesCharger
+  /// assets/images/charger.png
+  static const String imagesCharger = "assets/images/charger.png";
 
   /// Assets for imagesDone
   /// assets/images/done.json
@@ -45,25 +53,13 @@ class Assets {
   /// assets/images/error_mas.json
   static const String imagesErrorMas = "assets/images/error_mas.json";
 
-  /// Assets for imagesFerareCar
-  /// assets/images/ferare_car.jpg
-  static const String imagesFerareCar = "assets/images/ferare_car.jpg";
-
   /// Assets for imagesGoogle
   /// assets/images/Google.png
   static const String imagesGoogle = "assets/images/Google.png";
 
-  /// Assets for imagesIconApp
-  /// assets/images/icon_app.png
-  static const String imagesIconApp = "assets/images/icon_app.png";
-
   /// Assets for imagesIconSplashView
   /// assets/images/icon_splash_view.svg
   static const String imagesIconSplashView = "assets/images/icon_splash_view.svg";
-
-  /// Assets for imagesIconSplashView2
-  /// assets/images/icon_splash_view2.png
-  static const String imagesIconSplashView2 = "assets/images/icon_splash_view2.png";
 
   /// Assets for imagesLoadingCar
   /// assets/images/loading_car.json
@@ -81,9 +77,17 @@ class Assets {
   /// assets/images/logoAppRefactor.png
   static const String imagesLogoAppRefactor = "assets/images/logoAppRefactor.png";
 
-  /// Assets for imagesNewIconApp
-  /// assets/images/new_icon_app.png
-  static const String imagesNewIconApp = "assets/images/new_icon_app.png";
+  /// Assets for imagesOil
+  /// assets/images/oil.png
+  static const String imagesOil = "assets/images/oil.png";
+
+  /// Assets for imagesPhoneNumber
+  /// assets/images/phone_number.json
+  static const String imagesPhoneNumber = "assets/images/phone_number.json";
+
+  /// Assets for imagesPhoneNumber2
+  /// assets/images/phone_number_2.json
+  static const String imagesPhoneNumber2 = "assets/images/phone_number_2.json";
 
   /// Assets for imagesQuestionMark
   /// assets/images/questionMark.json
@@ -97,13 +101,9 @@ class Assets {
   /// assets/images/SplachImage.png
   static const String imagesSplachImage = "assets/images/SplachImage.png";
 
-  /// Assets for imagesTesla
-  /// assets/images/Tesla.png
-  static const String imagesTesla = "assets/images/Tesla.png";
-
-  /// Assets for imagesWhatsApp
-  /// assets/images/WhatsApp.png
-  static const String imagesWhatsApp = "assets/images/WhatsApp.png";
+  /// Assets for imagesSprayBottle
+  /// assets/images/spray-bottle.png
+  static const String imagesSprayBottle = "assets/images/spray-bottle.png";
 
   /// Assets for imagesWishlistIsEmpty
   /// assets/images/wishlist_is_empty.json

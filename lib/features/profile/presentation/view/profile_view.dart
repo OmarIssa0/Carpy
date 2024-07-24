@@ -14,7 +14,6 @@ class ProfileView extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: Text(
           "My Profile".tr(context), // style: AppStyles.semiBold24
-          // .copyWith(color: AppColor.kBackGroundColorSplash),
         ),
       ),
       body: AdaptiveLayout(

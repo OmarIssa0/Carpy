@@ -2,8 +2,8 @@ import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/core/utils/size_config.dart';
 import 'package:car_store/features/home/presentation/view/widgets/item_recommended.dart';
 import 'package:car_store/features/lang/app_localization.dart';
-import 'package:car_store/features/search/persentation/view_model/model/products_model.dart';
-import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
+import 'package:car_store/features/search/presentation/view_model/model/products_model.dart';
+import 'package:car_store/features/search/presentation/view_model/provider/product_provider.dart';
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +20,7 @@ class FilterCategoryViewBody extends StatelessWidget {
 
     final List<ProductsModel> productsList = passeCategory == null
         ? productProvider.getProduct
-        : productProvider.findByCategory(categoryName: passeCategory);
+        : productProvider.findBySubCategory(category: passeCategory);
     return productsList.isEmpty
         ? Center(
             child: Padding(
@@ -50,13 +50,10 @@ class FilterCategoryViewBody extends StatelessWidget {
                         shrinkWrap: true,
                         builder: (context, index) {
                           return ItemRecommended(
-                            productId:
-                                // productProvider
-                                // .searchController.text.isNotEmpty
-                                searchController.text.isNotEmpty
-                                    ? productProvider
-                                        .productListSearch[index].productsId
-                                    : productsList[index].productsId,
+                            productId: searchController.text.isNotEmpty
+                                ? productProvider
+                                    .productListSearch[index].productsId
+                                : productsList[index].productsId,
                           );
                         },
                         mainAxisSpacing: 25,

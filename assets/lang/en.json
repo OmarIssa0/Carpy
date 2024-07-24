@@ -90,5 +90,14 @@
     "User not found": "User not found",
     "Booking removed successfully": "Booking removed successfully",
     "Failed to remove booking. Please try again": "Failed to remove booking. Please try again",
-    "Booking requests": "Booking requests"
+    "Booking requests": "Booking requests",
+    "see more": "see more",
+    "All Products": "All Products",
+    "Bookings": "Bookings",
+    "Brand": "Brand",
+    "accessories": "accessories",
+    "Failed to sign in anonymously": "Failed to sign in anonymously",
+    "Save": "Save",
+    "Place your phone number": "Place your phone number"
+
 }

@@ -1,8 +1,7 @@
 import 'package:car_store/core/utils/animation_nav.dart';
 import 'package:car_store/core/utils/app_color.dart';
-import 'package:car_store/features/details/peresentation/view/details_view.dart';
+import 'package:car_store/features/details/presentation/view/details_view.dart';
 import 'package:car_store/features/home/presentation/view/widgets/custom_shimmer_loading.dart';
-import 'package:car_store/features/vendor_stroe/presentation/view/vendor_store_view.dart';
 import 'package:car_store/features/vendor_stroe/presentation/view/widgets/header_info_vendor.dart';
 import 'package:car_store/features/vendor_stroe/presentation/view/widgets/item_products_vendor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

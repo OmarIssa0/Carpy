@@ -27,6 +27,7 @@ class AppBarVendorView extends StatelessWidget {
           StretchMode.zoomBackground,
           StretchMode.blurBackground
         ],
+        // ignore: unnecessary_null_comparison
         background: image == null
             ? const SizedBox.shrink()
             : FancyShimmerImage(

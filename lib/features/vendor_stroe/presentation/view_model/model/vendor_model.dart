@@ -1,4 +1,4 @@
-import 'package:car_store/features/search/persentation/view_model/model/products_model.dart';
+import 'package:car_store/features/search/presentation/view_model/model/products_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -26,12 +26,12 @@ class VendorModel with ChangeNotifier {
     return VendorModel(
       // vendorId: snapshot.id,
       vendorId: data['vendorId'],
-      companyName: data['companyName'],
+      companyName: data['vendorName'],
       location: data['location'],
       phoneNumber: data['phoneNumber'],
-      imageCompany: data['imageCompany'],
-      vendorType: data['vendorType'],
-      productList: data['productList'],
+      imageCompany: data['image'],
+      vendorType: data['companyType'],
+      productList: data['products'] ,
     );
   }
 }

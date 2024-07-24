@@ -10,9 +10,12 @@ class UserProvider with ChangeNotifier {
   }
 
   Future<UserModel?> fetchUserData() async {
+    // if (userModel == null) {
+    //   return null;
+    // }
     final FirebaseAuth auth = FirebaseAuth.instance;
     User? user = auth.currentUser;
-    if (user == null) {
+    if (user == null || user.isAnonymous == true) {
       return null;
     }
     var uid = user.uid;

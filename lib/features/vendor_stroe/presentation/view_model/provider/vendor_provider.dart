@@ -9,6 +9,7 @@ class VendorProvider with ChangeNotifier {
   List<VendorModel> get getProduct {
     return _vendorList;
   }
+  
 
   VendorModel? findByVendorId(String vendorId) {
     if (_vendorList.where((element) => element.vendorId == vendorId).isEmpty) {

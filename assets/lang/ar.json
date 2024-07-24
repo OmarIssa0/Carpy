@@ -90,5 +90,13 @@
     "User not found": "المستخدم غير موجود",
     "Booking removed successfully": "تم حذف الحجز بنجاح",
     "Failed to remove booking. Please try again": "فشل في حذف الحجز. الرجاء المحاولة مرة أخرى",
-    "Booking requests": "طلبات الحجز"
+    "Booking requests": "طلبات الحجز",
+    "see more": "شاهد المزيد",
+    "All Products": "جميع المنتجات",
+    "Bookings": "حجوزات",
+    "Brand": "العلامة التجارية",
+    "accessories": "اكسسوارات",
+    "Failed to sign in anonymously": "فشل في تسجيل الدخول مباشرة",
+    "Save": "حفظ",
+    "Place your phone number": "ضع رقم هاتفك"
 }

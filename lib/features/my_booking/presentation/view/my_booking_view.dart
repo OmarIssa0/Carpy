@@ -13,12 +13,13 @@ class MyBookingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-          ),
-        ),
+        // leading: IconButton(
+        //   onPressed: () => Navigator.of(context).pop(),
+        //   icon: const Icon(
+        //     Icons.arrow_back_ios_new_rounded,
+        //   ),
+        // ),
+
         automaticallyImplyLeading: false,
         title: Text(
           'Booking requests'.tr(context),

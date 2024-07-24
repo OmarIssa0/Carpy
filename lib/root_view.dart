@@ -1,17 +1,15 @@
 import 'dart:developer';
-
-import 'package:car_store/core/service/adMob.dart';
 import 'package:car_store/core/service/adMob_provider.dart';
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/features/auth/presentation/manger/provider/user_provider.dart';
-import 'package:car_store/features/details/peresentation/view_model/provider/send_booking_provider.dart';
+import 'package:car_store/features/details/presentation/view_model/provider/send_booking_provider.dart';
 import 'package:car_store/features/favorite/presentation/view_model/provider/favorite_provider.dart';
 import 'package:car_store/features/home/presentation/view/home_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
+import 'package:car_store/features/my_booking/presentation/view/my_booking_view.dart';
 import 'package:car_store/features/profile/presentation/view/profile_view.dart';
-import 'package:car_store/features/search/persentation/view/search_view.dart';
-import 'package:car_store/features/search/persentation/view_model/provider/product_provider.dart';
-import 'package:car_store/features/vendor_stroe/presentation/view_model/provider/vendor_provider.dart';
+import 'package:car_store/features/search/presentation/view/search_view.dart';
+import 'package:car_store/features/search/presentation/view_model/provider/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:iconly/iconly.dart';
@@ -32,8 +30,7 @@ class _RootViewState extends State<RootView> {
   List<Widget> view = [
     const HomeView(),
     const SearchView(),
-    // const FavoriteView(),
-    // const MyProductsView(),
+    const MyBookingView(),
     const ProfileView(),
   ];
   bool isLoading = true;
@@ -103,6 +100,7 @@ class _RootViewState extends State<RootView> {
 
   @override
   Widget build(BuildContext context) {
+    final sendBookingProvider = Provider.of<SendBookingProvider>(context);
     // final bannerAd = adProvider.createBannerAd();
     return Consumer<AdProvider>(builder: (context, adProvider, child) {
       return Scaffold(
@@ -118,12 +116,12 @@ class _RootViewState extends State<RootView> {
               },
               children: view,
             ),
-            const Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: AdMobBanner(),
-            ),
+            // const Positioned(
+            //   bottom: 0,
+            //   left: 0,
+            //   right: 0,
+            //   child: AdMobBanner(),
+            // ),
           ],
         ),
         bottomNavigationBar: NavigationBar(
@@ -154,19 +152,26 @@ class _RootViewState extends State<RootView> {
               selectedIcon: const Icon(IconlyBold.search,
                   color: AppColor.kBackGroundColorSplash),
             ),
-            // Badge(
-            //   alignment: const Alignment(0, .2),
-            //   label: const Text(
-            //     "2",
-            //     style: TextStyle(color: Colors.white),
-            //   ),
-            //   child: NavigationDestination(
-            //     icon: const Icon(IconlyLight.bag),
-            //     label: 'Cart'.tr(context),
-            //     selectedIcon: const Icon(IconlyBold.bag,
-            //         color: AppColor.kBackGroundColorSplash),
-            //   ),
-            // ),
+            sendBookingProvider.data.isEmpty
+                ? NavigationDestination(
+                    icon: const Icon(IconlyLight.edit),
+                    label: 'Bookings'.tr(context),
+                    selectedIcon: const Icon(IconlyBold.edit,
+                        color: AppColor.kBackGroundColorSplash),
+                  )
+                : Badge(
+                    alignment: const Alignment(-0.1, .2),
+                    label: Text(
+                      sendBookingProvider.data.length.toString(),
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    child: NavigationDestination(
+                      icon: const Icon(IconlyLight.edit),
+                      label: 'Bookings'.tr(context),
+                      selectedIcon: const Icon(IconlyBold.edit,
+                          color: AppColor.kBackGroundColorSplash),
+                    ),
+                  ),
             NavigationDestination(
               icon: const Icon(IconlyLight.profile),
               label: 'My Profile'.tr(context),
