@@ -1,6 +1,5 @@
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/widgets/custom_text_filed.dart';
-import 'package:car_store/features/filter_category/presentation/view/widgets/filter_brand_view_body.dart';
 import 'package:car_store/features/filter_category/presentation/view/widgets/filter_category_view_body.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/search/presentation/view_model/model/products_model.dart';
@@ -65,7 +64,7 @@ class _FilterCategoryViewState extends State<FilterCategoryView> {
                     passeCategory ?? "",
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 12,
+                      fontSize: 10,
                     ),
                   ),
                   background: Padding(

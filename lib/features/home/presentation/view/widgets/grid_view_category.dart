@@ -42,7 +42,8 @@ class GridViewCategory extends StatelessWidget {
               categoryList.length,
               (index) {
                 return Padding(
-                  padding: const EdgeInsetsDirectional.only(bottom: 24),
+                  padding:
+                      const EdgeInsetsDirectional.only(bottom: 24, start: 5),
                   child: CategoriesRoundedWidgets(
                     image: categoryList[index].image!,
                     name: categoryList[index].name,
@@ -63,28 +64,6 @@ class GridViewCategory extends StatelessWidget {
             ),
           ),
         )
-        // SizedBox(
-        //   height: 130,
-        //   child: GridView(
-        //     physics: const BouncingScrollPhysics(),
-        //     scrollDirection: Axis.horizontal,
-        //     gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        //       maxCrossAxisExtent: 200,
-        //       childAspectRatio: 4 / 2,
-        //       // crossAxisSpacing: 20,
-        //       mainAxisSpacing: 20,
-        //     ),
-        //     children: List.generate(
-        //       CategoriesList.categoryList.length,
-        //       (index) {
-        //         return CategoriesRoundedWidgets(
-        //           image: CategoriesList.categoryList[index].image,
-        //           name: CategoriesList.categoryList[index].name,
-        //         );
-        //       },
-        //     ),
-        //   ),
-        // ),
       ],
     );
   }

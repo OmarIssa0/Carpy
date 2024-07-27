@@ -27,21 +27,25 @@ class CategoryItem extends StatelessWidget {
             ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                categoryModel.name,
-                style: AppStyles.medium16,
-              ),
-              // Image.network(image, height: 45),
-              // FancyShimmerImage(
-              //   imageUrl: image.toString(),
-              //   height: 45,
-              //   width: 65,
-              //   // errorWidget: const Icon(Icons.error),
-              // ),
-            ],
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: AlignmentDirectional.centerStart,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  categoryModel.name,
+                  style: AppStyles.medium16,
+                ),
+                // Image.network(image, height: 45),
+                // FancyShimmerImage(
+                //   imageUrl: image.toString(),
+                //   height: 45,
+                //   width: 65,
+                //   // errorWidget: const Icon(Icons.error),
+                // ),
+              ],
+            ),
           ),
         ),
       ),

@@ -17,12 +17,10 @@ class SendBookingProvider with ChangeNotifier {
   final Map<String, SendBookingModel> _data = {};
   Map<String, SendBookingModel> get data => _data;
 
-  String? location;
   late TextEditingController phoneTextController;
 
   SendBookingProvider() {
     phoneTextController = TextEditingController();
-    location;
   }
 
   bool isProductBooking({required String productId}) {

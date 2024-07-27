@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:developer';
 import 'package:car_store/core/service/adMob_provider.dart';
 import 'package:car_store/core/utils/app_color.dart';
@@ -161,9 +163,12 @@ class _RootViewState extends State<RootView> {
                   )
                 : Badge(
                     alignment: const Alignment(-0.1, .2),
-                    label: Text(
-                      sendBookingProvider.data.length.toString(),
-                      style: const TextStyle(color: Colors.white),
+                    label: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        sendBookingProvider.data.length.toString(),
+                        style: const TextStyle(color: Colors.white),
+                      ),
                     ),
                     child: NavigationDestination(
                       icon: const Icon(IconlyLight.edit),
@@ -174,7 +179,7 @@ class _RootViewState extends State<RootView> {
                   ),
             NavigationDestination(
               icon: const Icon(IconlyLight.profile),
-              label: 'My Profile'.tr(context),
+              label: 'Profile'.tr(context),
               selectedIcon: const Icon(IconlyBold.profile,
                   color: AppColor.kBackGroundColorSplash),
             ),
@@ -187,6 +192,7 @@ class _RootViewState extends State<RootView> {
 
 class AdMobBanner extends StatefulWidget {
   const AdMobBanner({super.key});
+  // ignore: library_private_types_in_public_api
 
   @override
   _AdMobBannerState createState() => _AdMobBannerState();

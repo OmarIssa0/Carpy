@@ -23,9 +23,11 @@ class SeeMoreAndRecommended extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            "Recommended".tr(context),
-            style: AppStyles.medium20,
+          Expanded(
+            child: Text(
+              "Recommended".tr(context),
+              style: AppStyles.medium20,
+            ),
           ),
           GestureDetector(
             onTap: () {

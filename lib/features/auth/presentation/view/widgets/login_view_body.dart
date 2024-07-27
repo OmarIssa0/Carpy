@@ -1,12 +1,9 @@
-import 'dart:developer';
-
 import 'package:car_store/core/constant/my_validators.dart';
 import 'package:car_store/core/utils/animation_nav.dart';
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/core/utils/size_config.dart';
-import 'package:car_store/core/widgets/alert_dialog.dart';
 import 'package:car_store/core/widgets/custom_button.dart';
 import 'package:car_store/core/widgets/custom_text_filed.dart';
 import 'package:car_store/features/auth/presentation/manger/provider/login_provider.dart';
@@ -16,12 +13,7 @@ import 'package:car_store/features/auth/presentation/view/widgets/google_auth.da
 import 'package:car_store/features/auth/presentation/view/widgets/or_widgets.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/loading_manger.dart';
-import 'package:car_store/root_view.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 
@@ -139,24 +131,28 @@ class LoginViewBody extends StatelessWidget {
                         const SizedBox(height: 12),
                         const GoogleAuth(),
                         const SizedBox(height: 24),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("Don’t have an account?".tr(context),
-                                style: AppStyles.medium14),
-                            GestureDetector(
-                              onTap: () {
-                                // Navigator.pushNamed(context, SignUpView.routeName);
-                                Navigator.push(
-                                    context,
-                                    AnimationNav.navigatorAnimation(
-                                        child: const SignUpView()));
-                              },
-                              child: Text(" Sign Up".tr(context),
-                                  style: AppStyles.medium14.copyWith(
-                                      color: AppColor.kBackGroundColorSplash)),
-                            ),
-                          ],
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Don’t have an account?".tr(context),
+                                  style: AppStyles.medium14),
+                              GestureDetector(
+                                onTap: () {
+                                  // Navigator.pushNamed(context, SignUpView.routeName);
+                                  Navigator.push(
+                                      context,
+                                      AnimationNav.navigatorAnimation(
+                                          child: const SignUpView()));
+                                },
+                                child: Text(" Sign Up".tr(context),
+                                    style: AppStyles.medium14.copyWith(
+                                        color:
+                                            AppColor.kBackGroundColorSplash)),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

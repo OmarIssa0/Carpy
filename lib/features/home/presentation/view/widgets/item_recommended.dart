@@ -45,14 +45,16 @@ class ItemRecommended extends StatelessWidget {
                 elevation: 2,
                 child: Column(
                   children: [
+                    // const SizedBox(height: 5),
                     Stack(
                       children: [
                         getCurrentProduct.imagesProduct.isEmpty
                             ? const SizedBox.shrink()
                             : FancyShimmerImage(
                                 imageUrl: getCurrentProduct.imagesProduct[0],
-                                height:
-                                    MediaQuery.of(context).size.height * 0.22,
+                                // height:
+                                //     MediaQuery.of(context).size.height * 0.22,
+                                height: 140,
                                 boxFit: BoxFit.fitHeight,
                                 errorWidget: const Icon(Icons.error),
                               ),
@@ -118,12 +120,12 @@ class ItemRecommended extends StatelessWidget {
                           children: [
                             const SizedBox(height: 10),
                             Text(getCurrentProduct.nameProduct,
-                                maxLines: 2,
+                                maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: AppStyles.medium14),
                             const SizedBox(height: 2),
                             Text("${getCurrentProduct.priceProduct} JOD",
-                                maxLines: 2,
+                                maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: AppStyles.medium12),
                             const SizedBox(height: 8),

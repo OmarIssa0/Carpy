@@ -1,6 +1,4 @@
-import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/utils/app_styles.dart';
-import 'package:car_store/features/lang/app_localization.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesRoundedWidgets extends StatelessWidget {
@@ -22,27 +20,9 @@ class CategoriesRoundedWidgets extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Container(
-          //   width: MediaQuery.of(context).size.width * .15,
-          //   height: MediaQuery.of(context).size.width * .15,
-          //   decoration: BoxDecoration(
-          //     color: AppColor.kBackGroundColorSplash.withOpacity(.1),
-          //     borderRadius: BorderRadius.circular(70),
-          //     // image: DecorationImage(
-          //     //   image: AssetImage(
-          //     //     image,
-          //     //   ),
-          //     //   fit: BoxFit.scaleDown,
-          //     // ),
-          //   ),
-          //   child: Image.asset(
-          //     image,
-          //     fit: BoxFit.scaleDown,
-          //   ),
-          // ),
           CircleAvatar(
             radius: 32,
-            backgroundColor: Colors.grey.shade900.withOpacity(.1),
+            backgroundColor: Colors.grey.shade400.withOpacity(.1),
             child: Image.asset(
               image,
               fit: BoxFit.scaleDown,
@@ -59,13 +39,12 @@ class CategoriesRoundedWidgets extends StatelessWidget {
               // maxLines: 1,
               // overflow: TextOverflow.ellipsis,
               name,
-              style: AppStyles.medium12.copyWith(fontSize: 10),
+              style: AppStyles.medium12.copyWith(
+                fontSize: 10,
+              ),
+              textAlign: TextAlign.center,
             ),
           )
-          // TitleTextAppCustom(
-          //   label: name,
-          //   fontSize: 14.sp,
-          // ),
         ],
       ),
     );

@@ -28,9 +28,12 @@ class SearchView extends StatelessWidget {
             ],
             title: Padding(
               padding: const EdgeInsetsDirectional.only(start: 12),
-              child: Text(
-                'Brand'.tr(context),
-                style: AppStyles.semiBold20.copyWith(color: Colors.white),
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  'Brand'.tr(context),
+                  style: AppStyles.semiBold16.copyWith(color: Colors.white),
+                ),
               ),
             ),
             background: Container(

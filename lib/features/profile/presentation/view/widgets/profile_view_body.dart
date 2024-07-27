@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:car_store/core/utils/animation_nav.dart';
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/utils/app_image.dart';
@@ -79,40 +77,40 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
           children: [
             user == null || user?.isAnonymous == true
                 ? const SizedBox()
-                : Row(
-                    children: [
-                      user?.photoURL == null
-                          ? const CircleAvatar(
-                              radius: 30,
-                              backgroundImage:
-                                  AssetImage(Assets.imagesLogoAppRefactor),
-                            )
-                          : CircleAvatar(
-                              radius: 30,
-                              backgroundImage: NetworkImage(user!.photoURL!),
+                : FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Row(
+                      children: [
+                        user?.photoURL == null
+                            ? const CircleAvatar(
+                                radius: 30,
+                                backgroundImage:
+                                    AssetImage(Assets.imagesLogoAppRefactor),
+                              )
+                            : CircleAvatar(
+                                radius: 30,
+                                backgroundImage: NetworkImage(user!.photoURL!),
+                              ),
+                        const SizedBox(width: 19),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              user?.displayName == ''.toString()
+                                  ? userModel?.userName ?? ''
+                                  : user?.displayName ??
+                                      userModel?.userName ??
+                                      '',
+                              style: AppStyles.medium16,
                             ),
-                      const SizedBox(width: 19),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            // 'Matilda Brown',
-                            // userModel?.userName ?? 'user name',
-                            user?.displayName == ''.toString()
-                                ? userModel?.userName ?? ''
-                                : user?.displayName ??
-                                    userModel?.userName ??
-                                    '',
-                            style: AppStyles.medium16,
-                          ),
-                          Text(
-                            user?.email ?? 'email',
-                            // userModel?.userEmail ?? 'email',
-                            style: AppStyles.medium14,
-                          ),
-                        ],
-                      ),
-                    ],
+                            Text(
+                              user?.email ?? 'email',
+                              style: AppStyles.medium14,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
             const SizedBox(height: 33),
             Container(

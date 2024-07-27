@@ -18,12 +18,15 @@ class CustomButton extends StatelessWidget {
         style: TextButton.styleFrom(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            padding: const EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
             backgroundColor: color ?? AppColor.kBackGroundColorSplash),
         onPressed: onPressed,
-        child: Text(
-          title,
-          style: AppStyles.semiBold18.copyWith(color: Colors.white),
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            title,
+            style: AppStyles.semiBold16.copyWith(color: Colors.white),
+          ),
         ),
       ),
     );

@@ -163,29 +163,32 @@ class SignUpViewBody extends StatelessWidget {
                     const SizedBox(height: 12),
                     const GoogleAuth(),
                     const SizedBox(height: 24),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Already have an account?".tr(context),
-                          style: AppStyles.medium14,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushReplacementNamed(
-                                context, LoginView.routeName);
-                          },
-                          child: Text(
-                            "Sign In".tr(context),
-                            style: AppStyles.medium14.copyWith(
-                              color: AppColor.kBackGroundColorSplash,
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Already have an account?".tr(context),
+                            style: AppStyles.medium14,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushReplacementNamed(
+                                  context, LoginView.routeName);
+                            },
+                            child: Text(
+                              "Sign In".tr(context),
+                              style: AppStyles.medium14.copyWith(
+                                color: AppColor.kBackGroundColorSplash,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 24),
                   ],

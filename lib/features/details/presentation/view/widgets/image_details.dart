@@ -22,7 +22,7 @@ class ImageDetails extends StatelessWidget {
         : Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(24),
               child: SizedBox(
                 height: MediaQuery.of(context).size.height * .4,
                 child: Swiper(
@@ -45,6 +45,7 @@ class ImageDetails extends StatelessWidget {
                       child: FancyShimmerImage(
                         imageUrl: getCurrentProduct.imagesProduct[index],
                         errorWidget: const Icon(Icons.error),
+                        boxFit: BoxFit.cover,
                       ),
                     );
                   },

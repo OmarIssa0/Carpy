@@ -52,7 +52,15 @@ class _HomeViewBodyState extends State<HomeViewBody>
               const GridViewCategory(),
               const SizedBox(height: 12),
               const SeeMoreAndRecommended(),
-              ListProductsHomeView(productProvider: productProvider),
+              Padding(
+                padding: MediaQuery.sizeOf(context).width < SizeConfig.tablet
+                    ? const EdgeInsetsDirectional.symmetric(horizontal: 16)
+                    : EdgeInsetsDirectional.only(
+                        start: MediaQuery.sizeOf(context).width / 6,
+                        end: MediaQuery.sizeOf(context).width / 6,
+                      ),
+                child: ListProductsHomeView(productProvider: productProvider),
+              ),
               const SizedBox(
                 height: 50,
               ),

@@ -35,9 +35,13 @@ class CustomListTile extends StatelessWidget {
               size: 28,
             ),
           ),
-          title: Text(
-            title.tr(context),
-            style: AppStyles.regular16,
+          title: FittedBox(
+            alignment: AlignmentDirectional.centerStart,
+            fit: BoxFit.scaleDown,
+            child: Text(
+              title.tr(context),
+              style: AppStyles.regular16,
+            ),
           ),
           trailing: iconTrailing),
     );

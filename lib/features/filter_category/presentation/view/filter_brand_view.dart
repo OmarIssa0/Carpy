@@ -63,17 +63,20 @@ class _FilterBrandViewState extends State<FilterBrandView> {
                 flexibleSpace: FlexibleSpaceBar(
                   title: passeCategory == null
                       ? Text(
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           'All Products'.tr(context),
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 12,
+                            fontSize: 10,
                           ),
                         )
                       : Text(
                           passeCategory,
+                          maxLines: 1,
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 12,
+                            fontSize: 10,
                           ),
                         ),
                   background: Padding(
