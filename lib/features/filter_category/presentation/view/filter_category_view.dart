@@ -1,3 +1,4 @@
+import 'package:car_store/core/service/widgets_ad_banner.dart';
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/widgets/custom_text_filed.dart';
 import 'package:car_store/features/filter_category/presentation/view/widgets/filter_category_view_body.dart';
@@ -39,75 +40,72 @@ class _FilterCategoryViewState extends State<FilterCategoryView> {
         : productProvider.findBySubCategory(category: passeCategory);
 
     return Scaffold(
-      body: Stack(
-        children: [
-          CustomScrollView(
-            physics: const BouncingScrollPhysics(),
-            slivers: [
-              SliverAppBar(
-                automaticallyImplyLeading: true,
-                expandedHeight: 120.0,
-                floating: true,
-                backgroundColor: AppColor.kBackGroundColorSplash,
-                leading: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    color: Colors.white,
-                  ),
-                ),
-                snap: true,
-                flexibleSpace: FlexibleSpaceBar(
-                  title: Text(
-                    passeCategory ?? "",
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
-                    ),
-                  ),
-                  background: Padding(
-                    padding: const EdgeInsetsDirectional.only(
-                        start: 55, top: 32, end: 18),
-                    child: SizedBox(
-                      child: CustomTextFiled(
-                          // controller: productProvider.searchController,
-                          controller: searchController,
-                          onFieldSubmitted: (p0) {
-                            setState(() {
-                              productProvider.productListSearch =
-                                  productProvider.searchQuery(
-                                      searchText:
-                                          // productProvider.searchController.text,
-                                          searchController.text,
-                                      passedList: productsList);
-                            });
-                          },
-                          onChanged: (p0) {
-                            setState(() {
-                              productProvider.productListSearch =
-                                  productProvider.searchQuery(
-                                      searchText:
-                                          // productProvider.searchController.text,
-                                          searchController.text,
-                                      passedList: productsList);
-                            });
-                          },
-                          contentPadding:
-                              const EdgeInsetsDirectional.only(start: 12),
-                          title: "Search".tr(context),
-                          textInputType: TextInputType.text),
-                    ),
-                  ),
+      bottomNavigationBar: const AdMobBanner(),
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          SliverAppBar(
+            automaticallyImplyLeading: true,
+            expandedHeight: 120.0,
+            floating: true,
+            backgroundColor: AppColor.kBackGroundColorSplash,
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: Colors.white,
+              ),
+            ),
+            snap: true,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(
+                passeCategory ?? "",
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 10,
                 ),
               ),
-              SliverToBoxAdapter(
-                child: FilterCategoryViewBody(
-                  searchController: searchController,
+              background: Padding(
+                padding: const EdgeInsetsDirectional.only(
+                    start: 55, top: 32, end: 18),
+                child: SizedBox(
+                  child: CustomTextFiled(
+                      // controller: productProvider.searchController,
+                      controller: searchController,
+                      onFieldSubmitted: (p0) {
+                        setState(() {
+                          productProvider.productListSearch =
+                              productProvider.searchQuery(
+                                  searchText:
+                                      // productProvider.searchController.text,
+                                      searchController.text,
+                                  passedList: productsList);
+                        });
+                      },
+                      onChanged: (p0) {
+                        setState(() {
+                          productProvider.productListSearch =
+                              productProvider.searchQuery(
+                                  searchText:
+                                      // productProvider.searchController.text,
+                                      searchController.text,
+                                  passedList: productsList);
+                        });
+                      },
+                      contentPadding:
+                          const EdgeInsetsDirectional.only(start: 12),
+                      title: "Search".tr(context),
+                      textInputType: TextInputType.text),
                 ),
               ),
-            ],
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: FilterCategoryViewBody(
+              searchController: searchController,
+            ),
           ),
         ],
       ),

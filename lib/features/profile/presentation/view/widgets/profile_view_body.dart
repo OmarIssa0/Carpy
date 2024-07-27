@@ -7,6 +7,7 @@ import 'package:car_store/core/widgets/alert_dialog.dart';
 import 'package:car_store/core/widgets/drop_down_button.dart';
 import 'package:car_store/features/auth/presentation/manger/model/user_model.dart';
 import 'package:car_store/features/auth/presentation/manger/provider/user_provider.dart';
+import 'package:car_store/features/auth/presentation/view/delete_user_view.dart';
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
 import 'package:car_store/features/favorite/presentation/view/favorite_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
@@ -138,6 +139,23 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
                                 context,
                                 AnimationNav.navigatorAnimation(
                                     child: const FavoriteView()));
+                          },
+                        ),
+                  const SizedBox(height: 12),
+                  user == null || user?.isAnonymous == true
+                      ? const SizedBox()
+                      : CustomListTile(
+                          iconLeading: Icons.info,
+                          iconTrailing: Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: Colors.grey.shade500,
+                          ),
+                          title: "info account",
+                          function: () {
+                            Navigator.push(
+                                context,
+                                AnimationNav.navigatorAnimation(
+                                    child: const DeleteUserView()));
                           },
                         ),
                   const SizedBox(height: 12),

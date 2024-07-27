@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:car_store/core/service/widgets_ad_banner.dart';
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/widgets/alert_dialog.dart';
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
@@ -34,6 +35,7 @@ class VendorStoreView extends StatelessWidget {
         Uri.parse("https:wa.me/+${removeLeadingZero(phoneNumber)}");
     // String? refactorPhoneNumber;
     return Scaffold(
+      bottomNavigationBar: const AdMobBanner(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
         onPressed: () {

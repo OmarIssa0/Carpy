@@ -1,10 +1,10 @@
+import 'package:car_store/core/service/widgets_ad_banner.dart';
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/core/utils/size_config.dart';
 import 'package:car_store/features/auth/presentation/manger/provider/user_provider.dart';
 import 'package:car_store/features/details/presentation/view/widgets/box_info.dart';
 import 'package:car_store/features/details/presentation/view/widgets/category_and_model_and_type.dart';
 import 'package:car_store/features/details/presentation/view/widgets/image_details.dart';
-import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/search/presentation/view_model/provider/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +17,7 @@ class DetailsViewBody extends StatelessWidget {
     final productProvider = Provider.of<ProductProvider>(context);
     final productId = ModalRoute.of(context)!.settings.arguments as String;
     final getCurrentProduct = productProvider.findByProductId(productId);
-    final userProvider = Provider.of<UserProvider>(context);
+    // final userProvider = Provider.of<UserProvider>(context);
 
     return getCurrentProduct == null
         ? const SizedBox.shrink()
@@ -26,7 +26,7 @@ class DetailsViewBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // const AdMobBanner(),
+                const AdMobBanner(),
                 const ImageDetails(),
                 const SizedBox(height: 15),
                 Padding(
@@ -77,64 +77,15 @@ class DetailsViewBody extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 15),
-
                 Divider(
                     height: 30, thickness: 1.5, color: Colors.grey.shade200),
                 CategoryAndModelAndTypeWidgets(
                     getCurrentProduct: getCurrentProduct),
-                // const SizedBox(height: 15),
-                // Divider(
-                //     height: 30, thickness: 1.5, color: Colors.grey.shade200),
-                // Padding(
-                //   padding: MediaQuery.sizeOf(context).width < SizeConfig.tablet
-                //       ? const EdgeInsetsDirectional.symmetric(horizontal: 24)
-                //       : EdgeInsetsDirectional.only(
-                //           start: MediaQuery.sizeOf(context).width / 6,
-                //           end: MediaQuery.sizeOf(context).width / 6,
-                //         ),
-                //   child: const Column(
-                //     children: [
-                //       // Column(
-                //       //   children: [
-                //       //     Text(
-                //       //       "${getCurrentProduct.priceProduct.toString()} JOD",
-                //       //       style: AppStyles.medium14,
-                //       //     ),
-                //       //     Row(
-                //       //       children: [
-                //       //         // Text(
-                //       //         //   getCurrentProduct.discount == "" ? "" : "/",
-                //       //         //   style: AppStyles.medium14,
-                //       //         // ),
-                //       //         // const SizedBox(width: 3),
-                //       //         Text(
-                //       //           "${getCurrentProduct.discount}",
-                //       //           style: AppStyles.medium12.copyWith(
-                //       //             decoration: TextDecoration.lineThrough,
-                //       //           ),
-                //       //         ),
-                //       //         Text(
-                //       //           getCurrentProduct.discount == "" ? "" : " JOD",
-                //       //           style: AppStyles.medium14.copyWith(
-                //       //             decoration: TextDecoration.lineThrough,
-                //       //           ),
-                //       //         ),
-                //       //       ],
-                //       //     ),
-                //       //   ],
-                //       // ),
-                //     ],
-                //   ),
-                // ),
                 const SizedBox(height: 15),
                 BoxInfo(
                   userId: getCurrentProduct.userId,
                 ),
-
                 const SizedBox(height: 15),
-                // const SizedBox(height: 15),
-                // Divider(
-                //     height: 30, thickness: 1.5, color: Colors.grey.shade200),
                 Padding(
                   padding: MediaQuery.sizeOf(context).width < SizeConfig.tablet
                       ? const EdgeInsetsDirectional.symmetric(horizontal: 24)
@@ -147,7 +98,6 @@ class DetailsViewBody extends StatelessWidget {
                     style: AppStyles.regular16,
                   ),
                 ),
-
                 const SizedBox(height: 40),
               ],
             ),

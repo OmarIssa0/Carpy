@@ -1,3 +1,4 @@
+import 'package:car_store/core/service/widgets_ad_banner.dart';
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/core/widgets/adaptive_layout_widgets.dart';
@@ -13,6 +14,7 @@ class FavoriteView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const AdMobBanner(),
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),

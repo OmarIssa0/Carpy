@@ -4,7 +4,17 @@
         "Firestore",
         "Ionicons",
         "lottile",
-        "unfocus"
+        "unfocus",
+        "استئجار",
+        "اكسسوارات",
+        "الطريق",
+        "المركبات",
+        "تعبئة",
+        "تنظيف",
+        "زيوت",
+        "غيار",
+        "للبيع",
+        "وسوائل"
     ],
     "cmake.ignoreCMakeListsMissing": true
 }

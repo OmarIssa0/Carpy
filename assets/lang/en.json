@@ -99,6 +99,16 @@
     "Failed to sign in anonymously": "Failed to sign in anonymously",
     "Save": "Save",
     "Place your phone number": "Place your phone number",
-    "Price": "Price",    "Profile": "Profile"
+    "Price": "Price",
+    "Profile": "Profile",
+    "info account": "info account",
+    "Are you sure you want to delete your account?":"Are you sure you want to delete your account?",
+    "Delete account":"Delete account",
+    "spare parts":"spare parts",
+    "Car Rental": "Car Rental",
+    "Oils and Fluids": "Oils and Fluids"
+    ,"Cars for Sale": "Cars for Sale"
+    ,"Roadside Refueling": "Roadside Refueling",
+    "Car Cleaning": "Car Cleaning"
 
 }

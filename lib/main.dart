@@ -3,6 +3,7 @@ import 'package:car_store/core/service/adMob_provider.dart';
 import 'package:car_store/core/utils/theme.dart';
 import 'package:car_store/features/auth/presentation/manger/provider/google_auth_provider.dart';
 import 'package:car_store/features/auth/presentation/manger/provider/user_provider.dart';
+import 'package:car_store/features/auth/presentation/view/delete_user_view.dart';
 import 'package:car_store/features/auth/presentation/view/forget_password_view.dart';
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
 import 'package:car_store/features/auth/presentation/view/sign_up_view.dart';
@@ -114,7 +115,8 @@ class CarApp extends StatelessWidget {
                       const FilterBrandView(),
                   FilterCategoryView.routeName: (context) =>
                       const FilterCategoryView(),
-                  MyBookingView.routeName: (context) => const MyBookingView()
+                  MyBookingView.routeName: (context) => const MyBookingView(),
+                  DeleteUserView.routeName: (context) => const DeleteUserView()
                 },
               );
             }

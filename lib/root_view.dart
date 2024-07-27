@@ -2,6 +2,7 @@
 
 import 'dart:developer';
 import 'package:car_store/core/service/adMob_provider.dart';
+import 'package:car_store/core/service/widgets_ad_banner.dart';
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/features/auth/presentation/manger/provider/user_provider.dart';
 import 'package:car_store/features/details/presentation/view_model/provider/send_booking_provider.dart';
@@ -187,54 +188,5 @@ class _RootViewState extends State<RootView> {
         ),
       );
     });
-  }
-}
-
-class AdMobBanner extends StatefulWidget {
-  const AdMobBanner({super.key});
-  // ignore: library_private_types_in_public_api
-
-  @override
-  _AdMobBannerState createState() => _AdMobBannerState();
-}
-
-class _AdMobBannerState extends State<AdMobBanner> {
-  BannerAd? _bannerAd;
-  bool _isLoaded = false;
-
-  @override
-  void initState() {
-    super.initState();
-    final adProvider = Provider.of<AdProvider>(context, listen: false);
-    _bannerAd = adProvider.createBannerAd(
-      onAdLoaded: (ad) {
-        setState(() {
-          _isLoaded = true;
-        });
-      },
-      onAdFailedToLoad: (ad, error) {
-        ad.dispose();
-        print('Ad failed to load: $error');
-      },
-    );
-  }
-
-  @override
-  void dispose() {
-    _bannerAd?.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (_isLoaded && _bannerAd != null) {
-      return SizedBox(
-        height: _bannerAd!.size.height.toDouble(),
-        width: MediaQuery.of(context).size.width,
-        child: AdWidget(ad: _bannerAd!),
-      );
-    } else {
-      return const SizedBox.shrink();
-    }
   }
 }

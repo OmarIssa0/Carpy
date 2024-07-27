@@ -137,22 +137,16 @@ class _BoxInfoState extends State<BoxInfo> {
                     onPressed: () async {
                       final auth = FirebaseAuth.instance.currentUser;
                       if (auth!.isAnonymous) {
-                        showDialog(
+                        AlertDialogMethods.showError(
                           context: context,
-                          builder: (context) => AlertDialog(
-                            title: Text("User not found".tr(context)),
-                            content: const Text("Sign In"),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                  Navigator.of(context)
-                                      .pushNamed(LoginView.routeName);
-                                },
-                                child: const Text("OK"),
-                              ),
-                            ],
-                          ),
+                          subtitle: "User not found".tr(context),
+                          titleBottom: "Sign In".tr(context),
+                          lottileAnimation: Assets.imagesErrorMas,
+                          function: () {
+                            Navigator.of(context).pop();
+                            Navigator.of(context)
+                                .pushNamed(LoginView.routeName);
+                          },
                         );
                       } else {
                         _makePhoneCall(phone);
