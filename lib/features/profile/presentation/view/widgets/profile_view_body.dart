@@ -4,6 +4,7 @@ import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/core/utils/size_config.dart';
 import 'package:car_store/core/widgets/alert_dialog.dart';
+import 'package:car_store/core/widgets/custom_button.dart';
 import 'package:car_store/core/widgets/drop_down_button.dart';
 import 'package:car_store/features/auth/presentation/manger/model/user_model.dart';
 import 'package:car_store/features/auth/presentation/manger/provider/user_provider.dart';
@@ -11,11 +12,15 @@ import 'package:car_store/features/auth/presentation/view/delete_user_view.dart'
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
 import 'package:car_store/features/favorite/presentation/view/favorite_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
+import 'package:car_store/features/profile/presentation/view/help_view.dart';
+import 'package:car_store/features/profile/presentation/view/privacy_policy_veiw.dart';
+import 'package:car_store/features/profile/presentation/view/terms_of_use_view.dart';
 import 'package:car_store/features/profile/presentation/view/widgets/custom_list_tile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileViewBody extends StatefulWidget {
   const ProfileViewBody({super.key});
@@ -68,7 +73,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
     return SingleChildScrollView(
       child: Padding(
         padding: MediaQuery.sizeOf(context).width < SizeConfig.tablet
-            ? const EdgeInsetsDirectional.symmetric(horizontal: 12)
+            ? const EdgeInsetsDirectional.only(start: 16, end: 12)
             : EdgeInsetsDirectional.only(
                 start: MediaQuery.sizeOf(context).width / 6,
                 end: MediaQuery.sizeOf(context).width / 6,
@@ -76,6 +81,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 12),
             user == null || user?.isAnonymous == true
                 ? const SizedBox()
                 : FittedBox(
@@ -97,6 +103,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
+                              maxLines: 1,
                               user?.displayName == ''.toString()
                                   ? userModel?.userName ?? ''
                                   : user?.displayName ??
@@ -105,85 +112,122 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
                               style: AppStyles.medium16,
                             ),
                             Text(
-                              user?.email ?? 'email',
+                              userModel?.userPhone ?? user?.phoneNumber ?? "",
                               style: AppStyles.medium14,
                             ),
+                            // Text(
+                            //   user?.email ?? 'email',
+                            //   style: AppStyles.medium14,
+                            // ),
                           ],
                         ),
                       ],
                     ),
                   ),
-            const SizedBox(height: 33),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(24),
-                color: AppColor.kGrayColor.withOpacity(.2),
-                // color: AppColor.kBackGroundColorSplash.withOpacity(.3),
-              ),
-              child: Column(
-                children: [
-                  user == null || user?.isAnonymous == true
-                      ? const SizedBox()
-                      : const SizedBox(height: 12),
-                  user == null || user?.isAnonymous == true
-                      ? const SizedBox()
-                      : CustomListTile(
-                          iconLeading: Icons.favorite,
-                          iconTrailing: Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Colors.grey.shade500,
-                          ),
-                          title: "Favorite",
-                          function: () {
-                            Navigator.push(
-                                context,
-                                AnimationNav.navigatorAnimation(
-                                    child: const FavoriteView()));
-                          },
+            user == null || user?.isAnonymous == true
+                ? const SizedBox.shrink()
+                : const SizedBox(height: 33),
+            Text("Profile".tr(context), style: AppStyles.medium16),
+            const SizedBox(height: 12),
+            user == null || user?.isAnonymous == true
+                ? const SizedBox.shrink()
+                : CustomListTile(
+                    iconLeading: IconlyLight.profile,
+                    iconTrailing: Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: Colors.grey.shade500,
+                    ),
+                    title: "info account",
+                    function: () {
+                      Navigator.push(
+                        context,
+                        AnimationNav.navigatorAnimation(
+                          child: const DeleteUserView(),
                         ),
-                  const SizedBox(height: 12),
-                  user == null || user?.isAnonymous == true
-                      ? const SizedBox()
-                      : CustomListTile(
-                          iconLeading: Icons.info,
-                          iconTrailing: Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Colors.grey.shade500,
-                          ),
-                          title: "info account",
-                          function: () {
-                            Navigator.push(
-                                context,
-                                AnimationNav.navigatorAnimation(
-                                    child: const DeleteUserView()));
-                          },
-                        ),
-                  const SizedBox(height: 12),
-                  CustomListTile(
-                      iconLeading: Icons.language,
-                      iconTrailing: const DropDownButtonLocal(),
-                      title: "language",
-                      function: () {}),
-                  const SizedBox(height: 12),
-                ],
-              ),
+                      );
+                    },
+                  ),
+            const SizedBox(height: 12),
+            CustomListTile(
+              iconLeading: Icons.language,
+              iconTrailing: const DropDownButtonLocal(),
+              title: "language",
+              iconColor: Colors.grey.shade600,
+              function: () {},
             ),
-            const SizedBox(height: 24),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(24),
-                color: Colors.red.withOpacity(.2),
-                // color: AppColor.kBackGroundColorSplash.withOpacity(.3),
+            const SizedBox(height: 33),
+            Text("Support".tr(context), style: AppStyles.medium16),
+            const SizedBox(height: 12),
+            CustomListTile(
+              iconLeading: IconlyLight.info_circle,
+              iconTrailing: Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: Colors.grey.shade500,
               ),
+              title: "help",
+              function: () {
+                Navigator.push(
+                  context,
+                  AnimationNav.navigatorAnimation(
+                    child: const HelpView(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 12),
+            CustomListTile(
+              iconLeading: IconlyLight.edit,
+              iconTrailing: Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: Colors.grey.shade500,
+              ),
+              title: "terms of use",
+              function: () {
+                Navigator.push(
+                  context,
+                  AnimationNav.navigatorAnimation(
+                    child: const TermsOfUseView(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 12),
+            CustomListTile(
+              iconLeading: IconlyLight.document,
+              iconTrailing: Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: Colors.grey.shade500,
+              ),
+              title: "privacy policy",
+              function: () {
+                Navigator.push(
+                  context,
+                  AnimationNav.navigatorAnimation(
+                    child: const PrivacyPolicyView(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 12),
+            CustomListTile(
+              iconLeading: IconlyLight.call,
+              iconTrailing: Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: Colors.grey.shade500,
+              ),
+              title: "call us",
+              function: () async {
+                await _sendEmail();
+              },
+            ),
+            const SizedBox(height: 55),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: user == null || user?.isAnonymous == true
-                  ? CustomListTile(
-                      iconLeading: IconlyBold.login,
-                      iconTrailing: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: Colors.grey.shade500,
-                      ),
-                      title: "Login",
-                      function: () {
+                  ? CustomButton(
+                      color: Colors.green.shade800,
+                      title: "Login".tr(context),
+                      onPressed: () {
                         Navigator.pushAndRemoveUntil(
                           context,
                           AnimationNav.navigatorAnimation(
@@ -192,14 +236,10 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
                         );
                       },
                     )
-                  : CustomListTile(
-                      iconLeading: IconlyBold.logout,
-                      iconTrailing: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: Colors.grey.shade500,
-                      ),
-                      title: "logout",
-                      function: () {
+                  : CustomButton(
+                      color: Colors.red.shade800,
+                      title: "Log out".tr(context),
+                      onPressed: () {
                         FirebaseAuth.instance.signOut();
                         Navigator.pushAndRemoveUntil(
                           context,
@@ -209,10 +249,32 @@ class _ProfileViewBodyState extends State<ProfileViewBody>
                         );
                       },
                     ),
-            )
+            ),
           ],
         ),
       ),
     );
+  }
+}
+
+Future<void> _sendEmail() async {
+  final Uri emailLaunchUri = Uri(
+    scheme: 'mailto',
+    path: 'storecar85@gmail.com',
+    queryParameters: {
+      'subject': 'دعم Carpy',
+    },
+  );
+
+  try {
+    if (await canLaunchUrl(emailLaunchUri)) {
+      await launchUrl(emailLaunchUri);
+    } else {
+      // رسالة توضيحية عند عدم القدرة على فتح تطبيق البريد الإلكتروني
+      throw 'لا يمكن فتح تطبيق البريد الإلكتروني. تحقق من أنك قمت بتثبيت تطبيق بريد إلكتروني.';
+    }
+  } catch (e) {
+    // معالجة الأخطاء
+    print('حدث خطأ: $e');
   }
 }

@@ -3,21 +3,24 @@ import 'package:car_store/features/lang/app_localization.dart';
 import 'package:flutter/material.dart';
 
 class CustomListTile extends StatelessWidget {
-  const CustomListTile(
-      {super.key,
-      required this.iconLeading,
-      required this.iconTrailing,
-      required this.title,
-      required this.function});
+  const CustomListTile({
+    super.key,
+    required this.iconLeading,
+    required this.iconTrailing,
+    required this.title,
+    required this.function,
+    this.iconColor,
+  });
 
   final IconData iconLeading;
   final Widget iconTrailing;
   final String title;
   final Function function;
+  final Color? iconColor;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         function();
       },
@@ -33,6 +36,7 @@ class CustomListTile extends StatelessWidget {
               //
               iconLeading,
               size: 28,
+              color: iconColor,
             ),
           ),
           title: FittedBox(

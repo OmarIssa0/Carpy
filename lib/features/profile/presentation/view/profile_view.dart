@@ -9,11 +9,16 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+        ),
         centerTitle: true,
         automaticallyImplyLeading: false,
         title: Text(
-          "My Profile".tr(context), // style: AppStyles.semiBold24
+          "Settings".tr(context), // style: AppStyles.semiBold24
         ),
       ),
       body: AdaptiveLayout(

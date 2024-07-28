@@ -21,7 +21,7 @@ class ItemProductsVendor extends StatelessWidget {
     return Column(
       children: [
         Container(
-          // height: size.height * .17,
+          height: size.height * .17,
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 24),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,7 +57,7 @@ class ItemProductsVendor extends StatelessWidget {
                       SizedBox(
                         width: size.width * .45,
                         child: Text(
-                          maxLines: 2,
+                          maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           descriptionProduct,
                           style: AppStyles.regular14,

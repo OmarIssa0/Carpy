@@ -14,14 +14,14 @@ class FavoriteView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const AdMobBanner(),
+      // bottomNavigationBar: const AdMobBanner(),
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-          ),
-        ),
+        // leading: IconButton(
+        //   onPressed: () => Navigator.of(context).pop(),
+        //   icon: const Icon(
+        //     Icons.arrow_back_ios_new_rounded,
+        //   ),
+        // ),
         automaticallyImplyLeading: false,
         title: Text(
           'Favorite'.tr(context),

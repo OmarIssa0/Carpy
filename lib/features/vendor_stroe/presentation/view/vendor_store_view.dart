@@ -61,25 +61,15 @@ class VendorStoreView extends StatelessWidget {
         },
         child: const Icon(Ionicons.logo_whatsapp, color: Colors.white),
       ),
-      body: Stack(
-        children: [
-          CustomScrollView(
-            physics: const BouncingScrollPhysics(),
-            slivers: [
-              AppBarVendorView(image: image),
-              SliverToBoxAdapter(
-                child: VendorStoreViewBody(
-                  vendorData: vendorData!,
-                ),
-              ),
-            ],
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          AppBarVendorView(image: image),
+          SliverToBoxAdapter(
+            child: VendorStoreViewBody(
+              vendorData: vendorData!,
+            ),
           ),
-          // const Positioned(
-          //   bottom: 0,
-          //   left: 0,
-          //   right: 0,
-          //   child: AdMobBanner(),
-          // ),
         ],
       ),
     );

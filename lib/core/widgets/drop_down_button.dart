@@ -20,7 +20,7 @@ class DropDownButtonLocal extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: Colors.grey.shade300,
+                color: Colors.grey.shade200,
               ),
               child: DropdownButton<String>(
                 // isExpanded: true,

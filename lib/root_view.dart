@@ -6,6 +6,7 @@ import 'package:car_store/core/service/widgets_ad_banner.dart';
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/features/auth/presentation/manger/provider/user_provider.dart';
 import 'package:car_store/features/details/presentation/view_model/provider/send_booking_provider.dart';
+import 'package:car_store/features/favorite/presentation/view/favorite_view.dart';
 import 'package:car_store/features/favorite/presentation/view_model/provider/favorite_provider.dart';
 import 'package:car_store/features/home/presentation/view/home_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
@@ -34,7 +35,8 @@ class _RootViewState extends State<RootView> {
     const HomeView(),
     const SearchView(),
     const MyBookingView(),
-    const ProfileView(),
+    // const ProfileView(),
+    const FavoriteView(),
   ];
   bool isLoading = true;
   // BannerAd? bannerAd;
@@ -179,10 +181,13 @@ class _RootViewState extends State<RootView> {
                     ),
                   ),
             NavigationDestination(
-              icon: const Icon(IconlyLight.profile),
-              label: 'Profile'.tr(context),
-              selectedIcon: const Icon(IconlyBold.profile,
-                  color: AppColor.kBackGroundColorSplash),
+              icon: const Icon(IconlyLight.heart),
+              label: 'Favorite'.tr(context),
+              selectedIcon: const Icon(
+                IconlyBold.heart,
+                color: Colors.red,
+                // color: AppColor.kBackGroundColorSplash,
+              ),
             ),
           ],
         ),
