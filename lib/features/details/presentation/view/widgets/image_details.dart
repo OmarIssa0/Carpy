@@ -50,12 +50,12 @@ class ImageDetails extends StatelessWidget {
                     );
                   },
                   autoplay: true,
-                  pagination: const SwiperPagination(
-                    alignment: Alignment.bottomCenter,
-                    builder: DotSwiperPaginationBuilder(
-                        color: AppColor.kGrayOpacity,
-                        activeColor: AppColor.kBackGroundColorSplash),
-                  ),
+                  // pagination: const SwiperPagination(
+                  //   alignment: Alignment.bottomCenter,
+                  //   builder: DotSwiperPaginationBuilder(
+                  //       color: AppColor.kGrayOpacity,
+                  //       activeColor: AppColor.kBackGroundColorSplash),
+                  // ),
                 ),
               ),
             ),

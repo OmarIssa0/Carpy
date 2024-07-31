@@ -103,21 +103,33 @@ class CarListToo extends StatelessWidget {
       },
       mainAxisSpacing: 25,
       crossAxisSpacing: 16,
-      itemCount: productsList.isEmpty
-          ? 0
-          : productsList.length == 1
-              ? 1
-              : productsList.length == 2
-                  ? 2
-                  : productsList.length == 3
-                      ? 3
-                      : productsList.length == 4
-                          ? 4
+      itemCount: MediaQuery.sizeOf(context).width >= SizeConfig.tablet
+          ? productsList.isEmpty
+              ? 0
+              : productsList.length == 1
+                  ? 1
+                  : productsList.length == 2
+                      ? 2
+                      : productsList.length == 3
+                          ? 3
                           : productsList.length == 4
                               ? 4
-                              : productsList.length == 5
-                                  ? 5
-                                  : 6,
+                              : productsList.length == 4
+                                  ? 4
+                                  : productsList.length == 5
+                                      ? 5
+                                      : 6
+          : productsList.isEmpty
+              ? 0
+              : productsList.length == 1
+                  ? 1
+                  : productsList.length == 2
+                      ? 2
+                      : productsList.length == 3
+                          ? 3
+                          : productsList.length == 4
+                              ? 4
+                              : 4,
       crossAxisCount:
           MediaQuery.sizeOf(context).width < SizeConfig.tablet ? 2 : 3,
     );

@@ -26,16 +26,21 @@ class MyBookingViewBody extends StatelessWidget {
                     end: MediaQuery.sizeOf(context).width / 6,
                   ),
             child: sendBookingProvider.data.isEmpty
-                ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Lottie.asset(Assets.imagesCarblue, fit: BoxFit.scaleDown),
-                      Text(
-                        "No Products Found".tr(context),
-                        style:
-                            AppStyles.semiBold16.copyWith(color: Colors.grey),
+                ? Center(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Lottie.asset(Assets.imagesCarblue,
+                              fit: BoxFit.scaleDown),
+                          Text(
+                            "No Products Found".tr(context),
+                            style: AppStyles.semiBold16
+                                .copyWith(color: Colors.grey),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   )
                 : DynamicHeightGridView(
                     physics: const BouncingScrollPhysics(),

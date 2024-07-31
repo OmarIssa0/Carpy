@@ -1,3 +1,4 @@
+import 'package:car_store/core/api/firebase_analytics.dart';
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/widgets/alert_dialog.dart';
 import 'package:car_store/root_view.dart';
@@ -5,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 
 // class GoogleProviderAuthLoginAndSignUp with ChangeNotifier {
 //   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -136,6 +138,16 @@ class GoogleProviderAuthLoginAndSignUp with ChangeNotifier {
       _setLoading(false);
       if (!context.mounted) return;
       Navigator.of(context).pushReplacementNamed(RootView.routeName);
+
+      final analyticsService =
+          Provider.of<AnalyticsService>(context, listen: false);
+      analyticsService.logEvent(
+        eventName: 'google_login_users',
+        parameters: {
+          'app_type': 'users',
+          'screen_name': 'google_login_users',
+        },
+      );
     } on FirebaseAuthException catch (error) {
       if (!context.mounted) return;
       AlertDialogMethods.showError(

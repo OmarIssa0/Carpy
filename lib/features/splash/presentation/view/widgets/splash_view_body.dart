@@ -1,9 +1,11 @@
+import 'package:car_store/core/api/firebase_analytics.dart';
 import 'package:car_store/core/utils/animation_nav.dart';
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
 import 'package:car_store/root_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -69,6 +71,15 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   void excuteNavigation() {
     Future.delayed(const Duration(seconds: 3), () {
+       final analyticsService =
+            Provider.of<AnalyticsService>(context, listen: false);
+        analyticsService.logEvent(
+          eventName: 'splash_view_users',
+          parameters: {
+            'app_type': 'users',
+            'screen_name': 'splash_view_users',
+          },
+        );
       // Navigator.pushReplacementNamed(context, LoginView.routeName);
       FirebaseAuth.instance.currentUser != null &&
               FirebaseAuth.instance.currentUser!.emailVerified

@@ -11,11 +11,9 @@ import 'package:car_store/features/favorite/presentation/view_model/provider/fav
 import 'package:car_store/features/home/presentation/view/home_view.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/my_booking/presentation/view/my_booking_view.dart';
-import 'package:car_store/features/profile/presentation/view/profile_view.dart';
 import 'package:car_store/features/search/presentation/view/search_view.dart';
 import 'package:car_store/features/search/presentation/view_model/provider/product_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 
@@ -28,6 +26,8 @@ class RootView extends StatefulWidget {
 }
 
 class _RootViewState extends State<RootView> {
+  // final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
   late PageController _controller;
   int currentScreen = 0;
 
@@ -98,7 +98,9 @@ class _RootViewState extends State<RootView> {
 
   @override
   void initState() {
+    // analytics.setAnalyticsCollectionEnabled(true);
     // loadBannerAd();
+
     super.initState();
     _controller = PageController(initialPage: currentScreen);
   }

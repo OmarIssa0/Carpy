@@ -1,3 +1,4 @@
+import 'package:car_store/core/api/firebase_analytics.dart';
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/widgets/alert_dialog.dart';
 import 'package:car_store/features/lang/app_localization.dart';
@@ -5,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
 class SignUpProvider extends ChangeNotifier {
   // Controllers
@@ -99,6 +101,15 @@ class SignUpProvider extends ChangeNotifier {
         FirebaseAuth.instance.setLanguageCode("ar");
         FirebaseAuth.instance.currentUser!.sendEmailVerification();
         if (!context.mounted) return;
+        final analyticsService =
+            Provider.of<AnalyticsService>(context, listen: false);
+        analyticsService.logEvent(
+          eventName: 'signup_users',
+          parameters: {
+            'app_type': 'users',
+            'screen_name': 'signup_users',
+          },
+        );
         // Navigator.pushReplacement(
         //     context, AnimationNav.navigatorAnimation(child: const LoginView()));
       } on FirebaseAuthException catch (error) {

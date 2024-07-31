@@ -25,39 +25,6 @@ class _HomeViewBodyState extends State<HomeViewBody>
   Widget build(BuildContext context) {
     super.build(context);
     final productProvider = Provider.of<ProductProvider>(context);
-    // final List<ProductsModel> productsListAccessories =
-    //     passeCategory == "اكسسوارات"
-    //         ? productProvider.getProduct
-    //         : productProvider.findBySubCategory(category: "اكسسوارات");
-
-    // final List<ProductsModel> productsListSpareParts =
-    //     passeCategory == "قطع غيار"
-    //         ? productProvider.getProduct
-    //         : productProvider.findBySubCategory(category: "قطع غيار");
-
-    // final List<ProductsModel> productsListCarRental =
-    //     passeCategory == "استئجار المركبات"
-    //         ? productProvider.getProduct
-    //         : productProvider.findBySubCategory(category: "استئجار المركبات");
-
-    // final List<ProductsModel> productsListOilsAndFluids =
-    //     passeCategory == "زيوت وسوائل"
-    //         ? productProvider.getProduct
-    //         : productProvider.findBySubCategory(category: "زيوت وسوائل");
-
-    // final List<ProductsModel> productsListBey = passeCategory == "مركبات للبيع"
-    //     ? productProvider.getProduct
-    //     : productProvider.findBySubCategory(category: "مركبات للبيع");
-
-    // final List<ProductsModel> productsListRoadsideRefueling =
-    //     passeCategory == "تعبئة على الطريق"
-    //         ? productProvider.getProduct
-    //         : productProvider.findBySubCategory(category: "تعبئة على الطريق");
-
-    // final List<ProductsModel> productsListCarCleaning =
-    //     passeCategory == "تنظيف المركبات"
-    //         ? productProvider.getProduct
-    //         : productProvider.findBySubCategory(category: "تنظيف المركبات");
 
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
@@ -78,7 +45,7 @@ class _HomeViewBodyState extends State<HomeViewBody>
                         start: MediaQuery.sizeOf(context).width / 6,
                         end: MediaQuery.sizeOf(context).width / 6,
                       ),
-                child: const SwiperHomeView(),
+                child: const SwiperHomeViewOne(),
               ),
               const SizedBox(height: 34),
               const GridViewCategory(),
@@ -108,7 +75,7 @@ class _HomeViewBodyState extends State<HomeViewBody>
                         start: MediaQuery.sizeOf(context).width / 6,
                         end: MediaQuery.sizeOf(context).width / 6,
                       ),
-                child: const SwiperHomeView(),
+                child: const SwiperHomeViewToo(),
               ),
               const SizedBox(height: 25),
 
@@ -137,7 +104,7 @@ class _HomeViewBodyState extends State<HomeViewBody>
                         start: MediaQuery.sizeOf(context).width / 6,
                         end: MediaQuery.sizeOf(context).width / 6,
                       ),
-                child: const SwiperHomeView(),
+                child: const SwiperHomeViewThree(),
               ),
               const SizedBox(height: 25),
               CustomListView(

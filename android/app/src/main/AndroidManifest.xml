@@ -41,6 +41,10 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-6429610413303878~2072723161"/>
+            <meta-data
+    android:name="firebase_analytics_debug_mode"
+    android:value="true"/>
+
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility?hl=en and

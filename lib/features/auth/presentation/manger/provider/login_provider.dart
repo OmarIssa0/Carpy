@@ -1,3 +1,4 @@
+import 'package:car_store/core/api/firebase_analytics.dart';
 import 'package:car_store/core/utils/animation_nav.dart';
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/widgets/alert_dialog.dart';
@@ -6,6 +7,7 @@ import 'package:car_store/root_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
 class LoginProvider with ChangeNotifier {
   // Controllers
@@ -59,6 +61,15 @@ class LoginProvider with ChangeNotifier {
         ),
       );
       Fluttertoast.showToast(msg: "Login Success");
+      final analyticsService =
+          Provider.of<AnalyticsService>(context, listen: false);
+      analyticsService.logEvent(
+        eventName: 'login_anonymously_users',
+        parameters: {
+          'app_type': 'users',
+          'screen_name': 'login_anonymously_users',
+        },
+      );
     } on FirebaseAuthException catch (e) {
       if (!context.mounted) return;
       // log("Failed to sign in anonymously: $e");
@@ -112,6 +123,17 @@ class LoginProvider with ChangeNotifier {
           if (!context.mounted) return;
           await Navigator.of(context)
               .pushNamedAndRemoveUntil(RootView.routeName, (route) => false);
+          if (!context.mounted) return;
+
+          final analyticsService =
+              Provider.of<AnalyticsService>(context, listen: false);
+          analyticsService.logEvent(
+            eventName: 'login_users',
+            parameters: {
+              'app_type': 'users',
+              'screen_name': 'login_users',
+            },
+          );
         } else {
           if (!context.mounted) return;
           AlertDialogMethods.showDialogForgotPassword(

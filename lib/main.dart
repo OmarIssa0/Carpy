@@ -1,3 +1,4 @@
+import 'package:car_store/core/api/firebase_analytics.dart';
 import 'package:car_store/core/api/firebase_api.dart';
 import 'package:car_store/core/service/adMob_provider.dart';
 import 'package:car_store/core/utils/theme.dart';
@@ -26,6 +27,8 @@ import 'package:car_store/features/vendor_stroe/presentation/view/vendor_store_v
 import 'package:car_store/features/vendor_stroe/presentation/view_model/provider/vendor_provider.dart';
 import 'package:car_store/firebase_options.dart';
 import 'package:car_store/root_view.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -73,6 +76,7 @@ class CarApp extends StatelessWidget {
         ChangeNotifierProvider(
             create: (context) => GoogleProviderAuthLoginAndSignUp()),
         ChangeNotifierProvider(create: (context) => BannerProvider()),
+        ChangeNotifierProvider(create: (context) => AnalyticsService('users')),
       ],
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value: const SystemUiOverlayStyle(
@@ -82,6 +86,10 @@ class CarApp extends StatelessWidget {
           builder: (context, state) {
             if (state is ChangeLocaleState) {
               return MaterialApp(
+                navigatorObservers: [
+                  FirebaseAnalyticsObserver(
+                      analytics: FirebaseAnalytics.instance),
+                ],
                 locale: state.locale,
                 supportedLocales: const [Locale('en'), Locale('ar')],
                 localizationsDelegates: const [

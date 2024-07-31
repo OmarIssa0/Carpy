@@ -1,3 +1,4 @@
+import 'package:car_store/core/api/firebase_analytics.dart';
 import 'package:car_store/core/utils/animation_nav.dart';
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/utils/app_styles.dart';
@@ -24,11 +25,24 @@ class ItemRecommended extends StatelessWidget {
 
     // FavoriteProvider
     FavoriteProvider favoriteProvider = Provider.of<FavoriteProvider>(context);
+    final analyticsService = Provider.of<AnalyticsService>(context);
 
     return getCurrentProduct == null
         ? const SizedBox.shrink()
         : GestureDetector(
             onTap: () {
+              // analyticsService.logEvent(
+              //   eventName: 'category_product_click',
+              //   parameters: {
+              //     'app_type': 'users',
+              //     'screen_name': 'home',
+              //     'product_id': productId,
+              //     'product_name': getCurrentProduct.nameProduct,
+              //     'product_price': getCurrentProduct.priceProduct,
+              //     'product_image': getCurrentProduct.imagesProduct[0],
+              //     'product_description': getCurrentProduct.descriptionProduct,
+              //   },
+              // );
               Navigator.push(
                 context,
                 AnimationNav.navigatorAnimation(

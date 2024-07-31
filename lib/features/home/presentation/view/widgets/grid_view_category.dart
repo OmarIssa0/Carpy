@@ -1,6 +1,7 @@
 import 'package:car_store/core/utils/animation_nav.dart';
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/utils/app_styles.dart';
+import 'package:car_store/core/utils/size_config.dart';
 import 'package:car_store/features/filter_category/presentation/view/filter_category_view.dart';
 import 'package:car_store/features/filter_category/presentation/view_model/model/category_model.dart';
 import 'package:car_store/features/home/presentation/view/widgets/category_rounded_widgets.dart';
@@ -28,7 +29,12 @@ class GridViewCategory extends StatelessWidget {
       children: [
         // TitleTextAppCustom(label: 'Categories', fontSize: 16),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: MediaQuery.sizeOf(context).width < SizeConfig.tablet
+              ? const EdgeInsetsDirectional.symmetric(horizontal: 16)
+              : EdgeInsetsDirectional.only(
+                  start: MediaQuery.sizeOf(context).width / 6,
+                  end: MediaQuery.sizeOf(context).width / 6,
+                ),
           child: Text("Category".tr(context), style: AppStyles.medium20),
         ),
         const SizedBox(height: 20),

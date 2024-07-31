@@ -1,7 +1,6 @@
 import 'package:car_store/core/service/widgets_ad_banner.dart';
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/core/utils/size_config.dart';
-import 'package:car_store/features/auth/presentation/manger/provider/user_provider.dart';
 import 'package:car_store/features/details/presentation/view/widgets/box_info.dart';
 import 'package:car_store/features/details/presentation/view/widgets/category_and_model_and_type.dart';
 import 'package:car_store/features/details/presentation/view/widgets/image_details.dart';
@@ -30,12 +29,8 @@ class DetailsViewBody extends StatelessWidget {
                 const ImageDetails(),
                 const SizedBox(height: 15),
                 Padding(
-                  padding: MediaQuery.sizeOf(context).width < SizeConfig.tablet
-                      ? const EdgeInsetsDirectional.symmetric(horizontal: 24)
-                      : EdgeInsetsDirectional.only(
-                          start: MediaQuery.sizeOf(context).width / 6,
-                          end: MediaQuery.sizeOf(context).width / 6,
-                        ),
+                  padding:
+                      const EdgeInsetsDirectional.symmetric(horizontal: 24),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,12 +82,8 @@ class DetailsViewBody extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 Padding(
-                  padding: MediaQuery.sizeOf(context).width < SizeConfig.tablet
-                      ? const EdgeInsetsDirectional.symmetric(horizontal: 24)
-                      : EdgeInsetsDirectional.only(
-                          start: MediaQuery.sizeOf(context).width / 6,
-                          end: MediaQuery.sizeOf(context).width / 6,
-                        ),
+                  padding:
+                      const EdgeInsetsDirectional.symmetric(horizontal: 24),
                   child: Text(
                     getCurrentProduct.descriptionProduct,
                     style: AppStyles.regular16,
