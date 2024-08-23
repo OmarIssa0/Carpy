@@ -1,4 +1,3 @@
-import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/features/search/presentation/view_model/provider/product_provider.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
@@ -51,13 +50,26 @@ class ImageDetails extends StatelessWidget {
                   },
                   autoplay: true,
                   // pagination: const SwiperPagination(
+                  //   margin: EdgeInsets.all(0),
+                  //   builder: SwiperPagination.rect,
+                  //   // SwiperCustomPagination(
+                  //   //   builder: (context, config) {
+                  //   //     return Container(
+                  //   //       color: Colors.transparent,
+                  //   //       child: Text(
+                  //   //           "${config.activeIndex + 1} / ${config.itemCount}"),
+                  //   //     );
+                  //   //   },
+                  //   // ),
+                  // ),
+                  // pagination: const SwiperPagination(
                   //   alignment: Alignment.bottomCenter,
                   //   builder: DotSwiperPaginationBuilder(
                   //       color: AppColor.kGrayOpacity,
                   //       activeColor: AppColor.kBackGroundColorSplash),
                   // ),
                 ),
-              ),
+              ), 
             ),
           );
   }

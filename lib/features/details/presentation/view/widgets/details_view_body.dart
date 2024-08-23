@@ -1,10 +1,12 @@
 import 'package:car_store/core/service/widgets_ad_banner.dart';
 import 'package:car_store/core/utils/app_styles.dart';
-import 'package:car_store/core/utils/size_config.dart';
 import 'package:car_store/features/details/presentation/view/widgets/box_info.dart';
 import 'package:car_store/features/details/presentation/view/widgets/category_and_model_and_type.dart';
 import 'package:car_store/features/details/presentation/view/widgets/image_details.dart';
+import 'package:car_store/features/details/presentation/view/widgets/row_title_and_value.dart';
+import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/search/presentation/view_model/provider/product_provider.dart';
+import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -45,6 +47,7 @@ class DetailsViewBody extends StatelessWidget {
                       ),
                       const SizedBox(width: 18),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
                             "${getCurrentProduct.priceProduct.toString()} JOD",
@@ -76,7 +79,97 @@ class DetailsViewBody extends StatelessWidget {
                     height: 30, thickness: 1.5, color: Colors.grey.shade200),
                 CategoryAndModelAndTypeWidgets(
                     getCurrentProduct: getCurrentProduct),
+                getCurrentProduct.categoryTypeAd == "استئجار المركبات" ||
+                        getCurrentProduct.categoryTypeAd == "مركبات للبيع"
+                    ? const SizedBox(height: 15)
+                    : const SizedBox.shrink(),
+
+                getCurrentProduct.categoryTypeAd == "استئجار المركبات" ||
+                        getCurrentProduct.categoryTypeAd == "مركبات للبيع"
+                    ? Container(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Colors.grey.shade200),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            RowTitleAndValue(
+                              title: "Year".tr(context),
+                              value: getCurrentProduct.modelProduct,
+                            ),
+                            const SizedBox(height: 5),
+                            RowTitleAndValue(
+                              title: "Brand".tr(context),
+                              value: getCurrentProduct.categoryProduct,
+                            ),
+                            const SizedBox(height: 5),
+                            RowTitleAndValue(
+                              title: "Color".tr(context),
+                              value: getCurrentProduct.color ?? "",
+                            ),
+                            const SizedBox(height: 5),
+                            RowTitleAndValue(
+                              title: "Kilometers".tr(context),
+                              value: getCurrentProduct.kilometer ?? "",
+                            ),
+                            const SizedBox(height: 5),
+                            RowTitleAndValue(
+                              title: "Category".tr(context),
+                              value: getCurrentProduct.categoryTypeAd,
+                            ),
+                          ],
+                        ),
+                      )
+                    : const SizedBox.shrink(),
                 const SizedBox(height: 15),
+                getCurrentProduct.categoryTypeAd == "استئجار المركبات" ||
+                        getCurrentProduct.categoryTypeAd == "مركبات للبيع"
+                    ? Container(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Colors.grey.shade200),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              "Technical Specifications".tr(context),
+                              style: AppStyles.semiBold16,
+                            ),
+                            const SizedBox(height: 8),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 24,
+                              ),
+                              child: DynamicHeightGridView(
+                                physics: const BouncingScrollPhysics(),
+                                shrinkWrap: true,
+                                builder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsetsDirectional.only(
+                                        top: 8.0, end: 8.0),
+                                    child: Text(
+                                        "${getCurrentProduct.selectedFeatures![index]}"),
+                                  );
+                                },
+                                itemCount: getCurrentProduct
+                                        .selectedFeatures?.length ??
+                                    0,
+                                crossAxisCount: 2,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    : const SizedBox.shrink(),
+                // Divider(
+                //     height: 30, thickness: 1.5, color: Colors.grey.shade200),
+                getCurrentProduct.categoryTypeAd == "استئجار المركبات" ||
+                        getCurrentProduct.categoryTypeAd == "مركبات للبيع"
+                    ? const SizedBox(height: 15)
+                    : const SizedBox.shrink(),
                 BoxInfo(
                   userId: getCurrentProduct.userId,
                 ),

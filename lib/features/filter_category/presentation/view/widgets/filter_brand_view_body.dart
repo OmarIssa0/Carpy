@@ -21,7 +21,10 @@ class FilterBrandViewBody extends StatelessWidget {
     final List<ProductsModel> productsList = passeCategory == null
         ? productProvider.getProduct
         : productProvider.findByBrand(brandName: passeCategory);
-    return productsList.isEmpty
+    final List<ProductsModel> filteredProductsList =
+        productProvider.filterProducts(productsList, true);
+
+    return filteredProductsList.isEmpty
         ? Center(
             child: Padding(
               padding: const EdgeInsets.only(top: 25.0),
@@ -31,48 +34,39 @@ class FilterBrandViewBody extends StatelessWidget {
               ),
             ),
           )
-        // : productProvider.searchController.text.isNotEmpty &&
-        : searchController.text.isNotEmpty &&
-                productProvider.productListSearch.isEmpty
-            ? Center(
-                child: Text(
-                  'No Products Found'.tr(context),
-                  style: AppStyles.semiBold16.copyWith(color: Colors.grey),
+        : SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: DynamicHeightGridView(
+                    physics: const BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    builder: (context, index) {
+                      return ItemRecommended(
+                        productId:
+                            // productProvider
+                            // .searchController.text.isNotEmpty
+                            searchController.text.isNotEmpty
+                                ? productProvider
+                                    .productListSearch[index].productsId
+                                : filteredProductsList[index].productsId,
+                      );
+                    },
+                    mainAxisSpacing: 25,
+                    crossAxisSpacing: 16,
+                    itemCount: searchController.text.isNotEmpty
+                        ? productProvider.productListSearch.length
+                        : filteredProductsList.length,
+                    crossAxisCount:
+                        MediaQuery.sizeOf(context).width < SizeConfig.tablet
+                            ? 2
+                            : 3,
+                  ),
                 ),
-              )
-            : SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: DynamicHeightGridView(
-                        physics: const BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        builder: (context, index) {
-                          return ItemRecommended(
-                            productId:
-                                // productProvider
-                                // .searchController.text.isNotEmpty
-                                searchController.text.isNotEmpty
-                                    ? productProvider
-                                        .productListSearch[index].productsId
-                                    : productsList[index].productsId,
-                          );
-                        },
-                        mainAxisSpacing: 25,
-                        crossAxisSpacing: 16,
-                        itemCount: searchController.text.isNotEmpty
-                            ? productProvider.productListSearch.length
-                            : productsList.length,
-                        crossAxisCount:
-                            MediaQuery.sizeOf(context).width < SizeConfig.tablet
-                                ? 2
-                                : 3,
-                      ),
-                    ),
-                    const SizedBox(height: 50),
-                  ],
-                ),
-              );
+                const SizedBox(height: 50),
+              ],
+            ),
+          );
   }
 }

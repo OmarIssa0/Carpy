@@ -77,4 +77,98 @@ class ProductProvider with ChangeNotifier {
       rethrow;
     }
   }
+
+  List<String> categoryList = [
+    "الكل",
+    "اكسسوارات",
+    "قطع غيار",
+    "استئجار المركبات",
+    "مركبات للبيع",
+    "تعبئة على الطريق",
+    "زيوت وسوائل",
+    "تنظيف المركبات",
+  ];
+
+  double _minPrice = 0.0;
+  double _maxPrice = 1000000;
+  String? _selectedCategory;
+  // String? _selectedSpecifications;
+
+  double get minPrice => _minPrice;
+  double get maxPrice => _maxPrice;
+  String? get selectedCategory => _selectedCategory;
+  // String? get selectedSpecifications => _selectedSpecifications;
+
+  void setMinPrice(double value) {
+    _minPrice = value;
+    notifyListeners();
+  }
+
+  void setMaxPrice(double value) {
+    _maxPrice = value;
+    notifyListeners();
+  }
+
+  void setSelectedCategory(String? value, bool? isFilter) {
+    if (isFilter == false) {
+      _selectedCategory = null;
+      return;
+    }
+    notifyListeners();
+
+    if (value == "الكل") {
+      _selectedCategory = null;
+      notifyListeners();
+      return;
+    }
+
+    _selectedCategory = value;
+    notifyListeners();
+  }
+
+  // void setSelectedSpecifications(String? value) {
+  //   _selectedSpecifications = value;
+  //   notifyListeners();
+  // }
+
+  List<ProductsModel> filterProducts(
+      List<ProductsModel> products, bool isFilter) {
+    return products.where((product) {
+      final double productPrice = double.tryParse(product.priceProduct) ?? 0.0;
+      final matchesPrice =
+          productPrice >= _minPrice && productPrice <= _maxPrice;
+
+      if (isFilter == false) {
+        return matchesPrice;
+      }
+      final matchesCategory = _selectedCategory == null ||
+          product.categoryTypeAd == _selectedCategory;
+
+      // final matchesSpecifications = _selectedSpecifications == null ||
+      //     product.selectedFeatures!.contains(_selectedSpecifications!);
+      // return matchesPrice && matchesCategory && matchesSpecifications;
+      return matchesPrice && matchesCategory;
+    }).toList();
+  }
+
+  // void addDummyProducts() {
+  //   for (int i = 0; i < 10; i++) {
+  //     _products.add(ProductsModel(
+  //       categoryTypeAd: 'Category $i',
+  //       productsId: 'Product ${_products.length + 1}',
+  //       isSwitchReservation: false,
+  //       userId: 'User $i',
+  //       imageCompany: 'https://example.com/image$i.png',
+  //       nameProduct: 'Product Name $i',
+  //       priceProduct: (100.0 + i).toString(),
+  //       descriptionProduct: 'Description $i',
+  //       phoneNumberVendor: '123456789$i',
+  //       companyName: 'Company $i',
+  //       modelProduct: 'Model $i',
+  //       categoryProduct: 'Category $i',
+  //       imagesProduct: ['https://example.com/image$i.png'],
+  //     ));
+  //   }
+  //   notifyListeners();
+  // }
 }

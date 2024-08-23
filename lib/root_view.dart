@@ -167,7 +167,7 @@ class _RootViewState extends State<RootView> {
                         color: AppColor.kBackGroundColorSplash),
                   )
                 : Badge(
-                    alignment: const Alignment(-0.1, .2),
+                    alignment: const Alignment(-0.1, 0),
                     label: FittedBox(
                       fit: BoxFit.scaleDown,
                       child: Text(

@@ -60,7 +60,9 @@ class LoginProvider with ChangeNotifier {
           child: const RootView(),
         ),
       );
-      Fluttertoast.showToast(msg: "Login Success");
+      Fluttertoast.showToast(
+        msg: "Login Successful".tr(context),
+      );
       final analyticsService =
           Provider.of<AnalyticsService>(context, listen: false);
       analyticsService.logEvent(

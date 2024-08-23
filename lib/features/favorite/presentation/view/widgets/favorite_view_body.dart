@@ -1,4 +1,3 @@
-import 'package:car_store/core/service/widgets_ad_banner.dart';
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/core/utils/size_config.dart';

@@ -2,6 +2,7 @@ import 'package:car_store/core/service/widgets_ad_banner.dart';
 import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/widgets/custom_text_filed.dart';
 import 'package:car_store/features/filter_category/presentation/view/widgets/filter_brand_view_body.dart';
+import 'package:car_store/features/filter_category/presentation/view/widgets/icon_filter.dart';
 import 'package:car_store/features/lang/app_localization.dart';
 import 'package:car_store/features/search/presentation/view_model/model/products_model.dart';
 import 'package:car_store/features/search/presentation/view_model/provider/product_provider.dart';
@@ -61,56 +62,68 @@ class _FilterBrandViewState extends State<FilterBrandView> {
             ),
             snap: true,
             flexibleSpace: FlexibleSpaceBar(
-              title: passeCategory == null
-                  ? Text(
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      'All Products'.tr(context),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                      ),
-                    )
-                  : Text(
-                      passeCategory,
-                      maxLines: 1,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                      ),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  passeCategory == null
+                      ? Text(
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          'All Products'.tr(context),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                          ),
+                        )
+                      : SizedBox(
+                          width: MediaQuery.of(context).size.width * .4,
+                          child: Text(
+                            passeCategory,
+                            maxLines: 1,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                  const SizedBox(width: 8),
+                  const Padding(
+                    padding: EdgeInsetsDirectional.only(end: 15),
+                    child: IconFilter(
+                      isFilter: true,
                     ),
+                  ),
+                ],
+              ),
               background: Padding(
                 padding: const EdgeInsetsDirectional.only(
                     start: 55, top: 32, end: 18),
-                child: SizedBox(
-                  child: CustomTextFiled(
-                      // controller: productProvider.searchController,
-                      controller: searchController,
-                      onFieldSubmitted: (p0) {
-                        setState(() {
-                          productProvider.productListSearch =
-                              productProvider.searchQuery(
-                                  searchText:
-                                      // productProvider.searchController.text,
-                                      searchController.text,
-                                  passedList: productsList);
-                        });
-                      },
-                      onChanged: (p0) {
-                        setState(() {
-                          productProvider.productListSearch =
-                              productProvider.searchQuery(
-                                  searchText:
-                                      // productProvider.searchController.text,
-                                      searchController.text,
-                                  passedList: productsList);
-                        });
-                      },
-                      contentPadding:
-                          const EdgeInsetsDirectional.only(start: 12),
-                      title: "Search".tr(context),
-                      textInputType: TextInputType.text),
-                ),
+                child: CustomTextFiled(
+                    // controller: productProvider.searchController,
+                    controller: searchController,
+                    onFieldSubmitted: (p0) {
+                      setState(() {
+                        productProvider.productListSearch =
+                            productProvider.searchQuery(
+                                searchText:
+                                    // productProvider.searchController.text,
+                                    searchController.text,
+                                passedList: productsList);
+                      });
+                    },
+                    onChanged: (p0) {
+                      setState(() {
+                        productProvider.productListSearch =
+                            productProvider.searchQuery(
+                                searchText:
+                                    // productProvider.searchController.text,
+                                    searchController.text,
+                                passedList: productsList);
+                      });
+                    },
+                    contentPadding: const EdgeInsetsDirectional.only(start: 12),
+                    title: "Search".tr(context),
+                    textInputType: TextInputType.text),
               ),
             ),
           ),

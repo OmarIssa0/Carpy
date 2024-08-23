@@ -1,4 +1,3 @@
-import 'package:car_store/core/utils/app_color.dart';
 import 'package:car_store/core/utils/app_styles.dart';
 import 'package:car_store/core/widgets/adaptive_layout_widgets.dart';
 import 'package:car_store/features/auth/presentation/manger/provider/user_provider.dart';

@@ -13,7 +13,9 @@ class ProductsModel with ChangeNotifier {
       imageCompany,
       categoryTypeAd,
       userId;
-  final String? locationVendor, discount;
+  final String? locationVendor, discount, color, kilometer;
+  List<dynamic>? selectedFeatures;
+
   List<dynamic> imagesProduct;
   // List<dynamic> productsVendor;
   bool isSwitchReservation = false;
@@ -33,6 +35,9 @@ class ProductsModel with ChangeNotifier {
     required this.modelProduct,
     required this.categoryProduct,
     required this.imagesProduct,
+    this.color,
+    this.kilometer,
+    this.selectedFeatures,
     // required this.productsVendor,
     this.locationVendor,
     this.discount,
@@ -60,6 +65,10 @@ class ProductsModel with ChangeNotifier {
       discount: data['discount'],
       categoryTypeAd: data['categoryTypeAd'],
       createdAt: data['createdAt'],
+      selectedFeatures: data['selectedFeatures'],
+      color: data['color'],
+      kilometer: data['kilometer'],
     );
   }
+  double get priceDouble => double.tryParse(priceProduct) ?? 0.0;
 }

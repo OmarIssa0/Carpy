@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:car_store/core/utils/app_image.dart';
 import 'package:car_store/core/widgets/alert_dialog.dart';
 import 'package:car_store/features/auth/presentation/view/login_view.dart';
@@ -46,8 +44,8 @@ class _BoxInfoState extends State<BoxInfo> {
         String phone = vendorData['phoneNumber'] ?? '';
         String vendorType = vendorData['companyType'] ?? '';
         String locationVendor = vendorData['location'] ?? "";
-        final Uri whatsappUrl =
-            Uri.parse("https:wa.me/+${removeLeadingZero(phone)}");
+        // final Uri whatsappUrl =
+        //     Uri.parse("https:wa.me/+${removeLeadingZero(phone)}");
         return Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
@@ -108,31 +106,31 @@ class _BoxInfoState extends State<BoxInfo> {
                     ),
                   ),
                   const Spacer(),
-                  IconButton(
-                    onPressed: () async {
-                      final auth = FirebaseAuth.instance.currentUser;
-                      if (auth!.isAnonymous == true) {
-                        AlertDialogMethods.showError(
-                          context: context,
-                          subtitle: "User not found".tr(context),
-                          titleBottom: "Sign In".tr(context),
-                          lottileAnimation: Assets.imagesErrorMas,
-                          function: () {
-                            Navigator.of(context).pop();
-                            Navigator.of(context)
-                                .pushNamed(LoginView.routeName);
-                          },
-                        );
-                      } else {
-                        try {
-                          launchUrl(whatsappUrl);
-                        } catch (e) {
-                          log(e.toString());
-                        }
-                      }
-                    },
-                    icon: const Icon(IconlyBold.chat),
-                  ),
+                  // IconButton(
+                  //   onPressed: () async {
+                  //     final auth = FirebaseAuth.instance.currentUser;
+                  //     if (auth!.isAnonymous == true) {
+                  //       AlertDialogMethods.showError(
+                  //         context: context,
+                  //         subtitle: "User not found".tr(context),
+                  //         titleBottom: "Sign In".tr(context),
+                  //         lottileAnimation: Assets.imagesErrorMas,
+                  //         function: () {
+                  //           Navigator.of(context).pop();
+                  //           Navigator.of(context)
+                  //               .pushNamed(LoginView.routeName);
+                  //         },
+                  //       );
+                  //     } else {
+                  //       try {
+                  //         launchUrl(whatsappUrl);
+                  //       } catch (e) {
+                  //         log(e.toString());
+                  //       }
+                  //     }
+                  //   },
+                  //   icon: const Icon(IconlyBold.chat),
+                  // ),
                   IconButton(
                     onPressed: () async {
                       final auth = FirebaseAuth.instance.currentUser;
@@ -172,12 +170,12 @@ class _BoxInfoState extends State<BoxInfo> {
   }
 }
 
-String removeLeadingZero(String number) {
-  if (number.startsWith('0')) {
-    return number.substring(1);
-  }
-  return number;
-}
+// String removeLeadingZero(String number) {
+//   if (number.startsWith('0')) {
+//     return number.substring(1);
+//   }
+//   return number;
+// }
 
 void _makePhoneCall(String phoneNumber) async {
   final Uri launchUri = Uri(
